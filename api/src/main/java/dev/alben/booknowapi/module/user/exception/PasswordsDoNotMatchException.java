@@ -1,7 +1,10 @@
 package dev.alben.booknowapi.module.user.exception;
 
-public class PasswordsDoNotMatchException extends RuntimeException {
+import dev.alben.booknowapi.core.exception.AppException;
+import org.springframework.http.HttpStatus;
+
+public class PasswordsDoNotMatchException extends AppException {
     public PasswordsDoNotMatchException() {
-        super("The passwords do not match");
+        super("The passwords do not match", HttpStatus.BAD_REQUEST);
     }
 }
