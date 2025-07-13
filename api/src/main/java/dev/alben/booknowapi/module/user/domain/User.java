@@ -34,4 +34,7 @@ public record User(
         Boolean enabled,
         Auditable auditable
 ) {
+    public static User create(String name, String lastName, String dni, String photoUrl, String email, String password, Role role) {
+        return new User(null, name, lastName, dni, photoUrl, email, password, role, null, true, null);
+    }
 }
