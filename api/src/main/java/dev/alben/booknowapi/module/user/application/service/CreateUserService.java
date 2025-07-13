@@ -7,6 +7,7 @@ import dev.alben.booknowapi.module.user.application.port.out.SaveUserPort;
 import dev.alben.booknowapi.module.user.domain.User;
 import dev.alben.booknowapi.module.user.exception.PasswordsDoNotMatchException;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.transaction.annotation.Transactional;
 
 @UseCase
@@ -14,14 +15,18 @@ import org.springframework.transaction.annotation.Transactional;
 @RequiredArgsConstructor
 public class CreateUserService implements CreateUserUseCase {
     private final SaveUserPort saveUserPort;
+    private final PasswordEncoder passwordEncoder;
 
     @Override
     public User create(CreateUserCommand command) {
-        final var user = User.create(command.name(), command.lastName(), command.dni(), "", command.email(), command.password(), command.repeatPassword(), command.role());
+        var user = User.create(command.name(), command.lastName(), command.dni(), "", command.email(), command.password(), command.repeatPassword(), command.role());
 
         if (!user.passwordsDoMatch()) {
             throw new PasswordsDoNotMatchException();
         }
+
+        final var hashedPassword = passwordEncoder.encode(command.password());
+        user = user.copyWithHashedPassword(hashedPassword);
 
         return saveUserPort.save(user);
     }

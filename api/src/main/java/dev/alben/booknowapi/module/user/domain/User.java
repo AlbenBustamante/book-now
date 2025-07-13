@@ -42,4 +42,8 @@ public record User(
     public static User create(String name, String lastName, String dni, String photoUrl, String email, String password, String repeatPassword, Role role) {
         return new User(null, name, lastName, dni, photoUrl, email, password, repeatPassword, role, null, true, null);
     }
+
+    public User copyWithHashedPassword(String hashedPassword) {
+        return new User(id, name, lastName, dni, photoUrl, email, hashedPassword, hashedPassword, role, accountVerifiedAt, enabled, auditable);
+    }
 }
