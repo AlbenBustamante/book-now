@@ -17,8 +17,8 @@ import java.time.LocalDateTime;
  * @param password          hashed password.
  * @param role              system role.
  * @param accountVerifiedAt account's email verification timestamp.
- * @param auditable         timestamps.
  * @param enabled           activate/deactivate account.
+ * @param auditable         timestamps.
  * @see Auditable
  */
 public record User(
