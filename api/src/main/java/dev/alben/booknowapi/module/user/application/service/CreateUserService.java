@@ -1,6 +1,6 @@
 package dev.alben.booknowapi.module.user.application.service;
 
-import dev.alben.booknowapi.common.UseCase;
+import dev.alben.booknowapi.core.common.UseCase;
 import dev.alben.booknowapi.module.user.application.port.in.CreateUserUseCase;
 import dev.alben.booknowapi.module.user.application.port.in.command.CreateUserCommand;
 import dev.alben.booknowapi.module.user.application.port.out.SaveUserPort;
