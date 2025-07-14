@@ -1,4 +1,4 @@
-package dev.alben.booknowapi.module.user.infrastructure.out.persistence;
+package dev.alben.booknowapi.module.user.infrastructure.out.persistence.repository;
 
 import dev.alben.booknowapi.module.user.infrastructure.out.persistence.entity.UserEntity;
 import org.springframework.data.jpa.repository.JpaRepository;

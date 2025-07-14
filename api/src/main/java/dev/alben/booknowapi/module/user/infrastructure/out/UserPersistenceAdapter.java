@@ -6,8 +6,8 @@ import dev.alben.booknowapi.module.user.application.port.out.CheckEmailPort;
 import dev.alben.booknowapi.module.user.application.port.out.LoadUserByEmailPort;
 import dev.alben.booknowapi.module.user.application.port.out.SaveUserPort;
 import dev.alben.booknowapi.module.user.domain.User;
-import dev.alben.booknowapi.module.user.infrastructure.out.persistence.UserJpaMapper;
-import dev.alben.booknowapi.module.user.infrastructure.out.persistence.UserJpaRepository;
+import dev.alben.booknowapi.module.user.infrastructure.out.persistence.mapper.UserJpaMapper;
+import dev.alben.booknowapi.module.user.infrastructure.out.persistence.repository.UserJpaRepository;
 import lombok.RequiredArgsConstructor;
 
 import java.util.Optional;

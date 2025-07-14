@@ -1,4 +1,4 @@
-package dev.alben.booknowapi.module.user.infrastructure.out.persistence;
+package dev.alben.booknowapi.module.user.infrastructure.out.persistence.mapper;
 
 import dev.alben.booknowapi.core.auditable.AuditableJpaMapper;
 import dev.alben.booknowapi.module.user.domain.User;
