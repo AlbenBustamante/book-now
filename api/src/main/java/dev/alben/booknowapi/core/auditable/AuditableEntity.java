@@ -14,25 +14,43 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.time.Instant;
 
+/**
+ * Abstract Entity Model to audit child entities.
+ */
 @Getter
 @Setter
 @MappedSuperclass
 @EntityListeners(AuditingEntityListener.class)
 @SQLRestriction("deleted_date IS NULL")
 public abstract class AuditableEntity {
+    /**
+     * Created By {@code ID}.
+     */
     @CreatedBy
     @Column(updatable = false)
     private Integer createdBy;
 
+    /**
+     * Creation Date.
+     */
     @CreatedDate
     @Column(updatable = false)
     private Instant createdAt;
 
+    /**
+     * Updated By {@code ID}.
+     */
     @LastModifiedBy
     private Integer updatedBy;
 
+    /**
+     * Last Update Date.
+     */
     @LastModifiedDate
     private Instant updatedAt;
 
+    /**
+     * Soft-Deletion Date.
+     */
     private Instant deletedAt;
 }
