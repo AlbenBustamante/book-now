@@ -3,6 +3,7 @@ package dev.alben.booknowapi.module.auth;
 import dev.alben.booknowapi.module.user.application.port.in.command.CreateUserCommand;
 import dev.alben.booknowapi.module.user.infrastructure.in.UserRestAdapter;
 import dev.alben.booknowapi.module.user.infrastructure.in.rest.dto.UserDto;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,7 +19,7 @@ public class AuthRestApi {
     private final UserRestAdapter userRestAdapter;
 
     @PostMapping(path = "/register")
-    public ResponseEntity<UserDto> register(@RequestBody CreateUserCommand command) {
+    public ResponseEntity<UserDto> register(@Valid @RequestBody CreateUserCommand command) {
         return ResponseEntity.status(HttpStatus.CREATED).body(userRestAdapter.create(command));
     }
 }

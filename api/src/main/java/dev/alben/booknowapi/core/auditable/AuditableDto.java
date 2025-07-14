@@ -8,6 +8,6 @@ import java.time.Instant;
 @Setter
 @Getter
 public abstract class AuditableDto {
-    private Integer createdBy, updatedBy;
+    private String createdBy, updatedBy;
     private Instant createdAt, updatedAt, deletedAt;
 }

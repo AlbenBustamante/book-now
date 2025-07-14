@@ -6,6 +6,10 @@ public abstract class AuditableJpaMapper {
     protected abstract Auditable toAbstractDomain(AuditableEntity entity);
 
     protected void mapAbstractAuditEntity(Auditable domain, @MappingTarget AuditableEntity entity) {
+        if (domain == null) {
+            return;
+        }
+
         if (domain.createdAt() != null) {
             entity.setCreatedAt(domain.createdAt());
         }

@@ -5,16 +5,16 @@ import java.time.Instant;
 /**
  * Domain model to audit timestamps.
  *
- * @param createdBy created by ID.
+ * @param createdBy created by.
  * @param createdAt creation date.
- * @param updatedBy updated by ID.
+ * @param updatedBy updated by.
  * @param updatedAt last modification date.
  * @param deletedAt soft deletion date.
  */
 public record Auditable(
-        Integer createdBy,
+        String createdBy,
         Instant createdAt,
-        Integer updatedBy,
+        String updatedBy,
         Instant updatedAt,
         Instant deletedAt
 ) {

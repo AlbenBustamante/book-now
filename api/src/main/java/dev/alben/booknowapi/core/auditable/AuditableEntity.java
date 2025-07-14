@@ -28,7 +28,7 @@ public abstract class AuditableEntity {
      */
     @CreatedBy
     @Column(updatable = false)
-    private Integer createdBy;
+    private String createdBy;
 
     /**
      * Creation Date.
@@ -41,7 +41,7 @@ public abstract class AuditableEntity {
      * Updated By {@code ID}.
      */
     @LastModifiedBy
-    private Integer updatedBy;
+    private String updatedBy;
 
     /**
      * Last Update Date.

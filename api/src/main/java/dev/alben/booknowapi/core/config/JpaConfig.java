@@ -5,7 +5,6 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.data.domain.AuditorAware;
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.User;
 
 import java.util.Optional;
 
@@ -20,12 +19,14 @@ public class JpaConfig {
             return () -> Optional.of("--");
         }
 
-        final var principal = authentication.getPrincipal();
+        return () -> Optional.ofNullable(authentication.getName());
+
+        /*final var principal = authentication.getPrincipal();
 
         if (principal == "anonymousUser") {
             return () -> Optional.of("--");
         }
 
-        return () -> Optional.ofNullable(((User) principal).getUsername());
+        return () -> Optional.ofNullable(((User) principal).getUsername());*/
     }
 }

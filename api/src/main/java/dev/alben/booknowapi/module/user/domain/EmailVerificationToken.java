@@ -36,7 +36,7 @@ public record EmailVerificationToken(
 
     private static String generateToken() {
         final var secureRandom = new SecureRandom();
-        final var bytes = new byte[70];
+        final var bytes = new byte[32];
         secureRandom.nextBytes(bytes);
 
         return bytesToHex(bytes);
