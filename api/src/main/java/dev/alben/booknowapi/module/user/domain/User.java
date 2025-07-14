@@ -40,6 +40,10 @@ public record User(
     }
 
     public static User create(String name, String lastName, String dni, String photoUrl, String email, String password, String repeatPassword, Role role) {
+        if (role == null) {
+            role = Role.CUSTOMER;
+        }
+
         return new User(null, name, lastName, dni, photoUrl, email, password, repeatPassword, role, null, true, null);
     }
 
