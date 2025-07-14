@@ -2,6 +2,7 @@ package dev.alben.booknowapi.module.user.infrastructure.out.persistence;
 
 import dev.alben.booknowapi.core.auditable.AuditableJpaMapper;
 import dev.alben.booknowapi.module.user.domain.User;
+import dev.alben.booknowapi.module.user.infrastructure.out.persistence.entity.UserEntity;
 import org.mapstruct.AfterMapping;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;

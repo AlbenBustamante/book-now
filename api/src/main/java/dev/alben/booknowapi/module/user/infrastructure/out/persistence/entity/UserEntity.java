@@ -1,4 +1,4 @@
-package dev.alben.booknowapi.module.user.infrastructure.out.persistence;
+package dev.alben.booknowapi.module.user.infrastructure.out.persistence.entity;
 
 import dev.alben.booknowapi.core.auditable.AuditableEntity;
 import dev.alben.booknowapi.module.user.util.Role;
