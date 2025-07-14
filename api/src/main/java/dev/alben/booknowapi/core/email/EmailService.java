@@ -26,12 +26,11 @@ public class EmailService implements SendHtmlEmailUseCase {
             message.setRecipients(MimeMessage.RecipientType.TO, to);
             message.setSubject(subject);
 
-            final var content = "<div style='padding: 12px; background-color: #ccc; width: 100%;'>" +
-                    "<h1 style='font-weight: 600; font-size: 20px; text-align: center; color: #333;'>" +
-                    "<h1>" +
+            final var content = "<div style='padding: 12px; background-color: #eee; border-radius: 25px;'>" +
+                    "<h1 style='font-weight: 600; font-size: 20px; text-align: center; color: #555; width: 100%;'>" +
                     title +
                     "</h1>" +
-                    "<div style='margin: 12px 0';>" +
+                    "<div style='margin: 12px 0; font-size: 18px; color: #666'>" +
                     body +
                     "</div>" +
                     "<footer style='font-weight: 600; font-size: 16px; text-align: center; color: #777;'>BookNow &copy; 2025</footer>" +
