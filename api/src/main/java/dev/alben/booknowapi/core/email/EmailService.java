@@ -26,7 +26,7 @@ public class EmailService implements SendHtmlEmailUseCase {
             message.setRecipients(MimeMessage.RecipientType.TO, to);
             message.setSubject(subject);
 
-            final var content = "<div style='padding: 12px; background-color: #eee; border-radius: 25px;'>" +
+            final var content = "<div style='padding: 12px 20px; background-color: #eee; border-radius: 25px;'>" +
                     "<h1 style='font-weight: 600; font-size: 20px; text-align: center; color: #555; width: 100%;'>" +
                     title +
                     "</h1>" +
