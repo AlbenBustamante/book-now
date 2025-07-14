@@ -2,7 +2,6 @@ package dev.alben.booknowapi.core.common;
 
 import org.springframework.core.annotation.AliasFor;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
 
 import java.lang.annotation.Documented;
 import java.lang.annotation.ElementType;
@@ -15,6 +14,6 @@ import java.lang.annotation.Target;
 @Documented
 @Component
 public @interface UseCase {
-    @AliasFor(annotation = Service.class)
+    @AliasFor(annotation = Component.class)
     String value() default "";
 }
