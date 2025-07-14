@@ -17,6 +17,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
+import static dev.alben.booknowapi.core.security.SecurityConstants.WHITE_LIST;
+
 @Configuration
 @EnableWebSecurity
 @RequiredArgsConstructor
@@ -39,7 +41,9 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         return http.csrf(AbstractHttpConfigurer::disable)
                 .userDetailsService(customUserDetailsService)
-                .authorizeHttpRequests(httpRequests -> httpRequests.anyRequest().authenticated())
+                .authorizeHttpRequests(httpRequests -> httpRequests
+                        .requestMatchers(WHITE_LIST).permitAll()
+                        .anyRequest().authenticated())
                 .addFilterBefore(appExceptionHandlerFilter, UsernamePasswordAuthenticationFilter.class)
                 .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class)
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
