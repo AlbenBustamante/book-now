@@ -1,9 +1,13 @@
 package dev.alben.booknowapi.module.auth;
 
-import dev.alben.booknowapi.core.email.usecase.SendHtmlEmailUseCase;
+import dev.alben.booknowapi.module.user.application.port.in.command.CreateUserCommand;
+import dev.alben.booknowapi.module.user.infrastructure.in.UserRestAdapter;
+import dev.alben.booknowapi.module.user.infrastructure.in.rest.dto.UserDto;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -11,13 +15,10 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping(path = "/auth")
 @RestController
 public class AuthRestApi {
-    private final SendHtmlEmailUseCase sendHtmlEmailUseCase;
+    private final UserRestAdapter userRestAdapter;
 
-    @GetMapping
-    public ResponseEntity<Void> sendEmail() {
-        String content = "<p>Thanks for registering!</p>" +
-                "<p>Please, verify your account using the following link:<p/><a href='https://www.google.com'>Google</a>";
-        sendHtmlEmailUseCase.sendHtmlEmail("test@gmail.com", "Pretty Email", "BookNow", content);
-        return ResponseEntity.ok().build();
+    @PostMapping(path = "/register")
+    public ResponseEntity<UserDto> register(@RequestBody CreateUserCommand command) {
+        return ResponseEntity.status(HttpStatus.CREATED).body(userRestAdapter.create(command));
     }
 }
