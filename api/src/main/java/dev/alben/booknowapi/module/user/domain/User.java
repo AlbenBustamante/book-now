@@ -44,7 +44,20 @@ public record User(
             role = Role.CUSTOMER;
         }
 
-        return new User(null, name, lastName, dni, photoUrl, email, password, repeatPassword, role, null, true, null);
+        return new User(
+                null,
+                name.toUpperCase(),
+                lastName.toUpperCase(),
+                dni.toUpperCase(),
+                photoUrl,
+                email.toLowerCase(),
+                password,
+                repeatPassword,
+                role,
+                null,
+                true,
+                null
+        );
     }
 
     public User copyWithHashedPassword(String hashedPassword) {
