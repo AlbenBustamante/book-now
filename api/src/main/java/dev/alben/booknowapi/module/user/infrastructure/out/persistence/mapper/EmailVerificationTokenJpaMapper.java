@@ -9,7 +9,7 @@ import org.mapstruct.Mapping;
 import org.mapstruct.MappingTarget;
 import org.mapstruct.ReportingPolicy;
 
-@Mapper(componentModel = "spring", unmappedTargetPolicy = ReportingPolicy.IGNORE)
+@Mapper(componentModel = "spring", uses = UserJpaMapper.class, unmappedTargetPolicy = ReportingPolicy.IGNORE)
 public abstract class EmailVerificationTokenJpaMapper extends AuditableJpaMapper {
     @Mapping(target = "auditable", expression = "java(toAbstractDomain(entity))")
     public abstract EmailVerificationToken toDomain(EmailVerificationTokenEntity entity);

@@ -34,6 +34,17 @@ public record EmailVerificationToken(
         );
     }
 
+    public EmailVerificationToken verifiedCopy() {
+        return new EmailVerificationToken(
+                id,
+                user.verifiedCopy(),
+                expiresAt,
+                token,
+                true,
+                auditable
+        );
+    }
+
     private static String generateToken() {
         final var secureRandom = new SecureRandom();
         final var bytes = new byte[32];

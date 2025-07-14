@@ -1,6 +1,7 @@
 package dev.alben.booknowapi.module.user.infrastructure.out.persistence.entity;
 
 import dev.alben.booknowapi.core.auditable.AuditableEntity;
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -36,7 +37,7 @@ public class EmailVerificationTokenEntity extends AuditableEntity {
     @Column(nullable = false)
     private Boolean verified;
 
-    @ManyToOne
+    @ManyToOne(cascade = {CascadeType.MERGE})
     @JoinColumn(nullable = false, name = "user_id", updatable = false)
     private UserEntity user;
 }

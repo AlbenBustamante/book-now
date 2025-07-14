@@ -63,4 +63,21 @@ public record User(
     public User copyWithHashedPassword(String hashedPassword) {
         return new User(id, name, lastName, dni, photoUrl, email, hashedPassword, hashedPassword, role, accountVerifiedAt, enabled, auditable);
     }
+
+    public User verifiedCopy() {
+        return new User(
+                id,
+                name,
+                lastName,
+                dni,
+                photoUrl,
+                email,
+                password,
+                repeatPassword,
+                role,
+                Instant.now(),
+                enabled,
+                auditable
+        );
+    }
 }
