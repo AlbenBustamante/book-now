@@ -10,5 +10,5 @@ public interface CheckDniPort {
      * @param dni DNI to check.
      * @return {@code true} if finds a record.
      */
-    boolean check(String dni);
+    boolean checkDni(String dni);
 }

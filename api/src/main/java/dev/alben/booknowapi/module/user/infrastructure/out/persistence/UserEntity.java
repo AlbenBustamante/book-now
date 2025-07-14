@@ -2,7 +2,9 @@ package dev.alben.booknowapi.module.user.infrastructure.out.persistence;
 
 import dev.alben.booknowapi.core.auditable.AuditableEntity;
 import dev.alben.booknowapi.module.user.util.Role;
+import dev.alben.booknowapi.module.user.util.RoleConverter;
 import jakarta.persistence.Column;
+import jakarta.persistence.Convert;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -77,6 +79,7 @@ public class UserEntity extends AuditableEntity {
      * System Role.
      */
     @Column(nullable = false, columnDefinition = "CHAR(1)")
+    @Convert(converter = RoleConverter.class)
     private Role role;
 
     /**

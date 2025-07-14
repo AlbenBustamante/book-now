@@ -3,7 +3,7 @@ package dev.alben.booknowapi.module.user.domain;
 import dev.alben.booknowapi.core.auditable.Auditable;
 import dev.alben.booknowapi.module.user.util.Role;
 
-import java.time.LocalDateTime;
+import java.time.Instant;
 
 /**
  * Domain model for users.
@@ -31,7 +31,7 @@ public record User(
         String password,
         String repeatPassword,
         Role role,
-        LocalDateTime accountVerifiedAt,
+        Instant accountVerifiedAt,
         Boolean enabled,
         Auditable auditable
 ) {

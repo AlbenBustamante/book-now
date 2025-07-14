@@ -10,5 +10,5 @@ public interface CheckEmailPort {
      * @param email email to check.
      * @return {@code true} if finds a record.
      */
-    boolean check(String email);
+    boolean checkEmail(String email);
 }

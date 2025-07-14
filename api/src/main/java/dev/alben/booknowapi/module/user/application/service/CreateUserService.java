@@ -25,11 +25,11 @@ public class CreateUserService implements CreateUserUseCase {
 
     @Override
     public User create(CreateUserCommand command) {
-        if (checkDniPort.check(command.dni())) {
+        if (checkDniPort.checkDni(command.dni())) {
             throw new UserAlreadyExistsByDniException(command.dni());
         }
 
-        if (checkEmailPort.check(command.email())) {
+        if (checkEmailPort.checkEmail(command.email())) {
             throw new UserAlreadyExistsByEmailException(command.email());
         }
 
