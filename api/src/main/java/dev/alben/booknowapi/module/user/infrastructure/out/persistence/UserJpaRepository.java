@@ -2,6 +2,8 @@ package dev.alben.booknowapi.module.user.infrastructure.out.persistence;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
+import java.util.Optional;
+
 /**
  * Database Logic for Users.
  */
@@ -21,4 +23,12 @@ public interface UserJpaRepository extends JpaRepository<UserEntity, Integer> {
      * @return {@code true} if already exists a user.
      */
     boolean existsByDni(String dni);
+
+    /**
+     * Finds a user by an email.
+     *
+     * @param email email to search.
+     * @return an {@link Optional} of the entity found.
+     */
+    Optional<UserEntity> findByEmail(String email);
 }

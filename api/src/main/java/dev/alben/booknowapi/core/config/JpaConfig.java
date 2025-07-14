@@ -1,11 +1,11 @@
 package dev.alben.booknowapi.core.config;
 
-import dev.alben.booknowapi.module.user.domain.User;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.domain.AuditorAware;
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.User;
 
 import java.util.Optional;
 
@@ -13,8 +13,8 @@ import java.util.Optional;
 @EnableJpaAuditing
 public class JpaConfig {
     @Bean
-    public AuditorAware<Integer> auditorAware() {
+    public AuditorAware<String> auditorAware() {
         final var principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        return () -> Optional.ofNullable(((User) principal).id());
+        return () -> Optional.ofNullable(((User) principal).getUsername());
     }
 }
