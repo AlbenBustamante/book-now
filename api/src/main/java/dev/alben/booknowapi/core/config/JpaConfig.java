@@ -14,7 +14,18 @@ import java.util.Optional;
 public class JpaConfig {
     @Bean
     public AuditorAware<String> auditorAware() {
-        final var principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        final var authentication = SecurityContextHolder.getContext().getAuthentication();
+
+        if (authentication == null || !authentication.isAuthenticated()) {
+            return () -> Optional.of("--");
+        }
+
+        final var principal = authentication.getPrincipal();
+
+        if (principal == "anonymousUser") {
+            return () -> Optional.of("--");
+        }
+
         return () -> Optional.ofNullable(((User) principal).getUsername());
     }
 }
