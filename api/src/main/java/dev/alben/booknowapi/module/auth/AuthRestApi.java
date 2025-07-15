@@ -26,7 +26,7 @@ public class AuthRestApi {
     }
 
     @GetMapping(path = "/verify-email")
-    public ResponseEntity<Boolean> verifyEmail(@RequestParam("token") String token) {
+    public ResponseEntity<String> verifyEmail(@RequestParam("token") String token) {
         return ResponseEntity.ok(userRestAdapter.verify(token));
     }
 }

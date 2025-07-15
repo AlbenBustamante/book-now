@@ -4,6 +4,9 @@ import dev.alben.booknowapi.core.common.UseCase;
 import dev.alben.booknowapi.module.user.application.port.in.VerifyEmailUseCase;
 import dev.alben.booknowapi.module.user.application.port.out.LoadTokenPort;
 import dev.alben.booknowapi.module.user.application.port.out.SaveEmailVerificationTokenPort;
+import dev.alben.booknowapi.module.user.exception.AccountAlreadyVerifiedException;
+import dev.alben.booknowapi.module.user.exception.EmailAlreadyVerifiedException;
+import dev.alben.booknowapi.module.user.exception.EmailVerificationTokenExpiredException;
 import dev.alben.booknowapi.module.user.exception.EmailVerificationTokenNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.transaction.annotation.Transactional;
@@ -18,26 +21,26 @@ public class VerifyEmailService implements VerifyEmailUseCase {
     private final SaveEmailVerificationTokenPort saveEmailVerificationTokenPort;
 
     @Override
-    public Boolean verify(String token) {
+    public String verify(String token) {
         var emailVerificationToken = loadTokenPort.load(token)
                 .orElseThrow(EmailVerificationTokenNotFoundException::new);
 
         if (emailVerificationToken.verified()) {
-            throw new RuntimeException("The token is already verified");
+            throw new EmailAlreadyVerifiedException();
         }
 
         if (ZonedDateTime.now().isAfter(emailVerificationToken.expiresAt())) {
-            throw new RuntimeException("The token is expired");
+            throw new EmailVerificationTokenExpiredException();
         }
 
         final var user = emailVerificationToken.user();
 
         if (user.accountVerifiedAt() != null) {
-            throw new RuntimeException("The account is already verified");
+            throw new AccountAlreadyVerifiedException();
         }
 
         saveEmailVerificationTokenPort.save(emailVerificationToken.verifiedCopy());
 
-        return true;
+        return "<h1 style='font-weight: 600; color: #555; text-align: center;'>Account verified successfully</h1>";
     }
 }

@@ -19,7 +19,7 @@ public class UserRestAdapter {
         return mapper.toDto(createUserUseCase.create(command));
     }
 
-    public Boolean verify(String token) {
+    public String verify(String token) {
         return verifyEmailUseCase.verify(token);
     }
 }

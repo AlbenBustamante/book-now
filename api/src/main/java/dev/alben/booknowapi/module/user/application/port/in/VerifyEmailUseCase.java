@@ -8,7 +8,7 @@ public interface VerifyEmailUseCase {
      * Verify an email by a given token.
      *
      * @param token token to verify.
-     * @return {@code true} if the email was verified successfully.
+     * @return a confirmation message like a html template.
      */
-    Boolean verify(String token);
+    String verify(String token);
 }
