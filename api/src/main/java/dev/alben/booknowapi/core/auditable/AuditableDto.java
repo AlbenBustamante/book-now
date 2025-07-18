@@ -5,9 +5,34 @@ import lombok.Setter;
 
 import java.time.Instant;
 
+/**
+ * Mutable DTO model for auditing.
+ */
 @Setter
 @Getter
 public abstract class AuditableDto {
-    private String createdBy, updatedBy;
-    private Instant createdAt, updatedAt, deletedAt;
+    /**
+     * created by.
+     */
+    private String createdBy;
+
+    /**
+     * updated by.
+     */
+    private String updatedBy;
+
+    /**
+     * creation date.
+     */
+    private Instant createdAt;
+
+    /**
+     * last modification date.
+     */
+    private Instant updatedAt;
+
+    /**
+     * soft deletion date.
+     */
+    private Instant deletedAt;
 }

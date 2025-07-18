@@ -2,6 +2,9 @@ package dev.alben.booknowapi.core.auditable;
 
 import org.mapstruct.MappingTarget;
 
+/**
+ * Abstract Mapper for Auditable: Domain <-> Entity
+ */
 public abstract class AuditableJpaMapper {
     protected abstract Auditable toAbstractDomain(AuditableEntity entity);
 

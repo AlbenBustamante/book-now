@@ -24,7 +24,7 @@ import java.time.Instant;
 @SQLRestriction("deleted_date IS NULL")
 public abstract class AuditableEntity {
     /**
-     * Created By {@code ID}.
+     * Created By.
      */
     @CreatedBy
     @Column(updatable = false)

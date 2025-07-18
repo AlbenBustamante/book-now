@@ -3,7 +3,7 @@ package dev.alben.booknowapi.core.auditable;
 import java.time.Instant;
 
 /**
- * Domain model to audit timestamps.
+ * Domain model to auditing.
  *
  * @param createdBy created by.
  * @param createdAt creation date.

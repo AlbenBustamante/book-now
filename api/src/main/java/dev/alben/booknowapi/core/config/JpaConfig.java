@@ -20,13 +20,5 @@ public class JpaConfig {
         }
 
         return () -> Optional.ofNullable(authentication.getName());
-
-        /*final var principal = authentication.getPrincipal();
-
-        if (principal == "anonymousUser") {
-            return () -> Optional.of("--");
-        }
-
-        return () -> Optional.ofNullable(((User) principal).getUsername());*/
     }
 }
