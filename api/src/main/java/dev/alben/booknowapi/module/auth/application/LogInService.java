@@ -30,7 +30,7 @@ public class LogInService implements LogInUseCase {
             throw new BadCredentialsException();
         }
 
-        final var authToken = new UsernamePasswordAuthenticationToken(user, user.getPassword());
+        final var authToken = new UsernamePasswordAuthenticationToken(user, command.password());
         authenticationManager.authenticate(authToken);
 
         final var jwt = jwtProvider.generateToken(user);

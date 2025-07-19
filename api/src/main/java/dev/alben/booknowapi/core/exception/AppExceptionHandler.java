@@ -5,13 +5,14 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
-import java.time.LocalDateTime;
+import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 
 @Slf4j
@@ -23,6 +24,14 @@ public class AppExceptionHandler extends ResponseEntityExceptionHandler {
         log.error("ARGUMENT NOT VALID EXCEPTION: {} - PATH: {}", error.message(), error.path());
 
         return ResponseEntity.status(status.value()).body(error);
+    }
+
+    @ExceptionHandler(UsernameNotFoundException.class)
+    public ResponseEntity<ErrorResponse> handleUsernameNotFoundException(UsernameNotFoundException ex, WebRequest webRequest) {
+        final var error = buildErrorResponse(ex.getMessage(), webRequest, HttpStatus.UNAUTHORIZED);
+        log.error("USERNAME NOT FOUND EXCEPTION: {} - PATH: {}", error.message(), error.path());
+
+        return ResponseEntity.status(error.statusCode()).body(error);
     }
 
     @ExceptionHandler(AppException.class)
@@ -42,10 +51,10 @@ public class AppExceptionHandler extends ResponseEntityExceptionHandler {
     }
 
     private ErrorResponse buildErrorResponse(String message, WebRequest webRequest, HttpStatus status) {
-        return new ErrorResponse(message, webRequest.getDescription(false), status.name(), status.value(), timestamp());
+        return new ErrorResponse(message, webRequest.getDescription(false).replace("uri=", ""), status.name(), status.value(), timestamp());
     }
 
     private String timestamp() {
-        return LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss"));
+        return ZonedDateTime.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss"));
     }
 }

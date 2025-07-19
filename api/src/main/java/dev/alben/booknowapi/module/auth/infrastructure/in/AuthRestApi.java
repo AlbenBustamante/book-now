@@ -1,5 +1,8 @@
-package dev.alben.booknowapi.module.auth;
+package dev.alben.booknowapi.module.auth.infrastructure.in;
 
+import dev.alben.booknowapi.module.auth.application.port.in.command.LogInCommand;
+import dev.alben.booknowapi.module.auth.application.port.out.response.LogInResponse;
+import dev.alben.booknowapi.module.auth.infrastructure.in.rest.AuthRestAdapter;
 import dev.alben.booknowapi.module.user.application.port.in.command.CreateUserCommand;
 import dev.alben.booknowapi.module.user.infrastructure.in.UserRestAdapter;
 import dev.alben.booknowapi.module.user.infrastructure.in.rest.dto.UserDto;
@@ -19,6 +22,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class AuthRestApi {
     private final UserRestAdapter userRestAdapter;
+    private final AuthRestAdapter authRestAdapter;
 
     @PostMapping(path = "/register")
     public ResponseEntity<UserDto> register(@Valid @RequestBody CreateUserCommand command) {
@@ -28,5 +32,10 @@ public class AuthRestApi {
     @GetMapping(path = "/verify-email")
     public ResponseEntity<String> verifyEmail(@RequestParam("token") String token) {
         return ResponseEntity.ok(userRestAdapter.verify(token));
+    }
+
+    @PostMapping(path = "/log-in")
+    public ResponseEntity<LogInResponse> logIn(@Valid @RequestBody LogInCommand command) {
+        return ResponseEntity.ok(authRestAdapter.logIn(command));
     }
 }
