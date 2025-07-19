@@ -4,8 +4,8 @@ import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.exceptions.JWTVerificationException;
 import dev.alben.booknowapi.core.exception.UnauthorizedException;
-import dev.alben.booknowapi.module.user.domain.User;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 
 import java.time.Instant;
@@ -21,11 +21,10 @@ public class JwtProvider {
     @Value("${jwt.secret-key}")
     private String secretKey;
 
-    public String generateToken(User user) {
+    public String generateToken(UserDetails user) {
         return JWT.create()
-                .withClaim("id", user.id())
-                .withClaim("role", user.role().role().toString())
-                .withSubject(user.email())
+                .withClaim("role", user.getAuthorities().stream().toList().get(0).getAuthority())
+                .withSubject(user.getUsername())
                 .withIssuedAt(Instant.now())
                 .withExpiresAt(Instant.now().plusSeconds(SECONDS))
                 .sign(Algorithm.HMAC384(secretKey));
