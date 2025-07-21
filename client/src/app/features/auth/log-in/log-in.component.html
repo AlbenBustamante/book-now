@@ -1,1 +1,17 @@
-<p>log-in works!</p>
+<main class="p-5">
+  <form class="flex flex-col gap-4" [formGroup]="form">
+    <app-custom-input
+      name="email"
+      label="Email"
+      type="email"
+      autocomplete="email"
+      [control]="form.controls.email"
+    />
+    <app-custom-input
+      name="password"
+      label="Password"
+      type="password"
+      [control]="form.controls.password"
+    />
+  </form>
+</main>
