@@ -15,7 +15,7 @@ export class CustomButtonComponent {
 
   private colorMap = {
     primary:
-      'bg-primary-500 hover:bg-primary-600 active:bg-primary-700 text-primary-50',
+      'bg-primary-500 hover:bg-primary-600 active:bg-primary-700 text-primary-50 active:ring-4 ring-primary-200 focus:ring-4 ease-in-out ',
   };
 
   get getColor() {
