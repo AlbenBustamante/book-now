@@ -1,4 +1,4 @@
-package dev.alben.booknowapi.module.address.infrastructure.out.persistence.entity;
+package dev.alben.booknowapi.module.address.infrastructure.out.persistence;
 
 import dev.alben.booknowapi.core.auditable.AuditableEntity;
 import jakarta.persistence.Column;
