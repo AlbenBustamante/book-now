@@ -39,10 +39,12 @@ public class JwtFilter extends OncePerRequestFilter {
         }
 
         final var token = header.split(prefix)[1];
-        final var username = jwtProvider.validateToken(token);
+        final var username = jwtProvider.extractUsername(token);
         final var user = customUserDetailsService.loadUserByUsername(username);
+        final var id = jwtProvider.extractId(token);
+        final var principal = new UserPrincipal(user, id);
 
-        final var authToken = new UsernamePasswordAuthenticationToken(user, user.getPassword(), user.getAuthorities());
+        final var authToken = new UsernamePasswordAuthenticationToken(principal, user.getPassword(), user.getAuthorities());
         authToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
 
         SecurityContextHolder.getContext().setAuthentication(authToken);
