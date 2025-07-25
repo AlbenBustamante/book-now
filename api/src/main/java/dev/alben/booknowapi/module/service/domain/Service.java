@@ -28,4 +28,16 @@ public record Service(
         BigDecimal price,
         Auditable auditable
 ) {
+    public static Service create(String name, String description, Integer durationInMinutes, BigDecimal price, Address address, User provider) {
+        return new Service(
+                null,
+                provider,
+                address,
+                name,
+                description,
+                durationInMinutes,
+                price,
+                null
+        );
+    }
 }
