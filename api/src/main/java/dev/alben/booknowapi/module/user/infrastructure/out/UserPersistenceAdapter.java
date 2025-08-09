@@ -4,6 +4,7 @@ import dev.alben.booknowapi.core.common.PersistenceAdapter;
 import dev.alben.booknowapi.module.user.application.port.out.CheckDniPort;
 import dev.alben.booknowapi.module.user.application.port.out.CheckEmailPort;
 import dev.alben.booknowapi.module.user.application.port.out.LoadUserByEmailPort;
+import dev.alben.booknowapi.module.user.application.port.out.LoadUserByIdPort;
 import dev.alben.booknowapi.module.user.application.port.out.SaveUserPort;
 import dev.alben.booknowapi.module.user.domain.User;
 import dev.alben.booknowapi.module.user.infrastructure.out.persistence.mapper.UserJpaMapper;
@@ -14,7 +15,7 @@ import java.util.Optional;
 
 @PersistenceAdapter
 @RequiredArgsConstructor
-public class UserPersistenceAdapter implements CheckDniPort, CheckEmailPort, SaveUserPort, LoadUserByEmailPort {
+public class UserPersistenceAdapter implements CheckDniPort, CheckEmailPort, SaveUserPort, LoadUserByEmailPort, LoadUserByIdPort {
     private final UserJpaRepository repository;
     private final UserJpaMapper mapper;
 
@@ -39,6 +40,12 @@ public class UserPersistenceAdapter implements CheckDniPort, CheckEmailPort, Sav
     @Override
     public Optional<User> loadByEmail(String email) {
         final var user = repository.findByEmail(email);
+        return user.map(mapper::toDomain);
+    }
+
+    @Override
+    public Optional<User> loadById(Integer userId) {
+        final var user = repository.findById(userId);
         return user.map(mapper::toDomain);
     }
 }
