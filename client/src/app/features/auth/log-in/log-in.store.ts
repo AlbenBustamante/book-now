@@ -2,16 +2,17 @@ import { inject } from '@angular/core';
 import { patchState, signalStore, withMethods, withState } from '@ngrx/signals';
 import { LogInService } from './services/log-in.service';
 import { LogIn } from './models/log-in.model';
+import { Status } from '@core/status.type';
 
 type LogInState = {
   jwt: string | null;
-  loading: boolean;
+  status: Status;
   error: string | null;
 };
 
 const initialState: LogInState = {
   jwt: null,
-  loading: false,
+  status: 'pending',
   error: null,
 };
 
@@ -19,12 +20,12 @@ export const LogInStore = signalStore(
   withState(initialState),
   withMethods((store, service = inject(LogInService)) => ({
     logIn: (data: LogIn) => {
-      patchState(store, { loading: true });
+      patchState(store, { status: 'loading' });
 
       service.logIn(data).subscribe({
         next: (response) =>
-          patchState(store, { jwt: response.jwt, loading: false }),
-        error: (err) => patchState(store, { loading: false, error: err }),
+          patchState(store, { jwt: response.jwt, status: 'success' }),
+        error: (err) => patchState(store, { status: 'failure', error: err }),
       });
     },
   }))

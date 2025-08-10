@@ -15,7 +15,7 @@ export class ButtonComponent {
 
   private mapColor = {
     primary:
-      'bg-primary-500 hover:bg-primary-600 active:bg-primary-700 text-primary-50 active:ring-4 ring-primary-200 focus:ring-4 ease-in-out ',
+      'bg-primary-500 enabled:hover:bg-primary-600 enabled:active:bg-primary-700 text-primary-50 enabled:active:ring-4 ring-primary-200 enabled:focus:ring-4 ease-in-out disabled:opacity-50',
   };
 
   get styles() {

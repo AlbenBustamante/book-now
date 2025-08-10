@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, effect, inject } from '@angular/core';
 import { InputComponent } from '@components/input/input.component';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ButtonComponent } from '@components/button/button.component';
@@ -22,6 +22,14 @@ export default class LogInComponent {
       email: ['', [Validators.required, Validators.email]],
       password: ['', Validators.required],
     });
+
+    effect(() => {
+      if (this._store.status() === 'loading') {
+        this.form.disable();
+      } else {
+        this.form.enable();
+      }
+    });
   }
 
   onSubmit() {
@@ -31,6 +39,13 @@ export default class LogInComponent {
     };
 
     this._store.logIn(data);
-    this.form.reset();
+
+    if (this._store.status() === 'success') {
+      this.form.reset();
+    }
+  }
+
+  get loading() {
+    return this._store.status() === 'loading';
   }
 }
