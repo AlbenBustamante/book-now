@@ -4,10 +4,11 @@ import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ButtonComponent } from '@components/button/button.component';
 import { LogIn } from './models/log-in.model';
 import { LogInStore } from './log-in.store';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-log-in',
-  imports: [InputComponent, ReactiveFormsModule, ButtonComponent],
+  imports: [InputComponent, ReactiveFormsModule, ButtonComponent, RouterLink],
   templateUrl: './log-in.component.html',
   styleUrl: './log-in.component.css',
   providers: [LogInStore],
