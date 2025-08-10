@@ -1,13 +1,13 @@
 import { Component, inject } from '@angular/core';
-import { CustomInputComponent } from '@components/custom-input/custom-input.component';
+import { InputComponent } from '@components/input/input.component';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
-import { CustomButtonComponent } from '@components/custom-button/custom-button.component';
+import { ButtonComponent } from '@components/button/button.component';
 import { LogIn } from './models/log-in.model';
 import { LogInStore } from './log-in.store';
 
 @Component({
   selector: 'app-log-in',
-  imports: [CustomInputComponent, ReactiveFormsModule, CustomButtonComponent],
+  imports: [InputComponent, ReactiveFormsModule, ButtonComponent],
   templateUrl: './log-in.component.html',
   styleUrl: './log-in.component.css',
   providers: [LogInStore],

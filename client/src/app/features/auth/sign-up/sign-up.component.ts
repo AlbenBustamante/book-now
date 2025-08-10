@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
-import { CustomInputComponent } from '../../../components/custom-input/custom-input.component';
-import { CustomButtonComponent } from '../../../components/custom-button/custom-button.component';
+import { InputComponent } from '@components/input/input.component';
+import { ButtonComponent } from '@components/button/button.component';
 
 @Component({
   selector: 'app-sign-up',
-  imports: [CustomInputComponent, CustomButtonComponent],
+  imports: [InputComponent, ButtonComponent],
   templateUrl: './sign-up.component.html',
   styleUrl: './sign-up.component.css',
 })
