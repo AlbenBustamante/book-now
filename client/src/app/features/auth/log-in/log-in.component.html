@@ -1,5 +1,9 @@
 <main class="p-5 grid place-items-center w-full h-dvh">
-  <form class="flex flex-col gap-4 w-full" [formGroup]="form">
+  <form
+    class="flex flex-col gap-4 w-full"
+    [formGroup]="form"
+    (ngSubmit)="onSubmit()"
+  >
     <app-custom-input
       name="email"
       label="Email"
