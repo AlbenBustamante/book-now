@@ -2,7 +2,7 @@ import { inject } from '@angular/core';
 import { patchState, signalStore, withMethods, withState } from '@ngrx/signals';
 import { LogInService } from './services/log-in.service';
 import { LogIn } from './models/log-in.model';
-import { Status } from '@core/status.type';
+import { Status } from '@core/types/status.type';
 
 type LogInState = {
   jwt: string | null;
