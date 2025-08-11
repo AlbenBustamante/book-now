@@ -32,22 +32,17 @@ export default class LogInComponent {
       if (this._store.status() === 'loading') {
         this.form.disable();
       } else {
+        if (this._store.status() === 'success') {
+          this.form.reset();
+        }
+
         this.form.enable();
       }
     });
   }
 
   onSubmit() {
-    const data: LogIn = {
-      email: this.form.get('email')?.value!,
-      password: this.form.get('password')?.value!,
-    };
-
-    this._store.logIn(data);
-
-    if (this._store.status() === 'success') {
-      this.form.reset();
-    }
+    this._store.logIn(this.form.value as LogIn);
   }
 
   get loading() {
