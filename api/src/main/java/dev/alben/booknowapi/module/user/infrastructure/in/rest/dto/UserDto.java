@@ -13,7 +13,7 @@ public class UserDto extends AuditableDto {
     private final Integer id;
     private final String name;
     private final String lastName;
-    private final String dni;
+    // private final String dni;
     private final String photoUrl;
     private final String email;
     private final Role role;
