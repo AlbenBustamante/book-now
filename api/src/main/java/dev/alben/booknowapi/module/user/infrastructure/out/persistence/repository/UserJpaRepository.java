@@ -23,7 +23,7 @@ public interface UserJpaRepository extends JpaRepository<UserEntity, Integer> {
      * @param dni dni to check.
      * @return {@code true} if already exists a user.
      */
-    boolean existsByDni(String dni);
+    // boolean existsByDni(String dni);
 
     /**
      * Finds a user by an email.

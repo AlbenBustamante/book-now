@@ -11,7 +11,7 @@ import java.time.Instant;
  * @param id                ID.
  * @param name              first name.
  * @param lastName          last name.
- * @param dni               official dni.
+ *                          // @param dni               official dni.
  * @param photoUrl          profile photo url.
  * @param email             registered email.
  * @param password          hashed password.
@@ -25,7 +25,7 @@ public record User(
         Integer id,
         String name,
         String lastName,
-        String dni,
+        // String dni,
         String photoUrl,
         String email,
         String password,
@@ -39,7 +39,7 @@ public record User(
         return password.equals(repeatPassword);
     }
 
-    public static User create(String name, String lastName, String dni, String photoUrl, String email, String password, String repeatPassword, Role role) {
+    public static User create(String name, String lastName, String photoUrl, String email, String password, String repeatPassword, Role role) {
         if (role == null) {
             role = Role.CUSTOMER;
         }
@@ -48,7 +48,7 @@ public record User(
                 null,
                 name.toUpperCase(),
                 lastName.toUpperCase(),
-                dni.toUpperCase(),
+                // dni.toUpperCase(),
                 photoUrl,
                 email.toLowerCase(),
                 password,
@@ -61,7 +61,7 @@ public record User(
     }
 
     public User copyWithHashedPassword(String hashedPassword) {
-        return new User(id, name, lastName, dni, photoUrl, email, hashedPassword, hashedPassword, role, accountVerifiedAt, enabled, auditable);
+        return new User(id, name, lastName, photoUrl, email, hashedPassword, hashedPassword, role, accountVerifiedAt, enabled, auditable);
     }
 
     public User verifiedCopy() {
@@ -69,7 +69,6 @@ public record User(
                 id,
                 name,
                 lastName,
-                dni,
                 photoUrl,
                 email,
                 password,

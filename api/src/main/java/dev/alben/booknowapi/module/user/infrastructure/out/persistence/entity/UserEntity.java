@@ -16,7 +16,6 @@ import org.hibernate.annotations.SQLDelete;
 
 import java.time.Instant;
 
-import static dev.alben.booknowapi.module.user.util.UserConstants.DNI_LENGTH;
 import static dev.alben.booknowapi.module.user.util.UserConstants.EMAIL_LENGTH;
 import static dev.alben.booknowapi.module.user.util.UserConstants.LAST_NAME_LENGTH;
 import static dev.alben.booknowapi.module.user.util.UserConstants.NAME_LENGTH;
@@ -54,8 +53,8 @@ public class UserEntity extends AuditableEntity {
     /**
      * Official DNI.
      */
-    @Column(nullable = false, length = DNI_LENGTH)
-    private String dni;
+    // @Column(nullable = false, length = DNI_LENGTH)
+    // private String dni;
 
     /**
      * URL for Profile Pic.

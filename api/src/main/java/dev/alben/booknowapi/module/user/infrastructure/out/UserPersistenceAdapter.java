@@ -26,7 +26,8 @@ public class UserPersistenceAdapter implements CheckDniPort, CheckEmailPort, Sav
 
     @Override
     public boolean checkDni(String dni) {
-        return repository.existsByDni(dni);
+        // return repository.existsByDni(dni);
+        return false;
     }
 
     @Override

@@ -13,7 +13,7 @@ import org.springframework.web.multipart.MultipartFile;
  * @param email          email to verify.
  * @param password       plain password.
  * @param repeatPassword plain password repeated.
- * @param dni            official dni.
+ *                       // @param dni            official dni.
  * @param photoFile      photo file to storage in external service.
  * @param role           {@link Role}.
  */
@@ -29,8 +29,8 @@ public record CreateUserCommand(
         String password,
         @NotBlank(message = "The password confirmation is required")
         String repeatPassword,
-        @NotBlank(message = "The DNI is required")
-        String dni,
+        // @NotBlank(message = "The DNI is required")
+        // String dni,
         MultipartFile photoFile,
         Role role
 ) {
