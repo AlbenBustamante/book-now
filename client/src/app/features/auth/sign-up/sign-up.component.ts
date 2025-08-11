@@ -1,8 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, effect, inject } from '@angular/core';
 import { InputComponent } from '@components/input/input.component';
 import { ButtonComponent } from '@components/button/button.component';
 import { RedirectComponent } from '../components/redirect/redirect.component';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
+import { signUpStore } from './sign-up.store';
+import { SignUp } from './models/sign-up.model';
 
 @Component({
   selector: 'app-sign-up',
@@ -14,8 +16,10 @@ import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
   ],
   templateUrl: './sign-up.component.html',
   styleUrl: './sign-up.component.css',
+  providers: [signUpStore],
 })
 export default class SignUpComponent {
+  private readonly _store = inject(signUpStore);
   readonly form;
 
   constructor(private readonly _fb: FormBuilder) {
@@ -26,6 +30,18 @@ export default class SignUpComponent {
       password: ['', Validators.required],
       repeatPassword: ['', Validators.required],
     });
+
+    effect(() => {
+      if (this._store.status() === 'loading') {
+        this.form.disable();
+      } else {
+        if (this._store.status() === 'success') {
+          this.form.reset();
+        }
+
+        this.form.enable();
+      }
+    });
   }
 
   onSubmit() {
@@ -33,6 +49,10 @@ export default class SignUpComponent {
       return this.form.markAllAsTouched();
     }
 
-    console.log(this.form.value);
+    this._store.signUp(this.form.value as SignUp);
+  }
+
+  get loading() {
+    return this._store.status() === 'loading';
   }
 }

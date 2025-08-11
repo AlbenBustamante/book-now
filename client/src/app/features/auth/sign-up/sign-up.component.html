@@ -40,7 +40,7 @@
       name="confirmPassword"
       [control]="form.controls.repeatPassword"
     />
-    <app-button type="submit">Create account</app-button>
+    <app-button type="submit" [loading]="loading">Create account</app-button>
     <app-redirect headline="Enter to account" route="../sign-in" />
   </form>
 </main>
