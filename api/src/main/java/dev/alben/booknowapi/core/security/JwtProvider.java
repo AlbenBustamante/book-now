@@ -24,7 +24,7 @@ public class JwtProvider {
 
     public String generateToken(User user) {
         return JWT.create()
-                .withClaim("id", user.email())
+                .withClaim("id", user.id())
                 .withClaim("role", user.role().toString())
                 .withSubject(user.email())
                 .withIssuedAt(Instant.now())
@@ -39,7 +39,7 @@ public class JwtProvider {
     public Integer extractId(String token) {
         return validateToken(token).getClaim("id").asInt();
     }
-    
+
     private DecodedJWT validateToken(String token) {
         try {
             final var decoded = JWT.require(Algorithm.HMAC384(secretKey)).build().verify(token);

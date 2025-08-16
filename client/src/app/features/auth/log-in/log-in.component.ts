@@ -42,6 +42,10 @@ export default class LogInComponent {
   }
 
   onSubmit() {
+    if (this.form.invalid) {
+      return this.form.markAllAsTouched();
+    }
+
     this._store.logIn(this.form.value as LogIn);
   }
 

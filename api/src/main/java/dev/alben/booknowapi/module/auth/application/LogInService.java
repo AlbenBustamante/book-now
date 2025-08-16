@@ -1,6 +1,7 @@
 package dev.alben.booknowapi.module.auth.application;
 
 import dev.alben.booknowapi.core.common.UseCase;
+import dev.alben.booknowapi.core.security.CustomUserDetailsService;
 import dev.alben.booknowapi.core.security.JwtProvider;
 import dev.alben.booknowapi.module.auth.application.port.in.LogInUseCase;
 import dev.alben.booknowapi.module.auth.application.port.in.command.LogInCommand;
@@ -18,6 +19,7 @@ import org.springframework.transaction.annotation.Transactional;
 @RequiredArgsConstructor
 public class LogInService implements LogInUseCase {
     private final LoadUserByEmailPort loadUserByEmailPort;
+    private final CustomUserDetailsService customUserDetailsService;
     private final AuthenticationManager authenticationManager;
     private final PasswordEncoder passwordEncoder;
     private final JwtProvider jwtProvider;
@@ -31,7 +33,7 @@ public class LogInService implements LogInUseCase {
             throw new BadCredentialsException();
         }
 
-        final var authToken = new UsernamePasswordAuthenticationToken(user, command.password());
+        final var authToken = new UsernamePasswordAuthenticationToken(command.email(), command.password());
         authenticationManager.authenticate(authToken);
 
         final var jwt = jwtProvider.generateToken(user);

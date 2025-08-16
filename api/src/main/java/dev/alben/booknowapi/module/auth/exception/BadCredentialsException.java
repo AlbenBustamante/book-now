@@ -4,6 +4,6 @@ import dev.alben.booknowapi.core.exception.BadRequestException;
 
 public class BadCredentialsException extends BadRequestException {
     public BadCredentialsException() {
-        super("The email or password are wrong");
+        super("Something is wrong... please check your email or password");
     }
 }
