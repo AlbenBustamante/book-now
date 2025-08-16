@@ -3,8 +3,9 @@ import { InputComponent } from '@components/input/input.component';
 import { ButtonComponent } from '@components/button/button.component';
 import { RedirectComponent } from '../components/redirect/redirect.component';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
-import { signUpStore } from './sign-up.store';
+import { SignUpStore } from './sign-up.store';
 import { SignUp } from './models/sign-up.model';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-sign-up',
@@ -16,13 +17,16 @@ import { SignUp } from './models/sign-up.model';
   ],
   templateUrl: './sign-up.component.html',
   styleUrl: './sign-up.component.css',
-  providers: [signUpStore],
 })
 export default class SignUpComponent {
-  private readonly _store = inject(signUpStore);
+  private readonly _store = inject(SignUpStore);
   readonly form;
 
-  constructor(private readonly _fb: FormBuilder) {
+  constructor(
+    private readonly _fb: FormBuilder,
+    private readonly _router: Router,
+    private readonly _route: ActivatedRoute
+  ) {
     this.form = this._fb.group({
       name: ['', Validators.required],
       lastName: ['', Validators.required],
@@ -36,6 +40,11 @@ export default class SignUpComponent {
         this.form.disable();
       } else {
         if (this._store.status() === 'success') {
+          console.log({ user: this._store.user() });
+          this._router.navigate(['..', 'successful-registration'], {
+            relativeTo: this._route,
+          });
+
           this.form.reset();
         }
 

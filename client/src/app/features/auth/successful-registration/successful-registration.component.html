@@ -1,0 +1,21 @@
+<div class="grid place-items-center h-dvh px-5">
+  <header>
+    <h1 class="text-primary-700 font-semibold text-3xl">BookNow</h1>
+  </header>
+  <section class="flex flex-col gap-2">
+    <h2 class="text-xl text-pretty">
+      Thank you
+      <span class="text-primary-700 font-semibold">
+        {{ user?.name }} {{ user?.lastName }}
+      </span>
+      for registering!
+    </h2>
+    <p class="text-lg text-pretty">
+      We send you a message to
+      <span class="text-primary-700 font-semibold">{{ user?.email }}</span
+      >, please check it to confirm your account.
+    </p>
+  </section>
+  <app-button (click)="goToLogIn()">Enter to Account</app-button>
+  <footer class="text-gray-500">&copy; 2025</footer>
+</div>

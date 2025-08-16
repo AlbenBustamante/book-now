@@ -17,7 +17,8 @@ const initialState: SignUpState = {
   error: null,
 };
 
-export const signUpStore = signalStore(
+export const SignUpStore = signalStore(
+  { providedIn: 'root' },
   withState(initialState),
   withMethods((store, service = inject(SignUpService)) => ({
     signUp: (data: SignUp) => {

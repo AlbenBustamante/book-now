@@ -14,4 +14,9 @@ export default [
     path: 'sign-up',
     loadComponent: () => import('./sign-up/sign-up.component'),
   },
+  {
+    path: 'successful-registration',
+    loadComponent: () =>
+      import('./successful-registration/successful-registration.component'),
+  },
 ] as Routes;
