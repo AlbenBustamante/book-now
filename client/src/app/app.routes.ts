@@ -10,4 +10,8 @@ export const routes: Routes = [
     path: 'auth',
     loadChildren: () => import('./features/auth/auth.routes'),
   },
+  {
+    path: 'manager',
+    loadChildren: () => import('./features/manager/manager.routes'),
+  },
 ];

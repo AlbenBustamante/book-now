@@ -5,6 +5,8 @@ import { ButtonComponent } from '@components/button/button.component';
 import { LogIn } from './models/log-in.model';
 import { LogInStore } from './log-in.store';
 import { RedirectComponent } from '../components/redirect/redirect.component';
+import { JwtService } from '@core/services/jwt.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-log-in',
@@ -22,7 +24,11 @@ export default class LogInComponent {
   private readonly _store = inject(LogInStore);
   readonly form;
 
-  constructor(private readonly _fb: FormBuilder) {
+  constructor(
+    private readonly _fb: FormBuilder,
+    private readonly _jwtService: JwtService,
+    private readonly _router: Router
+  ) {
     this.form = this._fb.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', Validators.required],
@@ -33,6 +39,11 @@ export default class LogInComponent {
         this.form.disable();
       } else {
         if (this._store.status() === 'success') {
+          if (this._store.jwt() !== null) {
+            this._jwtService.save(this._store.jwt()!);
+            this._router.navigate(['manager']);
+          }
+
           this.form.reset();
         }
 
