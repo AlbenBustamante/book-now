@@ -8,16 +8,28 @@ import { Jwt } from '@core/models/jwt.model';
 })
 export class JwtService {
   private readonly _key = 'jwt';
+  private readonly _path = '/';
 
   constructor(private readonly _cookieService: CookieService) {}
 
   save(jwt: string) {
-    const { exp } = jwtDecode<Jwt>(jwt);
-    this._cookieService.set(this._key, jwt, { expires: exp });
+    const expTime = new Date();
+    expTime.setHours(expTime.getHours() + 24 * 7);
+
+    this._cookieService.set(this._key, jwt, {
+      path: this._path,
+      expires: expTime,
+      secure: true,
+    });
   }
 
-  get() {
+  get(): Jwt | '' {
     const jwt = this._cookieService.get(this._key);
-    return jwtDecode<Jwt>(jwt);
+
+    try {
+      return jwtDecode<Jwt>(jwt);
+    } catch (e) {
+      return '';
+    }
   }
 }

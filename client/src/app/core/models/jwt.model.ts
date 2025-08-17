@@ -5,5 +5,5 @@ export interface Jwt {
   role: Role;
   sub: string;
   iat: Date;
-  exp: Date;
+  exp: number;
 }

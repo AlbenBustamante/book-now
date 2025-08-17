@@ -11,14 +11,13 @@ import org.springframework.stereotype.Component;
 
 import java.time.Instant;
 import java.util.Date;
+import java.util.concurrent.TimeUnit;
 
 /**
  * Provider for JWTs.
  */
 @Component
 public class JwtProvider {
-    private static final long SECONDS = 10 * 60 * 60;
-
     @Value("${jwt.secret-key}")
     private String secretKey;
 
@@ -28,7 +27,7 @@ public class JwtProvider {
                 .withClaim("role", user.role().toString())
                 .withSubject(user.email())
                 .withIssuedAt(Instant.now())
-                .withExpiresAt(Instant.now().plusSeconds(SECONDS))
+                .withExpiresAt(Instant.now().plus(7, TimeUnit.DAYS.toChronoUnit()))
                 .sign(Algorithm.HMAC384(secretKey));
     }
 
