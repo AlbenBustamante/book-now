@@ -40,7 +40,6 @@ export default class SignUpComponent {
         this.form.disable();
       } else {
         if (this._store.status() === 'success') {
-          console.log({ user: this._store.user() });
           this._router.navigate(['..', 'successful-registration'], {
             relativeTo: this._route,
           });
