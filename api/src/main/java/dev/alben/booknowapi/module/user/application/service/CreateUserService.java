@@ -26,8 +26,8 @@ public class CreateUserService implements CreateUserUseCase {
     private final PasswordEncoder passwordEncoder;
     private final SendHtmlEmailUseCase sendHtmlEmailUseCase;
 
-    @Value("${verification.expiration-time}")
-    private Integer verificationExpirationTime;
+    @Value("${verification.expiration-time-in-minutes}")
+    private Integer verificationExpirationTimeInMinutes;
 
     @Value("${server.servlet.context-path}")
     private String contextPath;
@@ -48,7 +48,7 @@ public class CreateUserService implements CreateUserUseCase {
         user = user.copyWithHashedPassword(hashedPassword);
         user = saveUserPort.save(user);
 
-        var emailVerificationToken = EmailVerificationToken.create(user, verificationExpirationTime);
+        var emailVerificationToken = EmailVerificationToken.create(user, verificationExpirationTimeInMinutes);
         emailVerificationToken = saveEmailVerificationTokenPort.save(emailVerificationToken);
         final var token = emailVerificationToken.token();
         final var url = "http://localhost:8080" + contextPath + "/auth/verify-email?token=" + token;
