@@ -1,21 +1,33 @@
 <nav
   class="w-full h-16 flex items-center justify-between gap-5 border-b border-gray-200 bg-gray-100 px-5"
 >
-  <h1 class="text-lg font-medium" [ngClass]="{ 'max-md:hidden': searching() }">
+  <h1
+    class="text-lg sm:text-xl md:text-2xl font-medium"
+    [ngClass]="{ 'max-sm:hidden': searching() }"
+  >
     BookNow
   </h1>
-  <div class="flex items-center justify-between gap-2">
+  <div
+    class="max-w-sm mx-auto grid items-center sm:grid-cols-6 gap-2"
+    [ngClass]="{ 'grid-cols-6': searching() }"
+  >
     <svg
       search-icon
-      class="size-8 p-0.5 border-2 border-gray-300 rounded-md"
+      class="size-8 p-0.5 border-2 border-gray-300 rounded-md sm:hidden"
       (click)="search()"
     ></svg>
     <form
-      class="w-full flex items-center justify-between gap-2"
-      [ngClass]="{ hidden: !searching() }"
+      class="col-span-5 grid grid-cols-3 gap-2"
+      [ngClass]="{ 'max-sm:hidden': !searching() }"
     >
-      <input type="search" class="w-4/6" />
-      <select id="type" class="w-2/6">
+      <app-input
+        type="search"
+        name="input"
+        label=""
+        class="col-span-2"
+        placeholder="Search..."
+      />
+      <select id="type" class="w-fit" class="col-span-1">
         <option value="provider">Provider</option>
         <option value="service">Service</option>
       </select>
@@ -23,6 +35,6 @@
   </div>
   <button
     class="size-10 bg-primary-900 rounded-full"
-    [ngClass]="{ 'max-md:hidden': searching() }"
+    [ngClass]="{ 'max-sm:hidden': searching() }"
   ></button>
 </nav>

@@ -1,10 +1,11 @@
 import { NgClass } from '@angular/common';
 import { Component, signal } from '@angular/core';
 import { SearchIconComponent } from '@components/icons/search-icon/search-icon.component';
+import { InputComponent } from '@components/input/input.component';
 
 @Component({
   selector: 'app-navbar',
-  imports: [SearchIconComponent, NgClass],
+  imports: [NgClass, SearchIconComponent, InputComponent],
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.css',
 })
