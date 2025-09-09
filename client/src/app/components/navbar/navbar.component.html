@@ -1,0 +1,28 @@
+<nav
+  class="w-full h-16 flex items-center justify-between gap-5 border-b border-gray-200 bg-gray-100 px-5"
+>
+  <h1 class="text-lg font-medium" [ngClass]="{ 'max-md:hidden': searching() }">
+    BookNow
+  </h1>
+  <div class="flex items-center justify-between gap-2">
+    <svg
+      search-icon
+      class="size-8 p-0.5 border-2 border-gray-300 rounded-md"
+      (click)="search()"
+    ></svg>
+    <form
+      class="w-full flex items-center justify-between gap-2"
+      [ngClass]="{ hidden: !searching() }"
+    >
+      <input type="search" class="w-4/6" />
+      <select id="type" class="w-2/6">
+        <option value="provider">Provider</option>
+        <option value="service">Service</option>
+      </select>
+    </form>
+  </div>
+  <button
+    class="size-10 bg-primary-900 rounded-full"
+    [ngClass]="{ 'max-md:hidden': searching() }"
+  ></button>
+</nav>
