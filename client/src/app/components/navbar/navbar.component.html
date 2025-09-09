@@ -14,11 +14,13 @@
     <svg
       search-icon
       class="size-8 p-0.5 border-2 border-gray-300 rounded-md sm:hidden"
-      (click)="search()"
+      (click)="toggleSearch()"
     ></svg>
     <form
       class="col-span-5 grid grid-cols-3 gap-2"
       [ngClass]="{ 'max-sm:hidden': !searching() }"
+      [formGroup]="form"
+      (ngSubmit)="search()"
     >
       <app-input
         type="search"
@@ -28,9 +30,10 @@
         placeholder="Search..."
       />
       <select id="type" class="w-fit" class="col-span-1">
-        <option value="provider">Provider</option>
-        <option value="service">Service</option>
+        <option value="providers">Providers</option>
+        <option value="services">Services</option>
       </select>
+      <input type="submit" value="submit" class="sr-only" />
     </form>
   </div>
   <button
