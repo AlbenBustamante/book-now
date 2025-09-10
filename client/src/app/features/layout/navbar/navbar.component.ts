@@ -1,18 +1,27 @@
 import { NgClass } from '@angular/common';
 import { Component, signal } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { SearchIconComponent } from '@components/icons/search-icon/search-icon.component';
 import { InputComponent } from '@components/input/input.component';
+import { DropdownComponent } from '../components/dropdown/dropdown.component';
 
 @Component({
   selector: 'app-navbar',
-  imports: [NgClass, SearchIconComponent, InputComponent, ReactiveFormsModule],
+  imports: [
+    NgClass,
+    RouterLink,
+    SearchIconComponent,
+    InputComponent,
+    ReactiveFormsModule,
+    DropdownComponent,
+  ],
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.css',
 })
 export class NavbarComponent {
   readonly searching = signal<boolean>(false);
+  readonly showDropdown = signal<boolean>(false);
   readonly form;
 
   constructor(
