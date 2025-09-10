@@ -1,4 +1,4 @@
-<header class="sticky top-0 left-0 right-0">
+<header class="sticky top-0 left-0 right-0 z-50">
   <nav
     class="w-full h-16 flex items-center justify-between gap-5 bg-primary-50 border-b border-gray-300 px-5"
   >
@@ -49,7 +49,7 @@
     ></button>
   </nav>
   <app-dropdown
-    class="absolute right-5 top-14 duration-150 ease-in-out"
+    class="absolute right-5 top-14 duration-150 ease-in-out z-50"
     [ngClass]="{ 'opacity-0 invisible': !showDropdown() }"
   />
 </header>
