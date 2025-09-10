@@ -4,7 +4,7 @@ import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import { SearchIconComponent } from '@components/icons/search-icon/search-icon.component';
 import { InputComponent } from '@components/input/input.component';
-import { DropdownComponent } from '../components/dropdown/dropdown.component';
+import { DropdownComponent } from '../dropdown/dropdown.component';
 
 @Component({
   selector: 'app-navbar',

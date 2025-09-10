@@ -2,7 +2,7 @@ import { inject } from '@angular/core';
 import { CanActivateChildFn, Router } from '@angular/router';
 import { JwtService } from '@core/services/jwt.service';
 
-export const ManagerGuard: CanActivateChildFn = () => {
+export const AccountGuard: CanActivateChildFn = () => {
   const jwtService = inject(JwtService);
 
   if (jwtService.get() !== '') {
