@@ -1,0 +1,19 @@
+<form class="flex items-center" [formGroup]="form" (ngSubmit)="onSearch.emit()">
+  <select id="type" [ngClass]="{ 'max-sm:hidden': !searching()() }">
+    <option value="providers">Providers</option>
+    <option value="services">Services</option>
+  </select>
+  <app-input
+    type="search"
+    name="input"
+    label=""
+    placeholder="Search..."
+    [ngClass]="{ 'max-sm:hidden': !searching()() }"
+  />
+  <button
+    type="submit"
+    class="size-8 p-0.5 max-sm:border-2 border-gray-400 max-sm:rounded-xl flex items-center"
+  >
+    <svg search-icon class="stroke-2 stroke-gray-500"></svg>
+  </button>
+</form>

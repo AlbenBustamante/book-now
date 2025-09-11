@@ -12,10 +12,14 @@ export default [
         loadChildren: () => import('@features/home/home.routes'),
       },
       {
-        path: 'account',
+        path: 'manager',
         canActivate: [AccountGuard],
-        loadChildren: () =>
-          import('@layouts/account-layout/account-layout.routes'),
+        loadChildren: () => import('@features/manager/manager.routes'),
+      },
+      {
+        path: 'settings',
+        canActivate: [AccountGuard],
+        loadChildren: () => import('@features/settings/settings.routes'),
       },
     ],
   },

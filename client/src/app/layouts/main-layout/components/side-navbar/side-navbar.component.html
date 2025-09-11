@@ -1,5 +1,10 @@
-<aside class="fixed top-16 left-0 bottom-0">
-  <nav class="w-56 min-h-[calc(100dvh_-_4rem)] border-r border-gray-300">
+<aside
+  class="fixed top-16 left-0 bottom-0 border-r border-gray-300 w-full md:w-56 min-h-[calc(100dvh_-_4rem)]"
+>
+  <button class="p-1.5 cursor-pointer" (click)="show.set(!show())">
+    <svg menu-icon class="size-8"></svg>
+  </button>
+  <nav class="" [ngClass]="{ 'opacity-0 invisible': !show() }">
     <ul>
       <li>
         Manager

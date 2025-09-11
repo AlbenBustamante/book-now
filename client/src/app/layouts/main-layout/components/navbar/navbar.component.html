@@ -2,46 +2,8 @@
   <nav
     class="w-full h-16 flex items-center justify-between gap-5 bg-primary-50 border-b border-gray-300 px-5"
   >
-    <h1
-      class="hover:scale-110 transition-transform duration-150"
-      [ngClass]="{ 'max-sm:hidden': searching() }"
-    >
-      <a
-        routerLink=""
-        class="text-primary-700 hover:text-primary-600 text-lg sm:text-xl md:text-2xl font-medium cursor-pointer"
-      >
-        BookNow
-      </a>
-    </h1>
-    <div
-      class="max-w-sm mx-auto grid items-center sm:grid-cols-6 gap-2"
-      [ngClass]="{ 'grid-cols-6': searching() }"
-    >
-      <svg
-        search-icon
-        class="size-8 p-0.5 border-2 border-gray-300 rounded-md sm:hidden"
-        (click)="toggleSearch()"
-      ></svg>
-      <form
-        class="col-span-5 grid grid-cols-3 gap-2"
-        [ngClass]="{ 'max-sm:hidden': !searching() }"
-        [formGroup]="form"
-        (ngSubmit)="search()"
-      >
-        <app-input
-          type="search"
-          name="input"
-          label=""
-          class="col-span-2"
-          placeholder="Search..."
-        />
-        <select id="type" class="w-fit" class="col-span-1">
-          <option value="providers">Providers</option>
-          <option value="services">Services</option>
-        </select>
-        <input type="submit" value="submit" class="sr-only" />
-      </form>
-    </div>
+    <app-navbar-title [searching]="searching" />
+    <app-navbar-search-input [searching]="searching" (onSearch)="search()" />
     <button
       class="size-10 bg-primary-700 border border-primary-900 rounded-full cursor-pointer"
       [ngClass]="{ 'max-sm:hidden': searching() }"
