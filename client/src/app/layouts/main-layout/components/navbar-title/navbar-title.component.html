@@ -1,4 +1,4 @@
-<div class="flex items-center gap-4">
+<div class="flex items-center justify-center gap-4">
   <button
     class="cursor-pointer p-px rounded-md hover:bg-primary-100 stroke-gray-700 hover:stroke-primary-700 stroke-2 duration-200 active:scale-105 border-2 border-primary-50 hover:border-primary-600"
     (click)="searching().set(false)"
@@ -6,7 +6,7 @@
     @if (!searching()()) {
     <svg menu-icon class="size-8"></svg>
     } @else {
-    <svg left-arrow-icon class="size-8"></svg>
+    <svg left-arrow-icon class="size-6"></svg>
     }
   </button>
   <h1

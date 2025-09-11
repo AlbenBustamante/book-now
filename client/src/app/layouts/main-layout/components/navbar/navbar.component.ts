@@ -1,5 +1,5 @@
 import { NgClass } from '@angular/common';
-import { Component, signal } from '@angular/core';
+import { Component, HostListener, signal } from '@angular/core';
 import { Router } from '@angular/router';
 import { DropdownComponent } from '../dropdown/dropdown.component';
 import { NavbarSearchInputComponent } from '../navbar-search-input/navbar-search-input.component';
@@ -32,5 +32,14 @@ export class NavbarComponent {
     this.searching.set(false);
     // TODO: redirect to results page
     this._router.navigate(['']);
+  }
+
+  @HostListener('window:resize', ['$event'])
+  onResize(event: Event) {
+    const width = window.innerWidth;
+
+    if (width < 640) {
+      this.searching.set(false);
+    }
   }
 }

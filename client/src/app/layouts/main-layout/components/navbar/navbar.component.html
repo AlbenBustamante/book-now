@@ -1,17 +1,21 @@
 <header class="sticky top-0 left-0 right-0 z-50">
   <nav
-    class="w-full h-16 flex items-center justify-between gap-5 bg-primary-50 border-b border-gray-300 px-5"
+    class="w-full h-16 flex items-center justify-between gap-2 bg-primary-50 border-b border-gray-300 px-2"
   >
     <app-navbar-title [searching]="searching" />
     <app-navbar-search-input [searching]="searching" (onSearch)="search()" />
+    @if (!searching()) {
     <button
       class="size-10 bg-primary-700 border border-primary-900 rounded-full cursor-pointer"
       [ngClass]="{ 'max-sm:hidden': searching() }"
       (click)="showDropdown.set(!showDropdown())"
     ></button>
+    }
   </nav>
+  @if (!searching()) {
   <app-dropdown
     class="absolute right-5 top-14 duration-150 ease-in-out z-50"
     [ngClass]="{ 'opacity-0 invisible': !showDropdown() }"
   />
+  }
 </header>
