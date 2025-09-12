@@ -21,6 +21,7 @@
     "paths": {
       "@components/*": ["app/components/*"],
       "@core/*": ["app/core/*"],
+      "@directives/*": ["app/directives/*"],
       "@environments/*": ["environments/*"],
       "@features/*": ["app/features/*"],
       "@layouts/*": ["app/layouts/*"]

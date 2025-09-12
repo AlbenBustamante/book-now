@@ -1,9 +1,9 @@
 <aside
-  class="fixed w-full min-h-[calc(100dvh_-_4rem)] z-50 duration-300"
+  class="fixed w-full min-h-[calc(100dvh_-_4rem)] z-40 duration-300"
   [ngClass]="{ 'opacity-0 invisible': !show()() }"
 >
   <nav
-    class="fixed top-16 left-0 bottom-0 h-full w-4/5 md:w-72 bg-gray-50 duration-200 z-50 p-5"
+    class="fixed top-16 left-0 bottom-0 h-full w-4/5 md:w-72 bg-gray-50 duration-200 z-40 p-5"
     [ngClass]="{ '-translate-x-full': !show()() }"
   >
     <div class="flex flex-col gap-5">
@@ -20,7 +20,7 @@
     </div>
   </nav>
   <div
-    class="fixed size-full bg-black/10 z-40"
+    class="fixed size-full bg-black/10 z-30"
     (click)="show().set(false)"
   ></div>
 </aside>

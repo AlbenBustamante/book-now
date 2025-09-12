@@ -5,6 +5,7 @@ import { DropdownComponent } from '../dropdown/dropdown.component';
 import { NavbarSearchInputComponent } from '../navbar-search-input/navbar-search-input.component';
 import { NavbarTitleComponent } from '../navbar-title/navbar-title.component';
 import { SideNavbarComponent } from '../side-navbar/side-navbar.component';
+import { ClickOutsideDirective } from '@directives/click-outside.directive';
 
 @Component({
   selector: 'app-navbar',
@@ -14,16 +15,22 @@ import { SideNavbarComponent } from '../side-navbar/side-navbar.component';
     NavbarSearchInputComponent,
     NavbarTitleComponent,
     SideNavbarComponent,
+    ClickOutsideDirective,
   ],
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.css',
 })
 export class NavbarComponent {
   readonly searching = signal<boolean>(false);
-  readonly showDropdown = signal<boolean>(false);
+  readonly showDropdown = signal<boolean>(true);
   readonly showSideNavbar = signal<boolean>(false);
 
   constructor(private readonly _router: Router) {}
+
+  onShowDropdown() {
+    this.showDropdown.set(!this.showDropdown());
+    this.showSideNavbar.set(false);
+  }
 
   search() {
     const width = window.innerWidth;
@@ -37,8 +44,9 @@ export class NavbarComponent {
     this._router.navigate(['']);
   }
 
-  onSideNavbarClick() {
+  onShowSideNavbar() {
     this.showSideNavbar.set(!this.showSideNavbar());
+    this.showDropdown.set(false);
   }
 
   @HostListener('window:resize', ['$event'])

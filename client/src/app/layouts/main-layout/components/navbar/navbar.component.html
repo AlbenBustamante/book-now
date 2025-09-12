@@ -3,7 +3,7 @@
     class="w-full h-16 flex items-center justify-between gap-2 bg-primary-50 border-b border-gray-300 px-2 sm:px-3.5 md:px-5"
   >
     <app-navbar-title
-      (onMenuClick)="onSideNavbarClick()"
+      (onMenuClick)="onShowSideNavbar()"
       [searching]="searching"
     />
     <app-navbar-search-input [searching]="searching" (onSearch)="search()" />
@@ -11,7 +11,9 @@
     <button
       class="size-10 bg-primary-700 border border-primary-900 rounded-full cursor-pointer"
       [ngClass]="{ 'max-sm:hidden': searching() }"
-      (click)="showDropdown.set(!showDropdown())"
+      (click)="onShowDropdown()"
+      appClickOutside
+      (onClickOutside)="showDropdown.set(false)"
     ></button>
     }
   </nav>
