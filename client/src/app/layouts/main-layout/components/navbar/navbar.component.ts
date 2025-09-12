@@ -22,7 +22,7 @@ import { ClickOutsideDirective } from '@directives/click-outside.directive';
 })
 export class NavbarComponent {
   readonly searching = signal<boolean>(false);
-  readonly showDropdown = signal<boolean>(true);
+  readonly showDropdown = signal<boolean>(false);
   readonly showSideNavbar = signal<boolean>(false);
 
   constructor(private readonly _router: Router) {}

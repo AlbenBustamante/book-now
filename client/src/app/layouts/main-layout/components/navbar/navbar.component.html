@@ -8,20 +8,18 @@
     />
     <app-navbar-search-input [searching]="searching" (onSearch)="search()" />
     @if (!searching()) {
-    <button
-      class="size-10 bg-primary-700 border border-primary-900 rounded-full cursor-pointer"
-      [ngClass]="{ 'max-sm:hidden': searching() }"
-      (click)="onShowDropdown()"
-      appClickOutside
-      (onClickOutside)="showDropdown.set(false)"
-    ></button>
+    <div appClickOutside (onClickOutside)="showDropdown.set(false)">
+      <button
+        class="size-10 bg-primary-700 border border-primary-900 rounded-full cursor-pointer"
+        [ngClass]="{ 'max-sm:hidden': searching() }"
+        (click)="onShowDropdown()"
+      ></button>
+      <app-dropdown
+        class="absolute right-5 top-14 duration-150 ease-in-out z-50"
+        [ngClass]="{ 'opacity-0 invisible': !showDropdown() }"
+      />
+    </div>
     }
   </nav>
-  @if (!searching()) {
-  <app-dropdown
-    class="absolute right-5 top-14 duration-150 ease-in-out z-50"
-    [ngClass]="{ 'opacity-0 invisible': !showDropdown() }"
-  />
-  }
 </header>
 <app-side-navbar [show]="showSideNavbar" />
