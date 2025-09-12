@@ -2,7 +2,10 @@
   <nav
     class="w-full h-16 flex items-center justify-between gap-2 bg-primary-50 border-b border-gray-300 px-2 sm:px-3.5 md:px-5"
   >
-    <app-navbar-title [searching]="searching" />
+    <app-navbar-title
+      (onMenuClick)="onSideNavbarClick()"
+      [searching]="searching"
+    />
     <app-navbar-search-input [searching]="searching" (onSearch)="search()" />
     @if (!searching()) {
     <button
@@ -19,3 +22,4 @@
   />
   }
 </header>
+<app-side-navbar [show]="showSideNavbar" />

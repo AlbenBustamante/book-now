@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { DropdownComponent } from '../dropdown/dropdown.component';
 import { NavbarSearchInputComponent } from '../navbar-search-input/navbar-search-input.component';
 import { NavbarTitleComponent } from '../navbar-title/navbar-title.component';
+import { SideNavbarComponent } from '../side-navbar/side-navbar.component';
 
 @Component({
   selector: 'app-navbar',
@@ -12,6 +13,7 @@ import { NavbarTitleComponent } from '../navbar-title/navbar-title.component';
     DropdownComponent,
     NavbarSearchInputComponent,
     NavbarTitleComponent,
+    SideNavbarComponent,
   ],
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.css',
@@ -19,6 +21,7 @@ import { NavbarTitleComponent } from '../navbar-title/navbar-title.component';
 export class NavbarComponent {
   readonly searching = signal<boolean>(false);
   readonly showDropdown = signal<boolean>(false);
+  readonly showSideNavbar = signal<boolean>(false);
 
   constructor(private readonly _router: Router) {}
 
@@ -32,6 +35,10 @@ export class NavbarComponent {
     this.searching.set(false);
     // TODO: redirect to results page
     this._router.navigate(['']);
+  }
+
+  onSideNavbarClick() {
+    this.showSideNavbar.set(!this.showSideNavbar());
   }
 
   @HostListener('window:resize', ['$event'])

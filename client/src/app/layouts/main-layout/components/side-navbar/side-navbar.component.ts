@@ -1,13 +1,12 @@
-import { Component, signal } from '@angular/core';
-import { MenuIconComponent } from '../menu-icon/menu-icon.component';
+import { Component, input, WritableSignal } from '@angular/core';
 import { NgClass } from '@angular/common';
 
 @Component({
   selector: 'app-side-navbar',
-  imports: [NgClass, MenuIconComponent],
+  imports: [NgClass],
   templateUrl: './side-navbar.component.html',
   styleUrl: './side-navbar.component.css',
 })
 export class SideNavbarComponent {
-  readonly show = signal<boolean>(false);
+  readonly show = input.required<WritableSignal<boolean>>();
 }
