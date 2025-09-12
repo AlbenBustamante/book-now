@@ -8,7 +8,6 @@ public class BookNowApiApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(BookNowApiApplication.class, args);
-        new StringBuilder().reverse().toString();
     }
 
 }
