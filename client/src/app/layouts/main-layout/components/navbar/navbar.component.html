@@ -4,7 +4,7 @@
   >
     <app-navbar-title
       (onMenuClick)="onShowSideNavbar()"
-      [searching]="searching"
+      [searching]="searching()"
     />
     <app-navbar-search-input [searching]="searching" (onSearch)="search()" />
     @if (!searching()) {

@@ -36,6 +36,7 @@ export class NavbarComponent {
     const width = window.innerWidth;
 
     if (width < 640) {
+      this.showSideNavbar.set(false);
       return this.searching.set(true);
     }
 
@@ -45,7 +46,11 @@ export class NavbarComponent {
   }
 
   onShowSideNavbar() {
-    this.showSideNavbar.set(!this.showSideNavbar());
+    if (!this.searching()) {
+      this.showSideNavbar.set(!this.showSideNavbar());
+    }
+
+    this.searching.set(false);
     this.showDropdown.set(false);
   }
 

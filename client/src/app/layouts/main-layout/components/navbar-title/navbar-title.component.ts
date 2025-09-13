@@ -12,15 +12,9 @@ import { LeftArrowIconComponent } from '../left-arrow-icon/left-arrow-icon.compo
 })
 export class NavbarTitleComponent {
   readonly onMenuClick = output<void>();
-  readonly searching = input.required<WritableSignal<boolean>>();
+  readonly searching = input.required<boolean>();
 
   menuClick() {
-    this.searching().set(false);
-
-    if (this.searching()()) {
-      return;
-    }
-
     this.onMenuClick.emit();
   }
 }
