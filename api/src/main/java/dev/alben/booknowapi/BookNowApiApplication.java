@@ -6,8 +6,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class BookNowApiApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(BookNowApiApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(BookNowApiApplication.class, args);
+    }
 
 }

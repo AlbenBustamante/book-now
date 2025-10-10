@@ -1,0 +1,27 @@
+<form
+  class="max-w-sm md:max-w-lg lg:max-w-xl mx-auto grid grid-cols-1 sm:grid-cols-7 items-center"
+  [ngClass]="{ 'grid-cols-7': searching()() }"
+  [formGroup]="form"
+  (ngSubmit)="onSearch.emit()"
+>
+  <select
+    class="col-span-2 p-1 md:py-2 bg-gray-50 border-2 border-gray-200 h-full rounded-s-2xl text-sm sm:text-base"
+    [ngClass]="{ 'max-sm:hidden': !searching()() }"
+  >
+    <option value="providers">Providers</option>
+    <option value="services">Services</option>
+  </select>
+  <input
+    type="search"
+    placeholder="Search..."
+    class="col-span-4 placeholder-gray-500 py-1 px-2.5 md:py-2 bg-gray-50 border-y-2 border-gray-200 h-full text-sm sm:text-base"
+    [ngClass]="{ 'max-sm:hidden': !searching()() }"
+  />
+  <button
+    type="submit"
+    class="col-span-1 place-self-center cursor-pointer duration-300 w-full flex items-center justify-center hover:shadow-md p-1 md:py-2 bg-gray-50 border-2 border-gray-200 h-full sm:rounded-e-2xl"
+    [ngClass]="searching()() ? 'rounded-e-2xl' : 'max-sm:rounded-2xl'"
+  >
+    <svg search-icon class="stroke-2 stroke-gray-500 size-6"></svg>
+  </button>
+</form>

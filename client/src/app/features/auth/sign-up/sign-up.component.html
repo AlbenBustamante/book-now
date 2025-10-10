@@ -1,0 +1,46 @@
+<main class="p-5 grid place-items-center w-full h-dvh">
+  <form
+    class="flex flex-col gap-3 w-full"
+    [formGroup]="form"
+    (ngSubmit)="onSubmit()"
+  >
+    <div class="grid grid-cols-2 gap-5">
+      <app-input
+        label="Name"
+        type="text"
+        name="name"
+        placeholder="Ex: John"
+        [control]="form.controls.name"
+      />
+      <app-input
+        label="Last Name"
+        type="text"
+        name="lastName"
+        placeholder="Ex: Smith"
+        [control]="form.controls.lastName"
+      />
+    </div>
+    <app-input
+      label="Email"
+      type="email"
+      name="email"
+      placeholder="example@mail.com"
+      autocomplete="email"
+      [control]="form.controls.email"
+    />
+    <app-input
+      label="Password"
+      type="password"
+      name="password"
+      [control]="form.controls.password"
+    />
+    <app-input
+      label="Confirm Password"
+      type="password"
+      name="confirmPassword"
+      [control]="form.controls.repeatPassword"
+    />
+    <app-button type="submit" [loading]="loading">Create account</app-button>
+    <app-redirect headline="Enter to account" route="../sign-in" />
+  </form>
+</main>

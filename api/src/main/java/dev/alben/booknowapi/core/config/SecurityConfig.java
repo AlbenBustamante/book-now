@@ -1,0 +1,54 @@
+package dev.alben.booknowapi.core.config;
+
+import dev.alben.booknowapi.core.exception.AppExceptionHandlerFilter;
+import dev.alben.booknowapi.core.security.CustomUserDetailsService;
+import dev.alben.booknowapi.core.security.JwtFilter;
+import lombok.RequiredArgsConstructor;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.config.Customizer;
+import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
+import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+
+import static dev.alben.booknowapi.core.security.SecurityConstants.WHITE_LIST;
+
+@Configuration
+@EnableWebSecurity
+@RequiredArgsConstructor
+public class SecurityConfig {
+    private final CustomUserDetailsService customUserDetailsService;
+    private final AppExceptionHandlerFilter appExceptionHandlerFilter;
+    private final JwtFilter jwtFilter;
+
+    @Bean
+    public PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
+
+    @Bean
+    public AuthenticationManager authenticationManager(AuthenticationConfiguration config) throws Exception {
+        return config.getAuthenticationManager();
+    }
+
+    @Bean
+    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+        return http.csrf(AbstractHttpConfigurer::disable)
+                .cors(Customizer.withDefaults())
+                .userDetailsService(customUserDetailsService)
+                .authorizeHttpRequests(httpRequests -> httpRequests
+                        .requestMatchers(WHITE_LIST).permitAll()
+                        .anyRequest().authenticated())
+                .addFilterBefore(appExceptionHandlerFilter, UsernamePasswordAuthenticationFilter.class)
+                .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class)
+                .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+                .build();
+    }
+}
