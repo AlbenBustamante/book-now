@@ -32,5 +32,5 @@
 }
 
 body {
-  @apply font-poppins text-gray-700 bg-gray-100;
+  @apply font-poppins text-gray-700 bg-gray-50;
 }
