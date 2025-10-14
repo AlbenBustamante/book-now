@@ -2,10 +2,16 @@ import { NgClass } from '@angular/common';
 import { Component, input, output, WritableSignal } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { SearchIconComponent } from '../search-icon/search-icon.component';
+import { LeftArrowIconComponent } from '../left-arrow-icon/left-arrow-icon.component';
 
 @Component({
   selector: 'app-navbar-search-input',
-  imports: [ReactiveFormsModule, NgClass, SearchIconComponent],
+  imports: [
+    ReactiveFormsModule,
+    NgClass,
+    SearchIconComponent,
+    LeftArrowIconComponent,
+  ],
   templateUrl: './navbar-search-input.component.html',
   styleUrl: './navbar-search-input.component.css',
 })

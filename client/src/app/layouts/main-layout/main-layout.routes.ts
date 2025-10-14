@@ -13,12 +13,12 @@ export default [
       },
       {
         path: 'manager',
-        canActivate: [AccountGuard],
+        // canActivate: [AccountGuard],
         loadChildren: () => import('@features/manager/manager.routes'),
       },
       {
         path: 'settings',
-        canActivate: [AccountGuard],
+        // canActivate: [AccountGuard],
         loadChildren: () => import('@features/settings/settings.routes'),
       },
     ],

@@ -1,20 +1,13 @@
 import { NgClass } from '@angular/common';
-import { Component, input, output, WritableSignal } from '@angular/core';
-import { MenuIconComponent } from '../menu-icon/menu-icon.component';
+import { Component, input } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { LeftArrowIconComponent } from '../left-arrow-icon/left-arrow-icon.component';
 
 @Component({
   selector: 'app-navbar-title',
-  imports: [NgClass, MenuIconComponent, RouterLink, LeftArrowIconComponent],
+  imports: [NgClass, RouterLink],
   templateUrl: './navbar-title.component.html',
   styleUrl: './navbar-title.component.css',
 })
 export class NavbarTitleComponent {
-  readonly onMenuClick = output<void>();
   readonly searching = input.required<boolean>();
-
-  menuClick() {
-    this.onMenuClick.emit();
-  }
 }

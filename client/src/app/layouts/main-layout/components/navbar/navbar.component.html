@@ -1,14 +1,21 @@
-<header class="sticky top-0 left-0 right-0 z-50">
+<header
+  class="sticky top-0 left-0 right-0 z-50 h-16 bg-primary-50 border-b border-gray-300 px-3.5 md:px-5"
+>
   <nav
-    class="w-full h-16 flex items-center justify-between gap-2 bg-primary-50 border-b border-gray-300 px-2 sm:px-3.5 md:px-5"
+    class="container mx-auto h-full flex items-center gap-2"
+    [ngClass]="{
+      'max-sm:justify-center': searching(),
+      'justify-between': !searching()
+    }"
   >
-    <app-navbar-title
-      (onMenuClick)="onShowSideNavbar()"
-      [searching]="searching()"
-    />
+    @if (!searching()) {<app-navbar-title [searching]="searching()" />}
     <app-navbar-search-input [searching]="searching" (onSearch)="search()" />
     @if (!searching()) {
-    <div appClickOutside (onClickOutside)="showDropdown.set(false)">
+    <div
+      appClickOutside
+      (onClickOutside)="showDropdown.set(false)"
+      class="flex items-center"
+    >
       <button
         class="size-10 bg-primary-700 border border-primary-900 rounded-full cursor-pointer"
         [ngClass]="{ 'max-sm:hidden': searching() }"
@@ -22,4 +29,3 @@
     }
   </nav>
 </header>
-<app-side-navbar [show]="showSideNavbar" />
