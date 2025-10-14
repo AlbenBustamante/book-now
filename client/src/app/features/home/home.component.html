@@ -1,8 +1,27 @@
-<main class="px-3.5 py-5">
-  <section class="flex flex-col gap-2.5">
-    <h2 class="text-2xl font-medium">Featured Services</h2>
-    <div class="flex flex-col gap-7">
-      <!--app-service-card /-->
-    </div>
-  </section>
-</main>
+<section
+  class="w-full h-[calc(100dvh_-_4rem)] flex items-center justify-center"
+>
+  <article class="flex flex-col gap-y-12">
+    <header class="flex flex-col gap-y-7">
+      <h2
+        class="text-center text-3xl sm:text-4xl md:text-5xl text-pretty font-extrabold"
+      >
+        Find the perfect professional for your needs
+      </h2>
+      <p class="text-center text-base md:text-lg">
+        Connect with top-rated professional for any services, from home repairs
+        to personal training.
+      </p>
+    </header>
+    <form
+      class="w-full max-w-xl mx-auto flex items-center gap-x-1 bg-white px-3.5 py-2 rounded-lg"
+    >
+      <input
+        type="search"
+        placeholder="Search for services or professionals"
+        class="w-4/5 outline-primary-700 px-4 py-2 sm:py-2.5"
+      />
+      <app-button type="submit" class="w-fit mx-auto">Search</app-button>
+    </form>
+  </article>
+</section>
