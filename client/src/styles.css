@@ -31,10 +31,6 @@
   --color-gray-950: var(--color-neutral-950);
 }
 
-* {
-  outline: none;
-}
-
 body {
   @apply font-poppins text-gray-700;
 }
