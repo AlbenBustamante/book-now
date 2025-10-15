@@ -28,7 +28,7 @@ export class NavbarComponent {
     this.showDropdown.set(!this.showDropdown());
   }
 
-  search() {
+  search(route: string) {
     const width = window.innerWidth;
 
     if (width < 640) {
@@ -37,7 +37,7 @@ export class NavbarComponent {
 
     this.searching.set(false);
     // TODO: redirect to results page
-    this._router.navigate(['']);
+    this._router.navigateByUrl(route);
   }
 
   @HostListener('window:resize', ['$event'])

@@ -16,7 +16,7 @@ import { LeftArrowIconComponent } from '../left-arrow-icon/left-arrow-icon.compo
   styleUrl: './navbar-search-input.component.css',
 })
 export class NavbarSearchInputComponent {
-  readonly onSearch = output<void>();
+  readonly onSearch = output<string>();
   readonly searching = input.required<WritableSignal<boolean>>();
   readonly form;
 
@@ -25,5 +25,11 @@ export class NavbarSearchInputComponent {
       input: ['', Validators.required],
       type: ['provider', Validators.required],
     });
+  }
+
+  onSubmit() {
+    const toSearch = this.form.value!;
+    console.table({ toSearch });
+    this.onSearch.emit(`/search?keywords=${toSearch.input}`);
   }
 }

@@ -12,6 +12,10 @@ export default [
         loadChildren: () => import('@features/home/home.routes'),
       },
       {
+        path: 'search',
+        loadComponent: () => import('@features/search/search.component'),
+      },
+      {
         path: 'manager',
         // canActivate: [AccountGuard],
         loadChildren: () => import('@features/manager/manager.routes'),
