@@ -1,11 +1,52 @@
-<main class="px-3.5 py-5">
-  <section class="flex flex-col gap-2.5">
-    <h2 class="text-2xl font-medium">Featured Services</h2>
-    <div class="flex flex-col gap-7">
+<section class="w-full h-[calc(100dvh_-_4rem)]">
+  <article
+    class="w-full h-[calc(100%_-_5rem)] rounded-3xl flex flex-col items-center justify-center gap-y-12 bg-cover bg-center bg-no-repeat cover px-5"
+  >
+    <header class="flex flex-col gap-y-7">
+      <h2
+        class="text-center text-3xl sm:text-4xl md:text-5xl text-pretty text-white font-extrabold"
+      >
+        Find the perfect professional for your needs
+      </h2>
+      <p class="text-center text-base md:text-lg text-white">
+        Connect with top-rated professional for any services, from home repairs
+        to personal training.
+      </p>
+    </header>
+    <form
+      class="w-full max-w-xl mx-auto flex items-center gap-x-1 bg-white drop-shadow px-3.5 py-2 rounded-lg"
+    >
+      <input
+        type="search"
+        placeholder="Search for services or professionals"
+        class="w-4/5 outline-none px-4 py-2 sm:py-2.5"
+      />
+      <app-button type="submit" class="w-fit mx-auto">Search</app-button>
+    </form>
+  </article>
+</section>
+<div class="flex flex-col gap-y-12">
+  <section class="flex flex-col gap-y-6">
+    <app-subtitle headline="Popular Services" />
+    <div class="flex items-start gap-x-7 overflow-x-auto pb-5">
+      <app-service-card />
+      <app-service-card />
       <app-service-card />
       <app-service-card />
       <app-service-card />
       <app-service-card />
     </div>
   </section>
-</main>
+  <section class="flex flex-col gap-y-6">
+    <app-subtitle headline="Top-Rated Professionals" />
+    <div class="flex items-start gap-x-7 overflow-x-auto pb-5">
+      <app-provider-card />
+      <app-provider-card />
+      <app-provider-card />
+      <app-provider-card />
+      <app-provider-card />
+      <app-provider-card />
+      <app-provider-card />
+    </div>
+  </section>
+</div>
