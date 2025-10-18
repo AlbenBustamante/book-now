@@ -16,6 +16,10 @@ export default [
         loadComponent: () => import('@features/search/search.component'),
       },
       {
+        path: 'service/:id',
+        loadComponent: () => import('@features/service/service.component'),
+      },
+      {
         path: 'manager',
         // canActivate: [AccountGuard],
         loadChildren: () => import('@features/manager/manager.routes'),

@@ -7,7 +7,7 @@
     <ul class="w-full grid gap-y-7">
       @for (item of data; track $index; let i = $index) {
       <li class="w-full">
-        <app-result-card />
+        <app-result-card [serviceRoute]="`../service/${4}`" />
       </li>
       @if (i < data.length - 1) {
       <app-divisor />
