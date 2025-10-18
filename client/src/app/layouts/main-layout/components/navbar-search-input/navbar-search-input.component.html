@@ -15,14 +15,14 @@
   </button>
   }
   <form
-    class="max-w-sm md:max-w-lg lg:max-w-xl grid grid-cols-1 sm:grid-cols-7 items-center"
+    class="max-w-sm md:max-w-lg lg:max-w-xl grid grid-cols-1 sm:grid-cols-7 items-center place-self-center w-full"
     [ngClass]="{ 'grid-cols-7 ': searching()() }"
     [formGroup]="form"
     (ngSubmit)="onSubmit()"
   >
     <input
       type="search"
-      placeholder="Search the service that you do want..."
+      placeholder="Search the service that you want..."
       class="col-span-6 placeholder-gray-500 py-1 px-2.5 md:py-2 bg-gray-50 border-y-2 border-l-2 rounded-s-2xl border-gray-200 h-full text-sm sm:text-base"
       [ngClass]="{ 'max-sm:hidden': !searching()() }"
       formControlName="input"

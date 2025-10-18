@@ -2,22 +2,26 @@
   class="sticky top-0 left-0 right-0 z-50 h-16 bg-white border-b border-gray-200 px-3.5 md:px-5"
 >
   <nav
-    class="container mx-auto h-full flex items-center gap-2"
+    class="container mx-auto h-full max-lg:flex lg:grid lg:grid-cols-6 items-center gap-2"
     [ngClass]="{
       'max-sm:justify-center': searching(),
       'justify-between': !searching()
     }"
   >
-    @if (!searching()) {<app-navbar-title [searching]="searching()" />}
+    @if (!searching()) {<app-navbar-title
+      [searching]="searching()"
+      class="col-span-1"
+    />}
     <app-navbar-search-input
       [searching]="searching"
       (onSearch)="search($event)"
+      class="col-span-4"
     />
     @if (!searching()) {
     <div
       appClickOutside
       (onClickOutside)="showDropdown.set(false)"
-      class="flex items-center"
+      class="flex items-center col-span-1 place-content-end"
     >
       <button
         class="size-10 bg-primary-700 border border-primary-900 rounded-full cursor-pointer"
