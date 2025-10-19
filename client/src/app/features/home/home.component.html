@@ -1,11 +1,9 @@
 <app-header />
 <app-container>
-  <section class="flex flex-col gap-y-6">
-    <app-subtitle headline="Popular Services" />
+  <app-section-container headline="Popular Services">
     <app-services-carousel />
-  </section>
-  <section class="flex flex-col gap-y-6">
-    <app-subtitle headline="Top-Rated Providers" />
+  </app-section-container>
+  <app-section-container headline="Top-Rated Providers">
     <div class="flex items-start gap-x-7 overflow-x-auto pb-5">
       <app-provider-card />
       <app-provider-card />
@@ -15,5 +13,5 @@
       <app-provider-card />
       <app-provider-card />
     </div>
-  </section>
+  </app-section-container>
 </app-container>

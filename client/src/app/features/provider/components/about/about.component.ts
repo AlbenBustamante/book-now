@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
-import { SubtitleComponent } from '@components/subtitle/subtitle.component';
+import { SectionContainerComponent } from '@components/section-container/section-container.component';
 
 @Component({
   selector: 'app-about',
-  imports: [SubtitleComponent],
+  imports: [SectionContainerComponent],
   templateUrl: './about.component.html',
   styleUrl: './about.component.css',
 })
