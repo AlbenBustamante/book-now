@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, input } from '@angular/core';
 import { ButtonComponent } from '@components/button/button.component';
 
 @Component({
@@ -7,4 +7,6 @@ import { ButtonComponent } from '@components/button/button.component';
   templateUrl: './appointment.component.html',
   styleUrl: './appointment.component.css',
 })
-export class AppointmentComponent {}
+export class AppointmentComponent {
+  readonly time = input.required<'past' | 'next'>();
+}

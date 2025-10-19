@@ -2,10 +2,16 @@ import { Component } from '@angular/core';
 import { ContainerComponent } from '@components/container/container.component';
 import { TitleComponent } from '@components/title/title.component';
 import { NextAppointmentsComponent } from './components/next-appointments/next-appointments.component';
+import { PastAppointmentsComponent } from './components/past-appointments/past-appointments.component';
 
 @Component({
   selector: 'app-appointments',
-  imports: [ContainerComponent, TitleComponent, NextAppointmentsComponent],
+  imports: [
+    ContainerComponent,
+    TitleComponent,
+    NextAppointmentsComponent,
+    PastAppointmentsComponent,
+  ],
   templateUrl: './appointments.component.html',
   styleUrl: './appointments.component.css',
 })
