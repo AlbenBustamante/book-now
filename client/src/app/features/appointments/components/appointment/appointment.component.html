@@ -1,8 +1,10 @@
-<article class="flex flex-col gap-y-3.5">
+<article
+  class="max-md:w-full max-md:max-w-sm max-md:md:w-sm max-md:mx-auto flex flex-col md:flex-row-reverse md:justify-between gap-x-5 gap-y-3.5"
+>
+  <div
+    class="w-full max-w-sm md:w-xs lg:w-sm h-auto aspect-video bg-primary-500 rounded-xl"
+  ></div>
   <div class="flex flex-col gap-y-3.5">
-    <div
-      class="w-full max-w-sm mx-auto h-auto aspect-video bg-primary-500 rounded-xl"
-    ></div>
     <div class="flex flex-col gap-y-1.5">
       <h4 class="text-lg sm:text-xl font-semibold text-gray-700">
         Service's Name
@@ -11,6 +13,6 @@
         🗓️ 05/10/2025
       </time>
     </div>
+    <app-button class="w-fit max-md:place-self-center">View details</app-button>
   </div>
-  <app-button class="w-fit place-self-center">View details</app-button>
 </article>
