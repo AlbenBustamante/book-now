@@ -17,7 +17,7 @@ export default [
       },
       {
         path: 'service/:id',
-        loadComponent: () => import('@features/service/service.component'),
+        loadChildren: () => import('@features/service/service.routes'),
       },
       {
         path: 'provider/:id',
