@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, output } from '@angular/core';
 import { DropdownOptionComponent } from '../dropdown-option/dropdown-option.component';
 import { DivisorComponent } from '@components/divisor/divisor.component';
 
@@ -8,4 +8,6 @@ import { DivisorComponent } from '@components/divisor/divisor.component';
   templateUrl: './dropdown.component.html',
   styleUrl: './dropdown.component.css',
 })
-export class DropdownComponent {}
+export class DropdownComponent {
+  readonly onClick = output<void>();
+}
