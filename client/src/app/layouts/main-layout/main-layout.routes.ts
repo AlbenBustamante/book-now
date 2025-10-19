@@ -20,6 +20,10 @@ export default [
         loadComponent: () => import('@features/service/service.component'),
       },
       {
+        path: 'provider/:id',
+        loadComponent: () => import('@features/provider/provider.component'),
+      },
+      {
         path: 'manager',
         // canActivate: [AccountGuard],
         loadChildren: () => import('@features/manager/manager.routes'),
