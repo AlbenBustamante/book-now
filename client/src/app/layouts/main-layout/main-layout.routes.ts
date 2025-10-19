@@ -12,6 +12,11 @@ export default [
         loadChildren: () => import('@features/home/home.routes'),
       },
       {
+        path: 'appointments',
+        loadComponent: () =>
+          import('@features/appointments/appointments.component'),
+      },
+      {
         path: 'search',
         loadComponent: () => import('@features/search/search.component'),
       },
