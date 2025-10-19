@@ -4,6 +4,7 @@ import { DescriptionComponent } from './components/description/description.compo
 import { AboutProviderComponent } from './components/about-provider/about-provider.component';
 import { DivisorComponent } from '@components/divisor/divisor.component';
 import { ValorationComponent } from './components/valoration/valoration.component';
+import { ReviewsComponent } from './components/reviews/reviews.component';
 
 @Component({
   selector: 'app-service',
@@ -13,6 +14,7 @@ import { ValorationComponent } from './components/valoration/valoration.componen
     AboutProviderComponent,
     DivisorComponent,
     ValorationComponent,
+    ReviewsComponent,
   ],
   templateUrl: './service.component.html',
   styleUrl: './service.component.css',
