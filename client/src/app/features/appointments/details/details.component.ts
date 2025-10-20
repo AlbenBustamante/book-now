@@ -1,10 +1,9 @@
 import { Component } from '@angular/core';
 import { ContainerComponent } from '@components/container/container.component';
-import { TitleComponent } from '@components/title/title.component';
 
 @Component({
   selector: 'app-details',
-  imports: [ContainerComponent, TitleComponent],
+  imports: [ContainerComponent],
   templateUrl: './details.component.html',
   styleUrl: './details.component.css',
 })

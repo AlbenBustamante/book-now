@@ -1,9 +1,13 @@
-import { Component } from '@angular/core';
+import { Component, input } from '@angular/core';
+import { TitleComponent } from '@components/title/title.component';
 
 @Component({
   selector: 'app-container',
-  imports: [],
+  imports: [TitleComponent],
   templateUrl: './container.component.html',
   styleUrl: './container.component.css',
 })
-export class ContainerComponent {}
+export class ContainerComponent {
+  readonly headline = input<string | null>(null);
+  readonly description = input<string | null>(null);
+}
