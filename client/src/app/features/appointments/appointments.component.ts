@@ -1,11 +1,10 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { ContainerComponent } from '@components/container/container.component';
 import { RouterNavbarComponent } from '@components/router-navbar/router-navbar.component';
 
 @Component({
   selector: 'app-appointments',
-  imports: [ContainerComponent, RouterNavbarComponent, RouterOutlet],
+  imports: [RouterNavbarComponent, RouterOutlet],
   templateUrl: './appointments.component.html',
   styleUrl: './appointments.component.css',
 })
