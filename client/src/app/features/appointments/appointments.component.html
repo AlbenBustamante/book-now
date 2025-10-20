@@ -1,5 +1,6 @@
 <app-container>
-  <app-title headline="My Appointments" />
-  <app-next-appointments />
-  <app-past-appointments />
+  <app-router-navbar [routes]="routes" />
 </app-container>
+<div class="mt-5">
+  <router-outlet />
+</div>

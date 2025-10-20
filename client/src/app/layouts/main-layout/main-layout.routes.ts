@@ -13,8 +13,8 @@ export default [
       },
       {
         path: 'appointments',
-        loadComponent: () =>
-          import('@features/appointments/appointments.component'),
+        loadChildren: () =>
+          import('@features/appointments/appointments.routes'),
       },
       {
         path: 'search',
