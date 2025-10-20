@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { ResultCardComponent } from './components/result-card/result-card.component';
-import { SubtitleComponent } from '@components/subtitle/subtitle.component';
 import { DivisorComponent } from '@components/divisor/divisor.component';
 import { ContainerComponent } from '@components/container/container.component';
 import { SectionContainerComponent } from '@components/section-container/section-container.component';
@@ -9,7 +8,6 @@ import { SectionContainerComponent } from '@components/section-container/section
   selector: 'app-search',
   imports: [
     ResultCardComponent,
-    SubtitleComponent,
     DivisorComponent,
     ContainerComponent,
     SectionContainerComponent,

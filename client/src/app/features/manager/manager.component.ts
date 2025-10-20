@@ -1,5 +1,5 @@
 import { Component, signal } from '@angular/core';
-import { SideNavbarComponent } from '@layouts/main-layout/components/side-navbar/side-navbar.component';
+import { SideNavbarComponent } from '@components/side-navbar/side-navbar.component';
 
 @Component({
   selector: 'app-manager',
