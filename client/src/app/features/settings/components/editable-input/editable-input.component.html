@@ -1,10 +1,12 @@
 <div class="grid grid-cols-3 sm:grid-cols-4 items-center gap-x-2 gap-y-3.5">
   <label [for]="name()">{{ property() }}</label>
   <app-input
+    [type]="type()"
     [name]="name()"
     [control]="control()"
     [label]="null"
     [autocomplete]="autocomplete()"
+    [placeholder]="placeholder()"
     class="col-span-2"
   />
   <button

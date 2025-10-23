@@ -1,0 +1,26 @@
+<form [formGroup]="form" class="flex flex-col gap-y-7">
+  <app-editable-input
+    type="email"
+    name="email"
+    [control]="form.controls.email"
+    autocomplete="email"
+    property="Email"
+  />
+  <app-editable-input
+    type="password"
+    name="password"
+    [control]="form.controls.password"
+    property="Change Password"
+    placeholder="********"
+  />
+  <app-editable-input
+    type="password"
+    name="repeatPassword"
+    [control]="form.controls.repeatPassword"
+    property="Confirm New Password"
+    placeholder="********"
+  />
+  <app-button class="w-full max-w-xs mx-auto mt-2" [disabled]="form.enabled">
+    Save Changes
+  </app-button>
+</form>
