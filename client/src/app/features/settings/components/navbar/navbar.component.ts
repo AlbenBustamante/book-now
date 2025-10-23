@@ -2,7 +2,6 @@ import { NgClass } from '@angular/common';
 import { Component } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { ContainerComponent } from '@components/container/container.component';
-import { TitleComponent } from '@components/title/title.component';
 
 interface Route {
   displayName: string;
@@ -11,13 +10,7 @@ interface Route {
 
 @Component({
   selector: 'app-navbar',
-  imports: [
-    RouterLink,
-    ContainerComponent,
-    RouterLinkActive,
-    NgClass,
-    TitleComponent,
-  ],
+  imports: [RouterLink, ContainerComponent, RouterLinkActive, NgClass],
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.css',
 })
