@@ -1,0 +1,17 @@
+<form [formGroup]="form" class="flex flex-col gap-y-7">
+  <app-editable-input
+    name="name"
+    [control]="form.controls.name"
+    property="Name"
+    autocomplete="name"
+  />
+  <app-editable-input
+    name="lastName"
+    [control]="form.controls.lastName"
+    property="Last Name"
+    autocomplete="family-name"
+  />
+  <app-button class="w-full max-w-xs mx-auto mt-2" [disabled]="form.enabled"
+    >Save Changes</app-button
+  >
+</form>

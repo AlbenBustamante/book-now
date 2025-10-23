@@ -1,0 +1,19 @@
+<div class="grid grid-cols-3 sm:grid-cols-4 items-center gap-x-2 gap-y-3.5">
+  <label [for]="name()">{{ property() }}</label>
+  <app-input
+    [name]="name()"
+    [control]="control()"
+    [label]="null"
+    [autocomplete]="autocomplete()"
+    class="col-span-2"
+  />
+  <button
+    (click)="control().enabled ? control().disable() : control().enable()"
+    class="max-sm:col-start-3 max-sm:justify-self-end cursor-pointer hover:underline hover:text-blue-500 duration-200 font-medium underline-offset-2"
+    [ngClass]="{
+      'text-primary-500 hover:text-primary-500': control().enabled
+    }"
+  >
+    {{ control().enabled ? "Apply" : "Edit" }}
+  </button>
+</div>
