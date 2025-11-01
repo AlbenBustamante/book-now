@@ -12,8 +12,21 @@ export default [
         loadChildren: () => import('@features/home/home.routes'),
       },
       {
+        path: 'appointments',
+        loadChildren: () =>
+          import('@features/appointments/appointments.routes'),
+      },
+      {
         path: 'search',
         loadComponent: () => import('@features/search/search.component'),
+      },
+      {
+        path: 'service/:id',
+        loadChildren: () => import('@features/service/service.routes'),
+      },
+      {
+        path: 'provider/:id',
+        loadComponent: () => import('@features/provider/provider.component'),
       },
       {
         path: 'manager',

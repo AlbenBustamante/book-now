@@ -23,7 +23,6 @@ export class NavbarSearchInputComponent {
   constructor(private readonly _fb: FormBuilder) {
     this.form = this._fb.group({
       input: ['', Validators.required],
-      type: ['provider', Validators.required],
     });
   }
 

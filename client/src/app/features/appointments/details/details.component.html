@@ -1,0 +1,18 @@
+<app-container
+  headline="Appointment Details"
+  description="A summary about your incoming appointment"
+>
+  <app-section-container headline="Summary">
+    <ul class="flex flex-col">
+      <app-item displayName="Service" value="Service's Name" />
+      <app-item displayName="Provider" value="Provider's Name" />
+      <app-item displayName="Date" [value]="date" pipe="date" />
+      <app-item displayName="Time" [value]="date" pipe="time" />
+      <app-item displayName="Amount" [value]="499.99" pipe="currency" />
+      <app-item displayName="Address" value="Country, City, Locale, Street" />
+    </ul>
+    <app-button class="w-full max-w-sm mx-auto" (click)="goToOverview()"
+      >Got it!</app-button
+    >
+  </app-section-container>
+</app-container>

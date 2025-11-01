@@ -1,0 +1,10 @@
+<h2
+  class="text-pretty text-gray-800 text-2xl sm:text-3xl md:text-4xl font-bold"
+  [ngClass]="{
+    'text-left': align() === 'left',
+    'text-center': align() === 'center',
+    'text-center sm:text-left': align() === 'center sm:left'
+  }"
+>
+  {{ headline() }}
+</h2>

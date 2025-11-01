@@ -1,0 +1,25 @@
+<a [routerLink]="serviceRoute()">
+  <article
+    class="w-full max-md:max-w-sm mx-auto flex max-md:flex-col gap-x-3 gap-y-1 hover:bg-gray-100 rounded-xl sm:p-2.5 hover:shadow duration-300"
+  >
+    <div
+      role="img"
+      class="w-full md:max-w-xs h-auto aspect-video rounded-xl bg-primary-500"
+    ></div>
+    <div class="flex flex-col gap-y-3 md:justify-between w-full p-2.5">
+      <div class="flex flex-col gap-y-1.5">
+        <h4 class="text-xl md:text-2xl font-semibold">Service's Name</h4>
+        <div class="flex items-center gap-x-2.5">
+          <div class="size-7 rounded-full bg-primary-500"></div>
+          <h5 class="text-base md:text-lg text-gray-500">Provider's Name</h5>
+        </div>
+      </div>
+      <footer
+        class="flex items-center justify-between gap-x-5 text-sm sm:text-base"
+      >
+        <p class="text-gray-500">4.8 (120 Reviews)</p>
+        <p class="text-gray-600">Available</p>
+      </footer>
+    </div>
+  </article>
+</a>

@@ -1,1 +1,16 @@
-<p>search works!</p>
+<app-container
+  headline="Search Results"
+  description="Showing 10 of 24783 results"
+>
+  <app-section-container headline="Services found">
+    <ul class="w-full grid gap-y-7">
+      @for (item of data; track $index; let i = $index) {
+      <li class="w-full">
+        <app-result-card [serviceRoute]="`../service/${4}`" />
+      </li>
+      @if (i < data.length - 1) {
+      <app-divisor />
+      } }
+    </ul>
+  </app-section-container>
+</app-container>

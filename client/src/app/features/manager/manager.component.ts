@@ -1,9 +1,10 @@
 import { Component, signal } from '@angular/core';
-import { SideNavbarComponent } from '@layouts/main-layout/components/side-navbar/side-navbar.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
+import { RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-manager',
-  imports: [SideNavbarComponent],
+  imports: [NavbarComponent, RouterOutlet],
   templateUrl: './manager.component.html',
   styleUrl: './manager.component.css',
 })

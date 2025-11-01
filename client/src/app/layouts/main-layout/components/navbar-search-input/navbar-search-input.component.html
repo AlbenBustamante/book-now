@@ -15,22 +15,15 @@
   </button>
   }
   <form
-    class="max-w-sm md:max-w-lg lg:max-w-xl grid grid-cols-1 sm:grid-cols-7 items-center"
+    class="max-w-sm md:max-w-lg lg:max-w-xl grid grid-cols-1 sm:grid-cols-7 items-center place-self-center w-full"
     [ngClass]="{ 'grid-cols-7 ': searching()() }"
     [formGroup]="form"
     (ngSubmit)="onSubmit()"
   >
-    <select
-      class="col-span-2 p-1 md:py-2 bg-gray-50 border-2 border-gray-200 h-full rounded-s-2xl text-sm sm:text-base"
-      [ngClass]="{ 'max-sm:hidden': !searching()() }"
-    >
-      <option value="providers">Providers</option>
-      <option value="services">Services</option>
-    </select>
     <input
       type="search"
-      placeholder="Search..."
-      class="col-span-4 placeholder-gray-500 py-1 px-2.5 md:py-2 bg-gray-50 border-y-2 border-gray-200 h-full text-sm sm:text-base"
+      placeholder="Search the service that you want..."
+      class="col-span-6 placeholder-gray-500 py-1 px-2.5 md:py-2 bg-gray-50 border-y-2 border-l-2 rounded-s-2xl border-gray-200 h-full text-sm sm:text-base"
       [ngClass]="{ 'max-sm:hidden': !searching()() }"
       formControlName="input"
     />

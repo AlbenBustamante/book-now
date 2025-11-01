@@ -1,0 +1,11 @@
+<div class="flex flex-col gap-y-12 w-full max-w-4xl mx-auto">
+  @if (headline()) {
+  <header class="flex flex-col gap-y-3.5">
+    <app-title [headline]="headline()!" />
+    @if (description()) {
+    <p class="text-base sm:text-lg text-gray-500">{{ description()! }}.</p>
+    }
+  </header>
+  }
+  <ng-content />
+</div>
