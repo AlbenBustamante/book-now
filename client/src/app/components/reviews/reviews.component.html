@@ -1,12 +1,13 @@
 <section class="flex flex-col gap-y-3.5">
   <app-subtitle headline="Reviews" />
-  <app-valoration />
-  <br />
-  <ul class="flex flex-col gap-y-10">
-    <li><app-comment /></li>
-    <li><app-comment /></li>
-    <li><app-comment /></li>
-    <li><app-comment /></li>
-    <li><app-comment /></li>
-  </ul>
+  <div class="flex flex-col gap-y-12 md:flex-row gap-x-8">
+    <app-valoration class="md:w-3/12" />
+    <ul class="flex flex-col gap-y-16 md:w-9/12">
+      <li><app-comment /></li>
+      <li><app-comment /></li>
+      <li><app-comment /></li>
+      <li><app-comment /></li>
+      <li><app-comment /></li>
+    </ul>
+  </div>
 </section>
