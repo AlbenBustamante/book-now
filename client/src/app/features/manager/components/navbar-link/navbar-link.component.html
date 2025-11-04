@@ -3,10 +3,12 @@
     [routerLink]="route()"
     #rla="routerLinkActive"
     routerLinkActive
-    class="hover:text-primary-500 duration-200 px-3.5 h-20 items-center flex font-medium"
+    class="duration-200 px-3.5 lg:py-2.5 max-lg:h-20 items-center flex font-medium text-sm sm:text-base"
     [ngClass]="{
-      'border-b-4 border-primary-500 text-primary-600': rla.isActive,
-      'text-gray-500 border-none': !rla.isActive
+      'max-lg:border-b-4 border-primary-500 text-primary-600 lg:text-primary-50 lg:bg-primary-600':
+        rla.isActive,
+      'text-gray-500 max-lg:hover:text-primary-500 max-lg:border-none lg:hover:bg-primary-500 lg:hover:text-white':
+        !rla.isActive
     }"
   >
     {{ name() }}

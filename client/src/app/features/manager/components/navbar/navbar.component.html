@@ -1,7 +1,9 @@
 <nav
-  class="fixed top-20 left-0 right-0 w-full h-20 bg-white border-b border-gray-200"
+  class="fixed top-20 left-0 max-lg:right-0 w-full max-lg:h-20 bg-white max-lg:border-b border-gray-200 lg:top-16 lg:bottom-0 lg:h-[calc(100vh_-_4rem)] lg:w-48 lg:border-r lg:py-10"
 >
-  <ul class="flex items-center justify-center gap-x-1">
+  <ul
+    class="flex max-lg:items-center max-lg:justify-center gap-x-1 lg:flex-col gap-y-2.5"
+  >
     <app-navbar-link name="Dashboard" route="./dashboard" />
     <app-navbar-link name="Services" route="./services" />
     <app-navbar-link name="Customers" route="./customers" />
