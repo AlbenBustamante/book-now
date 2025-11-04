@@ -1,27 +1,20 @@
-<app-container
-  headline="Settings"
-  description="Manage your personal information and account details"
->
-  <nav class="-mt-1.5">
-    <ul
-      class="w-full flex items-center justify-left gap-x-1 bg-white border-2 border-gray-200 py-3.5 rounded-lg"
-    >
-      @for (route of routes; track $index) {
-      <li>
-        <a
-          [routerLink]="route.route"
-          #rla="routerLinkActive"
-          routerLinkActive
-          class="px-5 py-3.5 text-base sm:text-lg font-medium hover:text-primary-500 duration-300 ease-in-out"
-          [ngClass]="{
-            'border-b-4 border-primary-500 text-primary-600': rla.isActive,
-            'border-none': !rla.isActive
-          }"
-        >
-          {{ route.displayName }}
-        </a>
-      </li>
-      }
-    </ul>
-  </nav>
-</app-container>
+<nav>
+  <ul class="w-full flex items-center justify-left gap-x-1">
+    @for (route of routes; track $index) {
+    <li>
+      <a
+        [routerLink]="route.route"
+        #rla="routerLinkActive"
+        routerLinkActive
+        class="px-5 py-3.5 text-base sm:text-lg font-medium hover:text-primary-500 duration-300 ease-in-out"
+        [ngClass]="{
+          'border-b-4 border-primary-500 text-primary-600': rla.isActive,
+          'border-none': !rla.isActive
+        }"
+      >
+        {{ route.displayName }}
+      </a>
+    </li>
+    }
+  </ul>
+</nav>
