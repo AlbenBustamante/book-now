@@ -1,0 +1,7 @@
+<ul
+  class="grid grid-cols-[repeat(auto-fit,minmax(18rem,1fr))] gap-x-8 gap-y-12"
+>
+  @for (item of [1, 2, 3, 4, 5]; track $index) {
+    <li><app-customer-card /></li>
+  }
+</ul>
