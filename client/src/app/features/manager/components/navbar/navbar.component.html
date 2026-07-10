@@ -1,8 +1,16 @@
 <nav
-  class="fixed top-16 left-0 max-lg:right-0 w-full max-lg:h-20 bg-white max-lg:border-b border-gray-200 lg:bottom-0 lg:h-[calc(100vh-4rem)] lg:w-48 lg:border-r lg:py-10"
+  class="fixed top-0 left-0 max-lg:right-0 w-full max-lg:h-20 bg-white max-lg:border-b border-gray-200 lg:bottom-0 lg:h-dvh lg:w-52 lg:border-r lg:py-8 flex lg:flex-col lg:gap-y-8 px-3.5"
 >
+  <h1>
+    <a
+      routerLink=""
+      class="text-center text-primary-600 hover:text-primary-400 text-3xl sm:text-4xl font-extrabold cursor-pointer duration-150 tracking-tighter lg:flex lg:flex-col"
+    >
+      BookNow
+    </a>
+  </h1>
   <ul
-    class="flex max-lg:items-center max-lg:justify-center gap-x-1 lg:flex-col gap-y-2.5"
+    class="flex max-lg:items-center max-lg:justify-center gap-x-1 lg:flex-col gap-y-3.5"
   >
     <app-navbar-link name="Dashboard" route="./dashboard" />
     <app-navbar-link name="Services" route="./services" />

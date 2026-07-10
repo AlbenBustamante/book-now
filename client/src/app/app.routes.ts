@@ -13,6 +13,11 @@ export const routes: Routes = [
     loadChildren: () => import('@features/auth/auth.routes'),
   },
   {
+    path: 'manager',
+    // canActivate: [AccountGuard],
+    loadChildren: () => import('@features/manager/manager.routes'),
+  },
+  {
     path: 'sign-out',
     canActivate: [AccountGuard],
     loadComponent: () => import('@features/sign-out/sign-out.component'),

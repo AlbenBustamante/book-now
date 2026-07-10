@@ -29,11 +29,6 @@ export default [
         loadComponent: () => import('@features/provider/provider.component'),
       },
       {
-        path: 'manager',
-        // canActivate: [AccountGuard],
-        loadChildren: () => import('@features/manager/manager.routes'),
-      },
-      {
         path: 'settings',
         // canActivate: [AccountGuard],
         loadChildren: () => import('@features/settings/settings.routes'),
