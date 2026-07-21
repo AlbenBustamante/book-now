@@ -1,9 +1,13 @@
 <div class="flex flex-col gap-y-8">
   <app-customers-search />
-  <app-manager-header
-    headline="My Customers"
-    description="Explore all the customers who have hired your services."
-  />
-  <app-customer-stats-grid />
-  <app-customers-grid />
+  @if (store.showDetails()) {
+    <app-customer-details />
+  } @else {
+    <app-manager-header
+      headline="My Customers"
+      description="Explore all the customers who have hired your services."
+    />
+    <app-customer-stats-grid />
+    <app-customers-grid (onClick)="store.fetchDetails($event)" />
+  }
 </div>

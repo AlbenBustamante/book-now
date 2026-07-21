@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, output } from '@angular/core';
 import { CustomerCardComponent } from '../customer-card/customer-card.component';
 
 @Component({
@@ -7,4 +7,10 @@ import { CustomerCardComponent } from '../customer-card/customer-card.component'
   templateUrl: './customers-grid.component.html',
   styleUrl: './customers-grid.component.css',
 })
-export class CustomersGridComponent {}
+export class CustomersGridComponent {
+  readonly onClick = output<string>();
+
+  viewDetails(event: string) {
+    this.onClick.emit(event);
+  }
+}

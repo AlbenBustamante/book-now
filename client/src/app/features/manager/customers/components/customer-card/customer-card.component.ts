@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, output } from '@angular/core';
 import { DivisorComponent } from '@components/divisor/divisor.component';
 import { CardComponent } from '@components/card/card.component';
 
@@ -8,4 +8,10 @@ import { CardComponent } from '@components/card/card.component';
   templateUrl: './customer-card.component.html',
   styleUrl: './customer-card.component.css',
 })
-export class CustomerCardComponent {}
+export class CustomerCardComponent {
+  readonly onClick = output<string>();
+
+  viewDetails() {
+    this.onClick.emit('');
+  }
+}
