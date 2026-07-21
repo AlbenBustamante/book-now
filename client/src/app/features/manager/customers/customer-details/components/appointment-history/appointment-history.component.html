@@ -1,0 +1,22 @@
+<article class="border border-gray-300 bg-white rounded-xl">
+  <header
+    class="h-16 border-b border-gray-300 flex items-center bg-primary-600 rounded-t-xl"
+  >
+    <h4 class="px-5 font-semibold text-white">Appointment History</h4>
+  </header>
+  <ul>
+    @for (item of [1, 2, 3]; track $index) {
+      <li
+        class="flex items-center justify-between h-16 not-last:border-b border-gray-300 px-5 hover:bg-gray-200"
+      >
+        <div class="flex flex-col justify-center text-sm">
+          <p>Service's title</p>
+          <p>Status | Start Hour - End Hour</p>
+        </div>
+        <div class="flex flex-col justify-center text-sm">
+          <p>$Value</p>
+        </div>
+      </li>
+    }
+  </ul>
+</article>
