@@ -1,0 +1,27 @@
+<section class="flex flex-col gap-y-5">
+  <h3 class="text-base sm:text-lg font-semibold text-gray-800">Reviews</h3>
+  <ul class="grid sm:grid-cols-2 gap-x-5 gap-y-7">
+    @for (item of [1, 2, 3]; track $index) {
+      <li>
+        <app-card>
+          <header class="flex items-center justify-between text-xs sm:text-sm">
+            <p>⭐⭐⭐⭐⭐</p>
+            <p class="italic">3 months ago</p>
+          </header>
+          <p class="text-sm sm:text-base tracking-wide text-pretty">
+            "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quasi
+            pariatur numquam necessitatibus nesciunt quae blanditiis suscipit
+            unde impedit quisquam ullam ipsum velit repellendus corporis porro
+            dicta quis, nisi, adipisci ut!"
+          </p>
+          <app-divisor />
+          <footer>
+            <p class="capitalize text-sm sm:text-base">
+              <strong class="text-primary-700">Service: </strong>service's name
+            </p>
+          </footer>
+        </app-card>
+      </li>
+    }
+  </ul>
+</section>
