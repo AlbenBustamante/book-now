@@ -23,9 +23,13 @@ export const CustomersStore = signalStore(
     showDetails: computed(() => detailsId() !== null),
   })),
   withMethods((store) => ({
-    fetchDetails: (detailsId: string) => {
-      patchState(store, { loadingDetails: true, detailsId });
-      patchState(store, { loadingDetails: false });
+    fetchDetails: (detailsId: string | null) => {
+      if (detailsId) {
+        patchState(store, { loadingDetails: true, detailsId });
+        patchState(store, { loadingDetails: false });
+      } else {
+        patchState(store, { detailsId });
+      }
     },
   })),
 );

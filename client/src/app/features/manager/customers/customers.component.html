@@ -1,5 +1,8 @@
 <div class="flex flex-col gap-y-8">
-  <app-customers-search />
+  <app-customers-search
+    [showReturn]="store.showDetails()"
+    (onReturn)="store.fetchDetails(null)"
+  />
   @if (store.showDetails()) {
     <app-customer-details />
   } @else {

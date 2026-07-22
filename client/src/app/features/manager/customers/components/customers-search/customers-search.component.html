@@ -1,7 +1,23 @@
 <div
   class="border-b border-gray-300 -ml-3.5 w-[calc(100%+1.75rem)] md:-ml-5 md:w-[calc(100%+2.5rem)] pb-5"
 >
-  <div class="max-w-3xl px-5">
-    <app-input name="search" placeholder="Search a customer..." />
+  <div class="max-w-3xl px-5 flex items-center gap-x-5">
+    @if (showReturn()) {
+      <button
+        (click)="return()"
+        class="group flex items-center gap-x-1 text-gray-500 text-sm hover:bg-primary-100 px-2.5 py-1.5 rounded-xl duration-300 cursor-pointer hover:text-gray-600"
+      >
+        <svg
+          left-arrow-icon
+          class="size-4 stroke-2 stroke-gray-500 group-hover:stroke-gray-600"
+        />
+        Return to customers
+      </button>
+    }
+    <app-input
+      name="search"
+      placeholder="Search a customer..."
+      [ngClass]="{ 'w-full': !showReturn() }"
+    />
   </div>
 </div>
