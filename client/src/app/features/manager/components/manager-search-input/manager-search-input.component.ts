@@ -4,12 +4,13 @@ import { InputComponent } from '@components/input/input.component';
 import { LeftArrowIconComponent } from '@components/left-arrow-icon/left-arrow-icon.component';
 
 @Component({
-  selector: 'app-customers-search',
+  selector: 'app-manager-search-input',
   imports: [InputComponent, LeftArrowIconComponent, NgClass],
-  templateUrl: './customers-search.component.html',
-  styleUrl: './customers-search.component.css',
+  templateUrl: './manager-search-input.component.html',
+  styleUrl: './manager-search-input.component.css',
 })
-export class CustomersSearchComponent {
+export class ManagerSearchInputComponent {
+  readonly placeholder = input.required<string>();
   readonly showReturn = input.required<boolean>();
   readonly onReturn = output<boolean>();
 

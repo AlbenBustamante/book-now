@@ -1,6 +1,11 @@
-<header class="flex flex-col gap-y-1.5 border-l-5 border-primary-600 pl-3">
-  <app-title [headline]="headline()" />
-  <p class="text-sm sm:text-base text-pretty">
-    {{ description() }}
-  </p>
+<header
+  class="flex max-md:flex-col gap-y-3.5 md:items-center md:justify-between gap-x-5 border-l-5 border-primary-600 pl-3"
+>
+  <div class="flex flex-col gap-y-1.5">
+    <app-title [headline]="headline()" />
+    <p class="text-sm sm:text-base text-pretty">
+      {{ description() }}
+    </p>
+  </div>
+  <ng-content />
 </header>

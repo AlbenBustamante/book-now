@@ -1,18 +1,17 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { CustomersSearchComponent } from './customers-search.component';
+import { ManagerSearchInputComponent } from './manager-search-input.component.js';
 
 describe('CustomersSearchComponent', () => {
-  let component: CustomersSearchComponent;
-  let fixture: ComponentFixture<CustomersSearchComponent>;
+  let component: ManagerSearchInputComponent;
+  let fixture: ComponentFixture<ManagerSearchInputComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [CustomersSearchComponent]
-    })
-    .compileComponents();
+      imports: [ManagerSearchInputComponent],
+    }).compileComponents();
 
-    fixture = TestBed.createComponent(CustomersSearchComponent);
+    fixture = TestBed.createComponent(ManagerSearchInputComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

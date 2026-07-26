@@ -1,1 +1,12 @@
-<p>services works!</p>
+<div class="flex flex-col gap-y-8">
+  <app-manager-search-input
+    placeholder="Search a service..."
+    [showReturn]="false"
+  />
+  <app-manager-header
+    headline="My Services"
+    description="Manage your professional services"
+  >
+    <app-button routerLink="./new-service">Add New Service</app-button>
+  </app-manager-header>
+</div>

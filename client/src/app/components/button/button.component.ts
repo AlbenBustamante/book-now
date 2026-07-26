@@ -1,5 +1,5 @@
 import { NgClass } from '@angular/common';
-import { Component, Input } from '@angular/core';
+import { Component, input } from '@angular/core';
 
 @Component({
   selector: 'app-button',
@@ -8,10 +8,11 @@ import { Component, Input } from '@angular/core';
   styleUrl: './button.component.css',
 })
 export class ButtonComponent {
-  @Input() color: 'primary' = 'primary';
-  @Input() type: 'submit' | 'button' = 'button';
-  @Input() disabled: boolean = false;
-  @Input() loading: boolean = false;
+  readonly route = input<string>();
+  readonly color = input<'primary'>('primary');
+  readonly type = input<'submit' | 'button'>('button');
+  readonly disabled = input<boolean>(false);
+  readonly loading = input<boolean>(false);
 
   private mapColor = {
     primary:
@@ -19,6 +20,6 @@ export class ButtonComponent {
   };
 
   get styles() {
-    return this.mapColor[this.color];
+    return this.mapColor[this.color()];
   }
 }

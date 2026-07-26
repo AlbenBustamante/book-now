@@ -16,7 +16,7 @@
     }
     <app-input
       name="search"
-      placeholder="Search a customer..."
+      [placeholder]="placeholder()"
       [ngClass]="{ 'w-full': !showReturn() }"
     />
   </div>
