@@ -4,6 +4,7 @@ import { ManagerSearchInputComponent } from '../components/manager-search-input/
 import { ButtonComponent } from '@components/button/button.component';
 import { RouterLink } from '@angular/router';
 import { ManagerServiceCardComponent } from './components/manager-service-card/manager-service-card.component';
+import { ManagerServicePaginationComponent } from './components/manager-service-pagination/manager-service-pagination.component';
 
 @Component({
   selector: 'app-services',
@@ -13,6 +14,7 @@ import { ManagerServiceCardComponent } from './components/manager-service-card/m
     ButtonComponent,
     RouterLink,
     ManagerServiceCardComponent,
+    ManagerServicePaginationComponent,
   ],
   templateUrl: './services.component.html',
   styleUrl: './services.component.css',
