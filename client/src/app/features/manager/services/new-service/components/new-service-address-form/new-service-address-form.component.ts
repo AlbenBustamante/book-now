@@ -11,10 +11,11 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
+import { InputComponent } from '@components/input/input.component';
 
 @Component({
   selector: 'app-new-service-address-form',
-  imports: [NewServiceCardComponent, ReactiveFormsModule],
+  imports: [NewServiceCardComponent, ReactiveFormsModule, InputComponent],
   templateUrl: './new-service-address-form.component.html',
   styleUrl: './new-service-address-form.component.css',
 })
@@ -27,7 +28,7 @@ export class NewServiceAddressFormComponent {
   readonly onSelectCountry = output<string>();
   readonly onSelectState = output<{ country: string; state: string }>();
 
-  readonly form: FormGroup = this._fb.group({
+  readonly form = this._fb.group({
     country: ['', Validators.required],
     state: ['', Validators.required],
     city: ['', Validators.required],

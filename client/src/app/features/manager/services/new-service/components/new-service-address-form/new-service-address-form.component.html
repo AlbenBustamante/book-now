@@ -31,5 +31,17 @@
         }
       </select>
     </div>
+    <app-input
+      name="address1"
+      label="Address 1"
+      [control]="form.controls.address1"
+      placeholder="e.g. Street 123A - #45 South"
+    />
+    <app-input
+      name="address2"
+      label="Address 2"
+      [control]="form.controls.address2"
+      placeholder="e.g. Residence/Apartment"
+    />
   </form>
 </app-new-service-card>
