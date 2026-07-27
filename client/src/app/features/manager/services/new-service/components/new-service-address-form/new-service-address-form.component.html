@@ -1,1 +1,26 @@
-<p>new-service-address-form works!</p>
+<app-new-service-card headline="Service Address">
+  <form class="flex flex-col gap-y-5" [formGroup]="form">
+    <div class="input">
+      <label for="country">Country</label>
+      <select
+        id="country"
+        formControlName="country"
+        (change)="setCountry($event)"
+      >
+        <option value="" disabled>Choose a country</option>
+        @for (country of countries(); track $index) {
+          <option [value]="country.name">{{ country.name }}</option>
+        }
+      </select>
+    </div>
+    <div class="input">
+      <label for="state">State</label>
+      <select id="state" formControlName="state">
+        <option value="" disabled>Choose a state</option>
+        @for (state of states(); track $index) {
+          <option [value]="state.name">{{ state.name }}</option>
+        }
+      </select>
+    </div>
+  </form>
+</app-new-service-card>
