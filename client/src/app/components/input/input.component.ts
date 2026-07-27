@@ -11,11 +11,11 @@ export class InputComponent {
   readonly name = input.required<string>();
   readonly label = input<string | null>(null);
   readonly type = input<'text' | 'number' | 'email' | 'password' | 'search'>(
-    'text'
+    'text',
   );
   readonly placeholder = input<string>('');
-  readonly autocomplete = input<'name' | 'family-name' | 'email' | 'off'>(
-    'off'
-  );
+  readonly autocomplete = input<
+    'name' | 'family-name' | 'email' | 'street-address' | 'off'
+  >('off');
   readonly control = input<FormControl>(new FormControl(''));
 }
