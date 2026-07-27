@@ -27,3 +27,8 @@ export interface StateModel {
   longitude: string;
   timezone: string;
 }
+
+export interface CityModel {
+  id: number;
+  name: string;
+}

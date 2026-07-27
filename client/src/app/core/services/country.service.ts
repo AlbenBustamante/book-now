@@ -1,6 +1,10 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
-import { CountryModel, StateModel } from '@core/models/country.model';
+import {
+  CityModel,
+  CountryModel,
+  StateModel,
+} from '@core/models/country.model';
 import { environment } from '@environments/environment.development';
 
 @Injectable({
@@ -23,6 +27,15 @@ export class CountryService {
 
     return this._http.get<StateModel[]>(
       `${this._countriesApiUrl}/${iso2}/states`,
+      { headers },
+    );
+  }
+
+  getCitiesByState(countryIso2: string, stateIso2: string) {
+    const headers = new HttpHeaders({ 'X-CSCAPI-KEY': this._countryApiKey });
+
+    return this._http.get<CityModel[]>(
+      `${this._countriesApiUrl}/${countryIso2}/states/${stateIso2}/cities`,
       { headers },
     );
   }

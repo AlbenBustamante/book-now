@@ -36,6 +36,10 @@ export default class NewServiceComponent {
   }
 
   fetchStates(iso2: string) {
-    this.store.fetchStatesByIso2(iso2);
+    this.store.fetchStatesByCountry(iso2);
+  }
+
+  fetchCities(data: { country: string; state: string }) {
+    this.store.fetchCitiesByState(data.country, data.state);
   }
 }

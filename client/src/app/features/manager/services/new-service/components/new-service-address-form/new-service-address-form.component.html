@@ -15,10 +15,19 @@
     </div>
     <div class="input">
       <label for="state">State</label>
-      <select id="state" formControlName="state">
+      <select id="state" formControlName="state" (change)="setState($event)">
         <option value="" disabled>Choose a state</option>
         @for (state of states(); track $index) {
           <option [value]="state.name">{{ state.name }}</option>
+        }
+      </select>
+    </div>
+    <div class="input">
+      <label for="cities">City</label>
+      <select id="cities" formControlName="city">
+        <option value="" disabled>Choose a city</option>
+        @for (city of cities(); track $index) {
+          <option [value]="city.name">{{ city.name }}</option>
         }
       </select>
     </div>
