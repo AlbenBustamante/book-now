@@ -1,1 +1,26 @@
-<p>new-service-info-form works!</p>
+<app-card>
+  <h3 class="text-gray-800 font-semibold text-base sm:text-lg">
+    Service Information
+  </h3>
+  <form class="flex flex-col gap-y-5">
+    <app-input
+      name="name"
+      label="Service Name"
+      placeholder="e.g. Advanced Brand Strategy Session"
+    />
+    <div class="grid grid-cols-2 gap-x-5">
+      <app-input
+        name="durationInMinutes"
+        type="number"
+        label="Duration (In Minutes)"
+        placeholder="120"
+      />
+      <app-input name="price" type="number" label="Price" placeholder="70" />
+    </div>
+    <app-text-area
+      name="description"
+      label="Description"
+      placeholder="Describe the value proposition, deliverables, and process..."
+    />
+  </form>
+</app-card>
