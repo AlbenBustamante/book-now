@@ -23,7 +23,7 @@ public class JwtProvider {
 
     public String generateToken(User user) {
         return JWT.create()
-                .withClaim("id", user.id())
+                .withClaim("id", user.id().toString())
                 .withClaim("role", user.role().toString())
                 .withSubject(user.email())
                 .withIssuedAt(Instant.now())
