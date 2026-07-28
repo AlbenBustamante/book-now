@@ -22,6 +22,7 @@ export class NewServiceAddressFormComponent {
   readonly cities = input.required<CityModel[]>();
   readonly onSelectCountry = output<string>();
   readonly onSelectState = output<{ country: string; state: string }>();
+  readonly newAddress = signal<boolean>(true);
 
   readonly form = this._fb.group({
     country: ['', Validators.required],
@@ -30,6 +31,10 @@ export class NewServiceAddressFormComponent {
     street: ['', Validators.required],
     zipCode: [''],
   });
+
+  setNewAddress(newAddress: boolean) {
+    this.newAddress.set(newAddress);
+  }
 
   setCountry(event: Event) {
     this.form.patchValue({

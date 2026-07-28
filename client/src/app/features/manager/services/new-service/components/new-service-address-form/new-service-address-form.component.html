@@ -1,49 +1,84 @@
 <app-new-service-card headline="Service Address">
-  <form class="flex flex-col gap-y-5" [formGroup]="form">
-    <div class="input">
-      <label for="country">Country</label>
-      <select
-        id="country"
-        formControlName="country"
-        (change)="setCountry($event)"
-      >
-        <option value="" disabled>Choose a country</option>
-        @for (country of countries(); track $index) {
-          <option [value]="country.name">{{ country.name }}</option>
-        }
-      </select>
-    </div>
-    <div class="input">
-      <label for="state">State</label>
-      <select id="state" formControlName="state" (change)="setState($event)">
-        <option value="" disabled>Choose a state</option>
-        @for (state of states(); track $index) {
-          <option [value]="state.name">{{ state.name }}</option>
-        }
-      </select>
-    </div>
-    <div class="input">
-      <label for="cities">City</label>
-      <select id="cities" formControlName="city">
-        <option value="" disabled>Choose a city</option>
-        @for (city of cities(); track $index) {
-          <option [value]="city.name">{{ city.name }}</option>
-        }
-      </select>
-    </div>
-    <app-input
-      name="street"
-      label="Street"
-      [control]="form.controls.street"
-      placeholder="e.g. Street 123A - #45 South"
-      autocomplete="street-address"
-    />
-    <app-input
-      name="zipCode"
-      label="Zip Code"
-      [control]="form.controls.zipCode"
-      placeholder="e.g. 1234"
-      autocomplete="postal-code"
-    />
-  </form>
+  <div class="flex items-center flex-wrap gap-x-5 gap-y-2.5 text-sm">
+    <label for="new">
+      <input
+        id="new"
+        type="radio"
+        name="newAddress"
+        checked
+        (change)="setNewAddress(true)"
+      />
+      Nueva Dirección
+    </label>
+    <label for="old">
+      <input
+        id="old"
+        type="radio"
+        name="newAddress"
+        (change)="setNewAddress(false)"
+      />
+      Dirección Guardada
+    </label>
+  </div>
+  @if (newAddress()) {
+    <form class="flex flex-col gap-y-5" [formGroup]="form">
+      <div class="input">
+        <label for="country">Country</label>
+        <select
+          id="country"
+          formControlName="country"
+          (change)="setCountry($event)"
+        >
+          <option value="" disabled>Choose a country</option>
+          @for (country of countries(); track $index) {
+            <option [value]="country.name">{{ country.name }}</option>
+          }
+        </select>
+      </div>
+      <div class="input">
+        <label for="state">State</label>
+        <select id="state" formControlName="state" (change)="setState($event)">
+          <option value="" disabled>Choose a state</option>
+          @for (state of states(); track $index) {
+            <option [value]="state.name">{{ state.name }}</option>
+          }
+        </select>
+      </div>
+      <div class="input">
+        <label for="cities">City</label>
+        <select id="cities" formControlName="city">
+          <option value="" disabled>Choose a city</option>
+          @for (city of cities(); track $index) {
+            <option [value]="city.name">{{ city.name }}</option>
+          }
+        </select>
+      </div>
+      <app-input
+        name="street"
+        label="Street"
+        [control]="form.controls.street"
+        placeholder="e.g. Street 123A - #45 South"
+        autocomplete="street-address"
+      />
+      <app-input
+        name="zipCode"
+        label="Zip Code"
+        [control]="form.controls.zipCode"
+        placeholder="e.g. 1234"
+        autocomplete="postal-code"
+      />
+    </form>
+  } @else {
+    <ul class="grid sm:grid-cols-2 gap-8">
+      @for (item of [1, 2, 3]; track $index) {
+        <li class="w-full">
+          <button
+            class="w-full px-5 py-3.5 border border-gray-300 rounded-xl cursor-pointer text-sm sm:text-base bg-white hover:border-primary-600 ring-primary-600 hover:ring-1 duration-300"
+          >
+            Full address
+          </button>
+        </li>
+      }
+    </ul>
+  }
 </app-new-service-card>
