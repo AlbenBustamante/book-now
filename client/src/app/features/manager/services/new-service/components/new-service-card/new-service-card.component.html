@@ -1,5 +1,5 @@
-<app-card>
-  <h3 class="text-gray-800 font-semibold text-base sm:text-lg">
+<app-card [theme]="theme()">
+  <h3 class="font-semibold text-base sm:text-lg" [ngClass]="styles">
     {{ headline() }}
   </h3>
   <ng-content />
