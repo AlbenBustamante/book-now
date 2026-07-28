@@ -15,7 +15,7 @@ export class InputComponent {
   );
   readonly placeholder = input<string>('');
   readonly autocomplete = input<
-    'name' | 'family-name' | 'email' | 'street-address' | 'off'
+    'name' | 'family-name' | 'email' | 'street-address' | 'postal-code' | 'off'
   >('off');
   readonly control = input<FormControl>(new FormControl(''));
 }

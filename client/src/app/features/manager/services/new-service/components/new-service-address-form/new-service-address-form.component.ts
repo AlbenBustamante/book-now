@@ -5,12 +5,7 @@ import {
   StateModel,
 } from '@core/models/country.model';
 import { NewServiceCardComponent } from '../new-service-card/new-service-card.component';
-import {
-  FormBuilder,
-  FormGroup,
-  ReactiveFormsModule,
-  Validators,
-} from '@angular/forms';
+import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { InputComponent } from '@components/input/input.component';
 
 @Component({
@@ -32,8 +27,8 @@ export class NewServiceAddressFormComponent {
     country: ['', Validators.required],
     state: ['', Validators.required],
     city: ['', Validators.required],
-    address1: ['', Validators.required],
-    address2: [''],
+    street: ['', Validators.required],
+    zipCode: [''],
   });
 
   setCountry(event: Event) {

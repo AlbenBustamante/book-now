@@ -32,17 +32,18 @@
       </select>
     </div>
     <app-input
-      name="address1"
-      label="Address 1"
-      [control]="form.controls.address1"
+      name="street"
+      label="Street"
+      [control]="form.controls.street"
       placeholder="e.g. Street 123A - #45 South"
       autocomplete="street-address"
     />
     <app-input
-      name="address2"
-      label="Address 2"
-      [control]="form.controls.address2"
-      placeholder="e.g. Residence/Apartment"
+      name="zipCode"
+      label="Zip Code"
+      [control]="form.controls.zipCode"
+      placeholder="e.g. 1234"
+      autocomplete="postal-code"
     />
   </form>
 </app-new-service-card>
