@@ -12,12 +12,14 @@ import java.math.BigDecimal;
  * @param durationInMinutes duration in minutes.
  * @param price             price.
  * @param address           full address.
+ * @param photoUrl          cover photo url.
  */
 public record CreateServiceCommand(
         String name,
         String description,
         Integer durationInMinutes,
         BigDecimal price,
+        String photoUrl,
         Address address
 ) {
 }

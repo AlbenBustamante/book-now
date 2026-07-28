@@ -19,5 +19,9 @@ public final class AddressConstants {
     /**
      * Full Length for full detailed direction.
      */
-    public static final int DIRECTION_LENGTH = 100;
+    public static final int STREET_LENGTH = 100;
+    /**
+     * Full Length for zip code.
+     */
+    public static final int ZIP_CODE_LENGTH = 10;
 }

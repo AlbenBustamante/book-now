@@ -5,6 +5,7 @@ import dev.alben.booknowapi.module.address.domain.Address;
 import dev.alben.booknowapi.module.user.domain.User;
 
 import java.math.BigDecimal;
+import java.util.UUID;
 
 /**
  * Domain model for provider's services.
@@ -17,18 +18,20 @@ import java.math.BigDecimal;
  * @param durationInMinutes duration in minutes.
  * @param price             price with decimal comma.
  * @param auditable         {@link Auditable}.
+ * @param photoUrl          cover photo url.
  */
 public record Service(
-        Integer id,
+        UUID id,
         User provider,
         Address address,
         String name,
         String description,
         Integer durationInMinutes,
         BigDecimal price,
+        String photoUrl,
         Auditable auditable
 ) {
-    public static Service create(String name, String description, Integer durationInMinutes, BigDecimal price, Address address, User provider) {
+    public static Service create(String name, String description, Integer durationInMinutes, BigDecimal price, String photoUrl, Address address, User provider) {
         return new Service(
                 null,
                 provider,
@@ -37,6 +40,7 @@ public record Service(
                 description,
                 durationInMinutes,
                 price,
+                photoUrl,
                 null
         );
     }

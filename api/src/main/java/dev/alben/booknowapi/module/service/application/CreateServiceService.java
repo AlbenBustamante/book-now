@@ -38,6 +38,7 @@ public class CreateServiceService implements CreateServiceUseCase {
                 command.description(),
                 command.durationInMinutes(),
                 command.price(),
+                command.photoUrl(),
                 command.address(),
                 user
         );

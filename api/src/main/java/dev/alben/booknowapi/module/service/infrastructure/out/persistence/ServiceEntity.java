@@ -3,19 +3,13 @@ package dev.alben.booknowapi.module.service.infrastructure.out.persistence;
 import dev.alben.booknowapi.core.auditable.AuditableEntity;
 import dev.alben.booknowapi.module.address.infrastructure.out.persistence.AddressEntity;
 import dev.alben.booknowapi.module.user.infrastructure.out.persistence.entity.UserEntity;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.SQLDelete;
 
 import java.math.BigDecimal;
+import java.util.UUID;
 
 import static dev.alben.booknowapi.module.service.util.ServiceConstants.DESCRIPTION_LENGTH;
 import static dev.alben.booknowapi.module.service.util.ServiceConstants.NAME_LENGTH;
@@ -33,8 +27,8 @@ public class ServiceEntity extends AuditableEntity {
      * Auto generated ID.
      */
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    @GeneratedValue(strategy = GenerationType.UUID)
+    private UUID id;
 
     /**
      * Service's name.
@@ -59,6 +53,12 @@ public class ServiceEntity extends AuditableEntity {
      */
     @Column(nullable = false)
     private BigDecimal price;
+
+    /**
+     * Cover photo url.
+     */
+    @Column(nullable = false)
+    private String photoUrl;
 
     /**
      * Full address.

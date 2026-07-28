@@ -3,24 +3,15 @@ package dev.alben.booknowapi.module.user.infrastructure.out.persistence.entity;
 import dev.alben.booknowapi.core.auditable.AuditableEntity;
 import dev.alben.booknowapi.module.user.util.Role;
 import dev.alben.booknowapi.module.user.util.RoleConverter;
-import jakarta.persistence.Column;
-import jakarta.persistence.Convert;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.SQLDelete;
 
 import java.time.Instant;
+import java.util.UUID;
 
-import static dev.alben.booknowapi.module.user.util.UserConstants.EMAIL_LENGTH;
-import static dev.alben.booknowapi.module.user.util.UserConstants.LAST_NAME_LENGTH;
-import static dev.alben.booknowapi.module.user.util.UserConstants.NAME_LENGTH;
-import static dev.alben.booknowapi.module.user.util.UserConstants.PASSWORD_LENGTH;
-import static dev.alben.booknowapi.module.user.util.UserConstants.PHOTO_URL_LENGTH;
+import static dev.alben.booknowapi.module.user.util.UserConstants.*;
 
 /**
  * Entity model for users.
@@ -35,8 +26,8 @@ public class UserEntity extends AuditableEntity {
      * Auto Generated ID.
      */
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    @GeneratedValue(strategy = GenerationType.UUID)
+    private UUID id;
 
     /**
      * First Name.

@@ -3,7 +3,8 @@ package dev.alben.booknowapi.module.availability.domain;
 import dev.alben.booknowapi.core.auditable.Auditable;
 import dev.alben.booknowapi.module.service.domain.Service;
 
-import java.time.LocalDateTime;
+import java.time.ZonedDateTime;
+import java.util.UUID;
 
 /**
  * Domain model for service's availability.
@@ -15,10 +16,10 @@ import java.time.LocalDateTime;
  * @param auditable {@link Auditable}.
  */
 public record Availability(
-        Integer id,
+        UUID id,
         Service service,
-        LocalDateTime startTime,
-        LocalDateTime endTime,
+        ZonedDateTime startTime,
+        ZonedDateTime endTime,
         Auditable auditable
 ) {
 }

@@ -5,6 +5,8 @@ import dev.alben.booknowapi.module.appointment.util.AppointmentStatus;
 import dev.alben.booknowapi.module.availability.domain.Availability;
 import dev.alben.booknowapi.module.user.domain.User;
 
+import java.util.UUID;
+
 /**
  * Domain model for appointments.
  *
@@ -15,7 +17,7 @@ import dev.alben.booknowapi.module.user.domain.User;
  * @param auditable    {@link Auditable}.
  */
 public record Appointment(
-        Integer id,
+        UUID id,
         User customer,
         Availability availability,
         AppointmentStatus status,

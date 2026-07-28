@@ -4,6 +4,7 @@ import dev.alben.booknowapi.core.auditable.Auditable;
 
 import java.security.SecureRandom;
 import java.time.ZonedDateTime;
+import java.util.UUID;
 
 /**
  * Domain model for email verification tokens.
@@ -16,7 +17,7 @@ import java.time.ZonedDateTime;
  * @param auditable {@link Auditable}.
  */
 public record EmailVerificationToken(
-        Integer id,
+        UUID id,
         User user,
         ZonedDateTime expiresAt,
         String token,

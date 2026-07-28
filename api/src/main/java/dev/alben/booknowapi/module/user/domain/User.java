@@ -4,6 +4,7 @@ import dev.alben.booknowapi.core.auditable.Auditable;
 import dev.alben.booknowapi.module.user.util.Role;
 
 import java.time.Instant;
+import java.util.UUID;
 
 /**
  * Domain model for users.
@@ -22,7 +23,7 @@ import java.time.Instant;
  * @see Auditable
  */
 public record User(
-        Integer id,
+        UUID id,
         String name,
         String lastName,
         // String dni,

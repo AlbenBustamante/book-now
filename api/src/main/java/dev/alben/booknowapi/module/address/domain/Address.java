@@ -2,6 +2,8 @@ package dev.alben.booknowapi.module.address.domain;
 
 import dev.alben.booknowapi.core.auditable.Auditable;
 
+import java.util.UUID;
+
 /**
  * Domain model for addresses.
  *
@@ -9,15 +11,17 @@ import dev.alben.booknowapi.core.auditable.Auditable;
  * @param country   country's name.
  * @param state     state's name.
  * @param city      city's name.
- * @param direction complete address.
+ * @param street    full street address.
+ * @param zipCode   zip code (optional).
  * @param auditable timestamps.
  */
 public record Address(
-        Integer id,
+        UUID id,
         String country,
         String state,
         String city,
-        String direction,
+        String street,
+        String zipCode,
         Auditable auditable
 ) {
 }
