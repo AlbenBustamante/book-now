@@ -23,14 +23,17 @@ export class NewServiceInfoFormComponent {
 
   readonly form = this._fb.group({
     name: ['', Validators.required],
-    duration: ['', [Validators.required, Validators.min(30)]],
+    durationInMinutes: ['', [Validators.required, Validators.min(30)]],
     price: ['', [Validators.required, Validators.min(0)]],
-    description: ['', Validators.required, Validators.max(620)],
+    description: ['', [Validators.required, Validators.maxLength(620)]],
   });
 
   ngOnInit() {
     this.form.valueChanges.subscribe((value) => {
-      this._store.setServiceInfo(value as unknown as NewServiceModel);
+      this._store.setServiceInfo(
+        value as unknown as NewServiceModel,
+        this.form.valid,
+      );
     });
   }
 }

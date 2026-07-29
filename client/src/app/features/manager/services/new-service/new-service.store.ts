@@ -23,7 +23,9 @@ interface State {
   cities: CityModel[];
   coverPhoto: File | undefined;
   serviceInfo: NewServiceModel | undefined;
+  isInfoValid: boolean;
   serviceAddress: NewAddressModel | undefined;
+  isAddressValid: boolean;
 }
 
 const initialState: State = {
@@ -35,7 +37,9 @@ const initialState: State = {
   cities: [],
   coverPhoto: undefined,
   serviceInfo: undefined,
+  isInfoValid: false,
   serviceAddress: undefined,
+  isAddressValid: false,
 };
 
 export const NewServiceStore = signalStore(
@@ -58,6 +62,13 @@ export const NewServiceStore = signalStore(
       }
 
       return URL.createObjectURL(selectedFile);
+    }),
+    canSubmit: computed(() => {
+      return (
+        store.isInfoValid() &&
+        store.isAddressValid() &&
+        store.coverPhoto() !== undefined
+      );
     }),
   })),
   withMethods((store, countryService = inject(CountryService)) => ({
@@ -103,11 +114,14 @@ export const NewServiceStore = signalStore(
     setCoverPhoto: (coverPhoto: File) => {
       patchState(store, { coverPhoto });
     },
-    setServiceAddress: (serviceAddress: NewAddressModel) => {
-      patchState(store, { serviceAddress });
+    setServiceAddress: (
+      serviceAddress: NewAddressModel,
+      isAddressValid: boolean,
+    ) => {
+      patchState(store, { serviceAddress, isAddressValid });
     },
-    setServiceInfo: (serviceInfo: NewServiceModel) => {
-      patchState(store, { serviceInfo });
+    setServiceInfo: (serviceInfo: NewServiceModel, isInfoValid: boolean) => {
+      patchState(store, { serviceInfo, isInfoValid });
     },
   })),
 );

@@ -27,9 +27,7 @@ export class NewServiceAddressFormComponent {
 
   ngOnInit() {
     this.form.valueChanges.subscribe((value) => {
-      if (this.form.valid) {
-        this.store.setServiceAddress(value as NewAddressModel);
-      }
+      this.store.setServiceAddress(value as NewAddressModel, this.form.valid);
     });
   }
 
