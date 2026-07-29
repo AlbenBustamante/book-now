@@ -1,28 +1,25 @@
-<div class="grid place-items-center h-dvh w-full max-w-2xl mx-auto px-3.5">
+<main class="grid place-items-center h-dvh w-full max-w-2xl mx-auto px-3.5">
   <header>
-    <h1 class="font-extrabold text-5xl sm:text-6xl text-primary-600">
-      BookNow
+    <h1
+      class="font-extrabold text-5xl sm:text-6xl text-primary-600 hover:text-primary-500 duration-300"
+    >
+      <a routerLink="/">BookNow</a>
     </h1>
   </header>
   <div class="bg-primary-600 text-white px-5 py-8 rounded-xl text-center">
-    <main class="flex flex-col gap-7">
-      <section class="flex flex-col gap-5">
-        <h2 class="text-xl sm:text-2xl text-pretty flex flex-col gap-y-1.5">
-          Thank you,
-          <span class="font-extrabold text-2xl sm:text-3xl">
-            {{ user?.name }} {{ user?.lastName }}
-          </span>
-        </h2>
-        <p class="text-base sm:text-lg text-pretty">
-          We send you a message to
-          <span class="font-semibold">{{ user?.email }}</span
-          >, please check it to confirm your account.
-        </p>
-      </section>
-    </main>
+    <section class="flex flex-col gap-5">
+      <h2 class="text-xl sm:text-2xl text-pretty flex flex-col gap-y-1.5">
+        Thank you,
+        <span class="font-extrabold text-2xl sm:text-3xl">
+          {{ user?.name }} {{ user?.lastName }}
+        </span>
+      </h2>
+      <p class="text-base sm:text-lg text-pretty">
+        We send you a message to
+        <span class="font-semibold">{{ user?.email }}</span
+        >, please check it to confirm your account.
+      </p>
+    </section>
   </div>
-  <app-button (click)="goToLogIn()">Enter to Account</app-button>
-  <footer class="text-gray-500 text-base sm:text-lg md:text-xl">
-    &copy; 2025 - {{ date | date: "yyyy" }}
-  </footer>
-</div>
+  <app-button route="/" text="Go to home" />
+</main>
