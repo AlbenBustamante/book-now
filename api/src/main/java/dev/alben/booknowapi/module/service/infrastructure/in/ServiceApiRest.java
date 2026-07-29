@@ -2,13 +2,18 @@ package dev.alben.booknowapi.module.service.infrastructure.in;
 
 import dev.alben.booknowapi.module.service.application.port.in.command.CreateServiceCommand;
 import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotNull;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.io.IOException;
 
 @RequiredArgsConstructor
 @RequestMapping(path = "/services")
@@ -16,8 +21,11 @@ import org.springframework.web.bind.annotation.RestController;
 public class ServiceApiRest {
     private final ServiceRestAdapter adapter;
 
-    @PostMapping
-    public ResponseEntity<ServiceDto> create(@Valid @RequestBody CreateServiceCommand command) {
-        return ResponseEntity.status(HttpStatus.CREATED).body(adapter.create(command));
+    @PostMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    public ResponseEntity<ServiceDto> create(
+            @Valid @RequestPart("service") CreateServiceCommand command,
+            @NotNull @RequestPart("coverPhoto") MultipartFile coverPhoto
+    ) throws IOException {
+        return ResponseEntity.status(HttpStatus.CREATED).body(adapter.create(command, coverPhoto));
     }
 }

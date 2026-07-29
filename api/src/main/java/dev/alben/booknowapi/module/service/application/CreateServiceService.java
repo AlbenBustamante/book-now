@@ -2,6 +2,7 @@ package dev.alben.booknowapi.module.service.application;
 
 import dev.alben.booknowapi.core.common.UseCase;
 import dev.alben.booknowapi.core.security.UserPrincipal;
+import dev.alben.booknowapi.core.storage.usecase.UploadFileUseCase;
 import dev.alben.booknowapi.module.service.application.port.in.CreateServiceUseCase;
 import dev.alben.booknowapi.module.service.application.port.in.command.CreateServiceCommand;
 import dev.alben.booknowapi.module.service.application.port.out.SaveServicePort;
@@ -13,6 +14,11 @@ import dev.alben.booknowapi.module.user.util.Role;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.io.IOException;
+
+import static dev.alben.booknowapi.module.service.util.ServiceConstants.FOLDER_NAME;
 
 @UseCase
 @Transactional
@@ -20,9 +26,10 @@ import org.springframework.transaction.annotation.Transactional;
 public class CreateServiceService implements CreateServiceUseCase {
     private final SaveServicePort saveServicePort;
     private final LoadUserByIdPort loadUserByIdPort;
+    private final UploadFileUseCase uploadFileUseCase;
 
     @Override
-    public Service create(CreateServiceCommand command) {
+    public Service create(CreateServiceCommand command, MultipartFile coverPhoto) throws IOException {
         final var auth = SecurityContextHolder.getContext().getAuthentication();
         final var userPrincipal = (UserPrincipal) auth.getPrincipal();
 
@@ -33,12 +40,14 @@ public class CreateServiceService implements CreateServiceUseCase {
             throw new UserHasNotPrivilegesToCreateServiceException();
         }
 
+        final var photoUrl = uploadFileUseCase.uploadFile(FOLDER_NAME, coverPhoto);
+
         final var service = Service.create(
                 command.name(),
                 command.description(),
                 command.durationInMinutes(),
                 command.price(),
-                command.photoUrl(),
+                photoUrl,
                 command.address(),
                 user
         );

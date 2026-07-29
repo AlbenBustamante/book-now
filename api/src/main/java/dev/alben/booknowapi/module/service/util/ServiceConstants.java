@@ -12,4 +12,8 @@ public final class ServiceConstants {
      * Max Length for service's detailed description.
      */
     public static final int DESCRIPTION_LENGTH = 620;
+    /**
+     * Folder name where the cover photos will be saved in the cloud.
+     */
+    public static final String FOLDER_NAME = "services";
 }

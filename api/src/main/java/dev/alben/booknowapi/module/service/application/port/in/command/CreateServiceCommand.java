@@ -15,7 +15,7 @@ import java.math.BigDecimal;
  * @param durationInMinutes duration in minutes.
  * @param price             price.
  * @param address           full address.
- * @param photoUrl          cover photo url.
+ * @param coverPhoto        cover photo url.
  */
 public record CreateServiceCommand(
         @NotBlank(message = "The name is required")
@@ -28,8 +28,6 @@ public record CreateServiceCommand(
         @NotBlank(message = "The price is required")
         @Min(value = 0, message = "The minim price is 0")
         BigDecimal price,
-        @NotBlank(message = "The photo url is required")
-        String photoUrl,
         @NotNull(message = "The address is required")
         Address address
 ) {
