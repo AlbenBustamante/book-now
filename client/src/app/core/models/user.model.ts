@@ -1,8 +1,8 @@
 import { Role } from '@core/enums/role.enum';
-import { Response } from '@core/models/response.model';
+import { ResponseModel } from '@core/models/response.model';
 
-export interface User extends Response {
-  id: number;
+export interface UserModel extends ResponseModel {
+  id: string;
   name: string;
   lastName: string;
   photoUrl: string;

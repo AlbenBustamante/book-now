@@ -1,7 +1,7 @@
 /**
  * Base model for common responses.
  */
-export interface Response {
+export interface ResponseModel {
   createdBy: string;
   updatedBy: string;
   createdAt: Date;

@@ -1,4 +1,4 @@
-import { User } from '@core/models/user.model';
+import { UserModel } from '@core/models/user.model';
 import { Status } from '@core/types/status.type';
 import { patchState, signalStore, withMethods, withState } from '@ngrx/signals';
 import { SignUpService } from './services/sign-up.service';
@@ -6,7 +6,7 @@ import { inject } from '@angular/core';
 import { SignUp } from './models/sign-up.model';
 
 type SignUpState = {
-  user: User | null;
+  user: UserModel | null;
   status: Status;
   error: string | null;
 };
@@ -29,5 +29,5 @@ export const SignUpStore = signalStore(
         error: (error) => patchState(store, { status: 'failure', error }),
       });
     },
-  }))
+  })),
 );
