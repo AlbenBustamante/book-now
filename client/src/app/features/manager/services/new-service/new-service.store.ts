@@ -14,6 +14,7 @@ import {
 } from '@ngrx/signals';
 import { NewAddressModel, NewServiceModel } from './new-service.model';
 import { CreateServiceService } from './create-service.service';
+import { ActivatedRoute, Router } from '@angular/router';
 
 interface State {
   initialLoading: boolean;
@@ -79,6 +80,8 @@ export const NewServiceStore = signalStore(
       store,
       countryService = inject(CountryService),
       createService = inject(CreateServiceService),
+      router = inject(Router),
+      route = inject(ActivatedRoute),
     ) => ({
       initialFetch: () => {
         patchState(store, { initialLoading: true });
@@ -145,15 +148,19 @@ export const NewServiceStore = signalStore(
             store.coverPhoto()!,
           )
           .subscribe({
-            next: (service) => {
-              console.log(service);
-              patchState(store, { creating: false });
+            next: (_) => {
+              patchState(store, initialState);
+              router.navigate(['..'], { relativeTo: route });
             },
             error: (err) => {
               console.error(err);
               patchState(store, { creating: false });
             },
           });
+      },
+      clean: () => {
+        patchState(store, initialState);
+        router.navigate(['..'], { relativeTo: route });
       },
     }),
   ),
