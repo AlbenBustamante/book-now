@@ -22,10 +22,10 @@ public record CreateServiceCommand(
         @NotBlank(message = "The description is required")
         String description,
         @NotNull(message = "The duration in minutes is required")
-        @Min(value = 30, message = "The minim duration is 30 minutes")
+        @Min(value = 30, message = "The minimum duration is 30 minutes")
         Integer durationInMinutes,
-        @NotBlank(message = "The price is required")
-        @Min(value = 0, message = "The minim price is 0")
+        @NotNull(message = "The price is required")
+        @Min(value = 0, message = "The minimum price is 0")
         BigDecimal price,
         @NotNull(message = "The address is required")
         CreateAddressCommand address

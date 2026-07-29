@@ -63,7 +63,7 @@ public class ServiceEntity extends AuditableEntity {
     /**
      * Full address.
      */
-    @ManyToOne
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinColumn(name = "address_id", nullable = false)
     private AddressEntity address;
 
