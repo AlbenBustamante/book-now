@@ -23,7 +23,11 @@ export class JwtService {
     });
   }
 
-  get(): Jwt | null {
+  get(): string {
+    return this._cookieService.get(this._key);
+  }
+
+  getDecoded(): Jwt | null {
     const jwt = this._cookieService.get(this._key);
 
     try {

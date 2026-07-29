@@ -1,15 +1,17 @@
 import { inject, Injectable } from '@angular/core';
 import { Role } from '@core/enums/role.enum';
 import { JwtService } from './jwt.service';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
   private readonly _jwtService = inject(JwtService);
+  private readonly _router = inject(Router);
 
   private _jwt() {
-    return this._jwtService.get();
+    return this._jwtService.getDecoded();
   }
 
   isLogged() {
@@ -26,5 +28,6 @@ export class AuthService {
 
   logOut() {
     this._jwtService.delete();
+    this._router.navigateByUrl('/auth');
   }
 }

@@ -1,5 +1,6 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpContext, HttpHeaders } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
+import { JWT_CONTEXT, skipJwtFn } from '@core/contexts/jwt.context';
 import {
   CityModel,
   CountryModel,
@@ -19,7 +20,10 @@ export class CountryService {
   getAllCountries() {
     const headers = new HttpHeaders({ 'X-CSCAPI-KEY': this._countryApiKey });
 
-    return this._http.get<CountryModel[]>(this._countriesApiUrl, { headers });
+    return this._http.get<CountryModel[]>(this._countriesApiUrl, {
+      headers,
+      context: skipJwtFn(),
+    });
   }
 
   getStatesByCountry(iso2: string) {
@@ -27,7 +31,7 @@ export class CountryService {
 
     return this._http.get<StateModel[]>(
       `${this._countriesApiUrl}/${iso2}/states`,
-      { headers },
+      { headers, context: skipJwtFn() },
     );
   }
 
@@ -36,7 +40,7 @@ export class CountryService {
 
     return this._http.get<CityModel[]>(
       `${this._countriesApiUrl}/${countryIso2}/states/${stateIso2}/cities`,
-      { headers },
+      { headers, context: skipJwtFn() },
     );
   }
 }
