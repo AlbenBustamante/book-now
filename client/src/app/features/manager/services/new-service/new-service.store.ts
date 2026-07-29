@@ -12,6 +12,7 @@ import {
   withMethods,
   withState,
 } from '@ngrx/signals';
+import { NewAddressModel, NewServiceModel } from './new-service.model';
 
 interface State {
   initialLoading: boolean;
@@ -21,6 +22,8 @@ interface State {
   states: StateModel[];
   cities: CityModel[];
   coverPhoto: File | undefined;
+  serviceInfo: NewServiceModel | undefined;
+  serviceAddress: NewAddressModel | undefined;
 }
 
 const initialState: State = {
@@ -31,6 +34,8 @@ const initialState: State = {
   states: [],
   cities: [],
   coverPhoto: undefined,
+  serviceInfo: undefined,
+  serviceAddress: undefined,
 };
 
 export const NewServiceStore = signalStore(
@@ -97,6 +102,12 @@ export const NewServiceStore = signalStore(
     },
     setCoverPhoto: (coverPhoto: File) => {
       patchState(store, { coverPhoto });
+    },
+    setServiceAddress: (serviceAddress: NewAddressModel) => {
+      patchState(store, { serviceAddress });
+    },
+    setServiceInfo: (serviceInfo: NewServiceModel) => {
+      patchState(store, { serviceInfo });
     },
   })),
 );

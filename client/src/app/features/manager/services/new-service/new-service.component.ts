@@ -5,7 +5,6 @@ import { NewServiceAddressFormComponent } from './components/new-service-address
 import { NewServiceGalleryComponent } from './components/new-service-gallery/new-service-gallery.component';
 import { NewServiceConfirmButtonComponent } from './components/new-service-confirm-button/new-service-confirm-button.component';
 import { NewServiceStore } from './new-service.store';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-new-service',
@@ -21,25 +20,9 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   providers: [NewServiceStore],
 })
 export default class NewServiceComponent {
-  private readonly _fb = inject(FormBuilder);
-  readonly store = inject(NewServiceStore);
-
-  readonly infoForm: FormGroup = this._fb.group({
-    name: ['', Validators.required],
-    duration: ['', [Validators.required, Validators.min(30)]],
-    price: ['', [Validators.required, Validators.min(0)]],
-    description: ['', Validators.required, Validators.max(620)],
-  });
+  private readonly _store = inject(NewServiceStore);
 
   ngOnInit() {
-    this.store.initialFetch();
-  }
-
-  fetchStates(iso2: string) {
-    this.store.fetchStatesByCountry(iso2);
-  }
-
-  fetchCities(data: { country: string; state: string }) {
-    this.store.fetchCitiesByState(data.country, data.state);
+    this._store.initialFetch();
   }
 }

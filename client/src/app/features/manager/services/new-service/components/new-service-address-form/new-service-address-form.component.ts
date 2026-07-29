@@ -1,12 +1,9 @@
-import { Component, inject, input, output, signal } from '@angular/core';
-import {
-  CityModel,
-  CountryModel,
-  StateModel,
-} from '@core/models/country.model';
+import { Component, inject, signal } from '@angular/core';
 import { NewServiceCardComponent } from '../new-service-card/new-service-card.component';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { InputComponent } from '@components/input/input.component';
+import { NewServiceStore } from '../../new-service.store';
+import { NewAddressModel } from '../../new-service.model';
 
 @Component({
   selector: 'app-new-service-address-form',
@@ -17,11 +14,7 @@ import { InputComponent } from '@components/input/input.component';
 export class NewServiceAddressFormComponent {
   private readonly _country = signal<string>('');
   private readonly _fb = inject(FormBuilder);
-  readonly countries = input.required<CountryModel[]>();
-  readonly states = input.required<StateModel[]>();
-  readonly cities = input.required<CityModel[]>();
-  readonly onSelectCountry = output<string>();
-  readonly onSelectState = output<{ country: string; state: string }>();
+  readonly store = inject(NewServiceStore);
   readonly newAddress = signal<boolean>(true);
 
   readonly form = this._fb.group({
@@ -31,6 +24,14 @@ export class NewServiceAddressFormComponent {
     street: ['', Validators.required],
     zipCode: [''],
   });
+
+  ngOnInit() {
+    this.form.valueChanges.subscribe((value) => {
+      if (this.form.valid) {
+        this.store.setServiceAddress(value as NewAddressModel);
+      }
+    });
+  }
 
   setNewAddress(newAddress: boolean) {
     this.newAddress.set(newAddress);
@@ -45,12 +46,12 @@ export class NewServiceAddressFormComponent {
     const target = event.target as HTMLSelectElement;
     const value = target.value as string;
 
-    const country = this.countries().filter(
-      (country) => country.name === value,
-    )[0];
+    const country = this.store
+      .countries()
+      .filter((country) => country.name === value)[0];
 
     this._country.set(country.iso2);
-    this.onSelectCountry.emit(this._country());
+    this.store.fetchStatesByCountry(this._country());
   }
 
   setState(event: Event) {
@@ -61,11 +62,10 @@ export class NewServiceAddressFormComponent {
     const target = event.target as HTMLSelectElement;
     const value = target.value as string;
 
-    const state = this.states().filter((state) => state.name === value)[0];
+    const state = this.store
+      .states()
+      .filter((state) => state.name === value)[0];
 
-    this.onSelectState.emit({
-      country: this._country(),
-      state: state.iso2,
-    });
+    this.store.fetchCitiesByState(this._country(), state.iso2);
   }
 }

@@ -7,13 +7,7 @@
   <div class="grid gap-5 md:grid-cols-3">
     <div class="flex flex-col gap-y-5 md:col-span-2">
       <app-new-service-info-form />
-      <app-new-service-address-form
-        (onSelectCountry)="fetchStates($event)"
-        (onSelectState)="fetchCities($event)"
-        [countries]="store.countries()"
-        [states]="store.states()"
-        [cities]="store.cities()"
-      />
+      <app-new-service-address-form />
     </div>
     <div class="flex flex-col gap-y-5 md:col-span-1">
       <app-new-service-gallery />

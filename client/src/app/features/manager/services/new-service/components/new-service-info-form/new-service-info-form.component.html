@@ -1,9 +1,10 @@
 <app-new-service-card headline="Service Information">
-  <form class="flex flex-col gap-y-5">
+  <form class="flex flex-col gap-y-5" [formGroup]="form">
     <app-input
       name="name"
       label="Service Name"
       placeholder="e.g. Advanced Brand Strategy Session"
+      [control]="form.controls.name"
     />
     <div class="grid grid-cols-2 gap-x-5">
       <app-input
@@ -11,13 +12,21 @@
         type="number"
         label="Duration (In Minutes)"
         placeholder="120"
+        [control]="form.controls.duration"
       />
-      <app-input name="price" type="number" label="Price" placeholder="70" />
+      <app-input
+        name="price"
+        type="number"
+        label="Price"
+        placeholder="70"
+        [control]="form.controls.price"
+      />
     </div>
     <app-text-area
       name="description"
       label="Description"
       placeholder="Describe the value proposition, deliverables, and process..."
+      [control]="form.controls.description"
     />
   </form>
 </app-new-service-card>

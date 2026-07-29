@@ -30,7 +30,7 @@
           (change)="setCountry($event)"
         >
           <option value="" disabled>Choose a country</option>
-          @for (country of countries(); track $index) {
+          @for (country of store.countries(); track $index) {
             <option [value]="country.name">{{ country.name }}</option>
           }
         </select>
@@ -39,7 +39,7 @@
         <label for="state">State</label>
         <select id="state" formControlName="state" (change)="setState($event)">
           <option value="" disabled>Choose a state</option>
-          @for (state of states(); track $index) {
+          @for (state of store.states(); track $index) {
             <option [value]="state.name">{{ state.name }}</option>
           }
         </select>
@@ -48,7 +48,7 @@
         <label for="cities">City</label>
         <select id="cities" formControlName="city">
           <option value="" disabled>Choose a city</option>
-          @for (city of cities(); track $index) {
+          @for (city of store.cities(); track $index) {
             <option [value]="city.name">{{ city.name }}</option>
           }
         </select>
