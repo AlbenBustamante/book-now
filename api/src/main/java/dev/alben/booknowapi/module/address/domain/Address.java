@@ -24,4 +24,7 @@ public record Address(
         String zipCode,
         Auditable auditable
 ) {
+    public static Address create(String country, String state, String city, String street, String zipCode) {
+        return new Address(null, country, state, city, street, zipCode, null);
+    }
 }

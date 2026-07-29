@@ -1,6 +1,6 @@
 package dev.alben.booknowapi.module.service.application.port.in.command;
 
-import dev.alben.booknowapi.module.address.domain.Address;
+import dev.alben.booknowapi.module.address.application.port.in.command.CreateAddressCommand;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -28,6 +28,6 @@ public record CreateServiceCommand(
         @Min(value = 0, message = "The minim price is 0")
         BigDecimal price,
         @NotNull(message = "The address is required")
-        Address address
+        CreateAddressCommand address
 ) {
 }

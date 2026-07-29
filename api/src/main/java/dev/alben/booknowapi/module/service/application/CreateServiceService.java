@@ -3,6 +3,7 @@ package dev.alben.booknowapi.module.service.application;
 import dev.alben.booknowapi.core.common.UseCase;
 import dev.alben.booknowapi.core.security.UserPrincipal;
 import dev.alben.booknowapi.core.storage.usecase.UploadFileUseCase;
+import dev.alben.booknowapi.module.address.domain.Address;
 import dev.alben.booknowapi.module.service.application.port.in.CreateServiceUseCase;
 import dev.alben.booknowapi.module.service.application.port.in.command.CreateServiceCommand;
 import dev.alben.booknowapi.module.service.application.port.out.SaveServicePort;
@@ -42,13 +43,21 @@ public class CreateServiceService implements CreateServiceUseCase {
 
         final var photoUrl = uploadFileUseCase.uploadFile(FOLDER_NAME, coverPhoto);
 
+        final var address = Address.create(
+                command.address().country(),
+                command.address().state(),
+                command.address().city(),
+                command.address().street(),
+                command.address().zipCode()
+        );
+
         final var service = Service.create(
                 command.name(),
                 command.description(),
                 command.durationInMinutes(),
                 command.price(),
                 photoUrl,
-                command.address(),
+                address,
                 user
         );
 
