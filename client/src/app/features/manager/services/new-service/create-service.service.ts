@@ -19,9 +19,13 @@ export class CreateServiceService {
       address,
     };
 
-    formData.append('service', JSON.stringify(service));
+    const jsonBlob = new Blob([JSON.stringify(service)], {
+      type: 'application/json',
+    });
+
+    formData.append('service', jsonBlob);
     formData.append('coverPhoto', coverPhoto);
 
-    return this._http.post<ServiceModel>(this._url, { formData });
+    return this._http.post<ServiceModel>(this._url, formData);
   }
 }
