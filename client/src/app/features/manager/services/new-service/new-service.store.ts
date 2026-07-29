@@ -1,11 +1,17 @@
-import { inject } from '@angular/core';
+import { computed, inject } from '@angular/core';
 import {
   CityModel,
   CountryModel,
   StateModel,
 } from '@core/models/country.model';
 import { CountryService } from '@core/services/country.service';
-import { patchState, signalStore, withMethods, withState } from '@ngrx/signals';
+import {
+  patchState,
+  signalStore,
+  withComputed,
+  withMethods,
+  withState,
+} from '@ngrx/signals';
 
 interface State {
   initialLoading: boolean;
@@ -14,6 +20,7 @@ interface State {
   countries: CountryModel[];
   states: StateModel[];
   cities: CityModel[];
+  coverPhoto: File | undefined;
 }
 
 const initialState: State = {
@@ -23,10 +30,31 @@ const initialState: State = {
   countries: [],
   states: [],
   cities: [],
+  coverPhoto: undefined,
 };
 
 export const NewServiceStore = signalStore(
   withState(initialState),
+  withComputed((store) => ({
+    coverPhotoHeadline: computed(() => {
+      const selectedFile = store.coverPhoto();
+
+      if (selectedFile) {
+        return 'Click to change the cover photo';
+      }
+
+      return 'Click to upload';
+    }),
+    url: computed(() => {
+      const selectedFile = store.coverPhoto();
+
+      if (!selectedFile) {
+        return 'https://www.svgrepo.com/show/508699/landscape-placeholder.svg';
+      }
+
+      return URL.createObjectURL(selectedFile);
+    }),
+  })),
   withMethods((store, countryService = inject(CountryService)) => ({
     initialFetch: () => {
       patchState(store, { initialLoading: true });
@@ -66,6 +94,9 @@ export const NewServiceStore = signalStore(
           patchState(store, { loadingStates: false });
         },
       });
+    },
+    setCoverPhoto: (coverPhoto: File) => {
+      patchState(store, { coverPhoto });
     },
   })),
 );
