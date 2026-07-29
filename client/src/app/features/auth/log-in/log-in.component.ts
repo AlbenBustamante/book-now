@@ -7,6 +7,7 @@ import { LogInStore } from './log-in.store';
 import { RedirectComponent } from '../components/redirect/redirect.component';
 import { JwtService } from '@core/services/jwt.service';
 import { Router } from '@angular/router';
+import { AuthService } from '@core/services/auth.service';
 
 @Component({
   selector: 'app-log-in',
@@ -27,7 +28,8 @@ export default class LogInComponent {
   constructor(
     private readonly _fb: FormBuilder,
     private readonly _jwtService: JwtService,
-    private readonly _router: Router
+    private readonly _router: Router,
+    private readonly _authService: AuthService,
   ) {
     this.form = this._fb.group({
       email: ['', [Validators.required, Validators.email]],
@@ -41,7 +43,10 @@ export default class LogInComponent {
         if (this._store.status() === 'success') {
           if (this._store.jwt() !== null) {
             this._jwtService.save(this._store.jwt()!);
-            this._router.navigate(['manager']);
+
+            const route = this._authService.isProvider() ? 'manager' : '/';
+
+            this._router.navigate([route]);
           }
 
           this.form.reset();

@@ -14,6 +14,6 @@ export default class SignOutComponent {
 
   ngOnInit() {
     this._authService.logOut();
-    this._router.navigateByUrl('');
+    this._router.navigateByUrl('/auth');
   }
 }
