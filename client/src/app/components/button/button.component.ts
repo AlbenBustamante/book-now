@@ -1,14 +1,16 @@
 import { NgClass } from '@angular/common';
 import { Component, input } from '@angular/core';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-button',
-  imports: [NgClass],
+  imports: [NgClass, RouterLink],
   templateUrl: './button.component.html',
   styleUrl: './button.component.css',
 })
 export class ButtonComponent {
   readonly route = input<string>();
+  readonly text = input<string>();
   readonly color = input<'primary' | 'gray'>('primary');
   readonly type = input<'submit' | 'button'>('button');
   readonly size = input<'sm' | 'md'>('md');
