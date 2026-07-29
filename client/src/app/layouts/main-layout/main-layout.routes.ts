@@ -1,6 +1,5 @@
 import { Routes } from '@angular/router';
 import { MainLayoutComponent } from './main-layout.component';
-import { AccountGuard } from '@core/guards/account.guard';
 
 export default [
   {

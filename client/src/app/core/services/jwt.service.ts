@@ -23,13 +23,17 @@ export class JwtService {
     });
   }
 
-  get(): Jwt | '' {
+  get(): Jwt | null {
     const jwt = this._cookieService.get(this._key);
 
     try {
       return jwtDecode<Jwt>(jwt);
     } catch (e) {
-      return '';
+      return null;
     }
+  }
+
+  delete() {
+    this._cookieService.delete(this._key);
   }
 }

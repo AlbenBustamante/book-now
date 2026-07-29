@@ -1,10 +1,12 @@
 import { NgClass } from '@angular/common';
-import { Component, HostListener, signal } from '@angular/core';
+import { Component, HostListener, inject, signal } from '@angular/core';
 import { Router } from '@angular/router';
 import { DropdownComponent } from '../dropdown/dropdown.component';
 import { NavbarSearchInputComponent } from '../navbar-search-input/navbar-search-input.component';
 import { NavbarTitleComponent } from '../navbar-title/navbar-title.component';
 import { ClickOutsideDirective } from '@directives/click-outside.directive';
+import { AuthService } from '@core/services/auth.service';
+import { ButtonComponent } from '@components/button/button.component';
 
 @Component({
   selector: 'app-navbar',
@@ -14,11 +16,13 @@ import { ClickOutsideDirective } from '@directives/click-outside.directive';
     NavbarSearchInputComponent,
     NavbarTitleComponent,
     ClickOutsideDirective,
+    ButtonComponent,
   ],
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.css',
 })
 export class NavbarComponent {
+  readonly authService = inject(AuthService);
   readonly searching = signal<boolean>(false);
   readonly showDropdown = signal<boolean>(false);
 

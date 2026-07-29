@@ -5,11 +5,13 @@
       route="appointments"
       (click)="onClick.emit()"
     />
-    <app-dropdown-option
-      text="Manager"
-      route="manager"
-      (click)="onClick.emit()"
-    />
+    @if (isProvider()) {
+      <app-dropdown-option
+        text="Manager"
+        route="manager"
+        (click)="onClick.emit()"
+      />
+    }
     <app-dropdown-option
       text="Settings"
       route="settings"

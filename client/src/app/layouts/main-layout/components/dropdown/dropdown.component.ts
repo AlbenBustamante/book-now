@@ -1,4 +1,4 @@
-import { Component, output } from '@angular/core';
+import { Component, input, output } from '@angular/core';
 import { DropdownOptionComponent } from '../dropdown-option/dropdown-option.component';
 import { DivisorComponent } from '@components/divisor/divisor.component';
 
@@ -9,5 +9,6 @@ import { DivisorComponent } from '@components/divisor/divisor.component';
   styleUrl: './dropdown.component.css',
 })
 export class DropdownComponent {
+  readonly isProvider = input.required<boolean>();
   readonly onClick = output<void>();
 }
