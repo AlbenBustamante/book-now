@@ -9,6 +9,8 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.UUID;
@@ -22,11 +24,16 @@ public class StorageService implements UploadFileUseCase, DownloadFileUseCase {
     public String uploadFile(String folder, MultipartFile file) throws IOException {
         final var date = ZonedDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd_HH-mm-ss-SSS"));
         final var key = UUID.randomUUID().toString().substring(0, 5);
-        final var filename = folder + "/" + date + "-" + key + "-" + file.getOriginalFilename();
+        var filename = folder + "/" + date + "-" + key + "-" + file.getOriginalFilename();
 
-        final var blob = bucket.create(filename, file.getBytes(), file.getContentType());
+        final var blob = bucket.create(
+                filename,
+                file.getBytes(),
+                file.getContentType()
+        );
 
-        return blob.getName();
+        filename = URLEncoder.encode(filename, StandardCharsets.UTF_8).replace("+", "%20");
+        return String.format("https://firebasestorage.googleapis.com/v0/b/%s/o/%s?alt=media", blob.getBucket(), filename);
     }
 
     @Override
