@@ -46,7 +46,7 @@ public class JwtProvider {
             final var decoded = JWT.require(Algorithm.HMAC384(secretKey)).build().verify(token);
             final var expiresAt = decoded.getExpiresAt();
 
-            if (expiresAt.after(new Date())) {
+            if (expiresAt.before(new Date())) {
                 throw new UnauthorizedException("Please, log in again");
             }
 

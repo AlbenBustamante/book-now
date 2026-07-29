@@ -21,7 +21,7 @@ public class AppExceptionHandler extends ResponseEntityExceptionHandler {
     @Override
     protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex, HttpHeaders headers, HttpStatusCode status, WebRequest request) {
         final var error = buildErrorResponse(ex.getAllErrors().get(0).getDefaultMessage(), request, HttpStatus.valueOf(status.value()));
-        log.error("ARGUMENT NOT VALID EXCEPTION: {} - PATH: {}", error.message(), error.path());
+        log.error("ARGUMENT NOT VALID EXCEPTION: {} - PATH: {}", error.message(), error.path(), ex);
 
         return ResponseEntity.status(status.value()).body(error);
     }
@@ -29,7 +29,7 @@ public class AppExceptionHandler extends ResponseEntityExceptionHandler {
     @ExceptionHandler(UsernameNotFoundException.class)
     public ResponseEntity<ErrorResponse> handleUsernameNotFoundException(UsernameNotFoundException ex, WebRequest webRequest) {
         final var error = buildErrorResponse(ex.getMessage(), webRequest, HttpStatus.UNAUTHORIZED);
-        log.error("USERNAME NOT FOUND EXCEPTION: {} - PATH: {}", error.message(), error.path());
+        log.error("USERNAME NOT FOUND EXCEPTION: {} - PATH: {}", error.message(), error.path(), ex);
 
         return ResponseEntity.status(error.statusCode()).body(error);
     }
@@ -37,7 +37,7 @@ public class AppExceptionHandler extends ResponseEntityExceptionHandler {
     @ExceptionHandler(AppException.class)
     public ResponseEntity<ErrorResponse> handleApp(AppException ex, WebRequest webRequest) {
         final var error = buildErrorResponse(ex.getMessage(), webRequest, ex.status());
-        log.error("APP EXCEPTION: {} - PATH: {}", error.message(), error.path());
+        log.error("APP EXCEPTION: {} - PATH: {}", error.message(), error.path(), ex);
 
         return ResponseEntity.status(error.statusCode()).body(error);
     }

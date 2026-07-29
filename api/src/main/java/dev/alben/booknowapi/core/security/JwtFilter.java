@@ -34,7 +34,7 @@ public class JwtFilter extends OncePerRequestFilter {
         final var header = request.getHeader("Authorization");
         final var prefix = "Bearer ";
 
-        if (header == null || header.isBlank() || header.startsWith(prefix)) {
+        if (header == null || header.isBlank() || !header.startsWith(prefix)) {
             throw new UnauthorizedException("Please, log in to continue navigating");
         }
 

@@ -22,8 +22,6 @@ export const jwtInterceptor: HttpInterceptorFn = (req, next) => {
     },
   });
 
-  console.log('TOKEN:', token);
-
   return next(reqHeader).pipe(
     catchError((error: HttpErrorResponse) => {
       if (error.status === 401) {
