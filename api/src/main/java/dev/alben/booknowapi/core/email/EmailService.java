@@ -9,7 +9,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 
-import java.time.Instant;
+import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 
 @Service
@@ -23,7 +23,7 @@ public class EmailService implements SendHtmlEmailUseCase {
     @Override
     public void sendHtmlEmail(String to, String subject, String title, String body) {
         final var message = javaMailSender.createMimeMessage();
-        final var date = Instant.now();
+        final var date = ZonedDateTime.now();
         final var year = DateTimeFormatter.ofPattern("yyyy").format(date);
 
         try {

@@ -6,6 +6,7 @@ import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { SignUpStore } from './sign-up.store';
 import { SignUp } from './models/sign-up.model';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Role } from '@core/enums/role.enum';
 
 @Component({
   selector: 'app-sign-up',
@@ -25,7 +26,7 @@ export default class SignUpComponent {
   constructor(
     private readonly _fb: FormBuilder,
     private readonly _router: Router,
-    private readonly _route: ActivatedRoute
+    private readonly _route: ActivatedRoute,
   ) {
     this.form = this._fb.group({
       name: ['', Validators.required],
@@ -33,6 +34,7 @@ export default class SignUpComponent {
       email: ['', [Validators.required, Validators.email]],
       password: ['', Validators.required],
       repeatPassword: ['', Validators.required],
+      role: [Role.CUSTOMER, Validators.required],
     });
 
     effect(() => {

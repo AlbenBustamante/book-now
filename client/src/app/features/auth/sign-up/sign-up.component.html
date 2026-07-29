@@ -1,6 +1,6 @@
 <main class="p-5 grid place-items-center w-full h-dvh">
   <form
-    class="flex flex-col gap-3 w-full"
+    class="flex flex-col gap-y-5 w-full"
     [formGroup]="form"
     (ngSubmit)="onSubmit()"
   >
@@ -11,6 +11,7 @@
         name="name"
         placeholder="Ex: John"
         [control]="form.controls.name"
+        autocomplete="name"
       />
       <app-input
         label="Last Name"
@@ -18,6 +19,7 @@
         name="lastName"
         placeholder="Ex: Smith"
         [control]="form.controls.lastName"
+        autocomplete="family-name"
       />
     </div>
     <app-input
@@ -40,6 +42,32 @@
       name="confirmPassword"
       [control]="form.controls.repeatPassword"
     />
+    <div class="my-2.5 flex items-center gap-x-5 justify-center">
+      <label
+        for="customer"
+        class="flex items-center gap-x-1.5 text-sm sm:text-base tracking-tighter text-gray-800"
+      >
+        <input
+          type="radio"
+          id="customer"
+          [formControl]="form.controls.role"
+          value="CUSTOMER"
+        />
+        <span>Customer</span>
+      </label>
+      <label
+        for="provider"
+        class="flex items-center gap-x-1.5 text-sm sm:text-base tracking-tighter text-gray-800"
+      >
+        <input
+          type="radio"
+          id="provider"
+          [formControl]="form.controls.role"
+          value="PROVIDER"
+        />
+        <span>Provider</span>
+      </label>
+    </div>
     <app-button type="submit" [loading]="loading">Create account</app-button>
     <app-redirect headline="Enter to account" route="../sign-in" />
   </form>
