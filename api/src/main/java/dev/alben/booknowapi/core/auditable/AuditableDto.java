@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.time.Instant;
+import java.util.UUID;
 
 /**
  * Mutable DTO model for auditing.
@@ -14,12 +15,12 @@ public abstract class AuditableDto {
     /**
      * created by.
      */
-    private String createdBy;
+    private UUID createdBy;
 
     /**
      * updated by.
      */
-    private String updatedBy;
+    private UUID updatedBy;
 
     /**
      * creation date.

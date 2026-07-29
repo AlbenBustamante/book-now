@@ -1,17 +1,14 @@
 package dev.alben.booknowapi.module.user.infrastructure.out;
 
 import dev.alben.booknowapi.core.common.PersistenceAdapter;
-import dev.alben.booknowapi.module.user.application.port.out.CheckDniPort;
-import dev.alben.booknowapi.module.user.application.port.out.CheckEmailPort;
-import dev.alben.booknowapi.module.user.application.port.out.LoadUserByEmailPort;
-import dev.alben.booknowapi.module.user.application.port.out.LoadUserByIdPort;
-import dev.alben.booknowapi.module.user.application.port.out.SaveUserPort;
+import dev.alben.booknowapi.module.user.application.port.out.*;
 import dev.alben.booknowapi.module.user.domain.User;
 import dev.alben.booknowapi.module.user.infrastructure.out.persistence.mapper.UserJpaMapper;
 import dev.alben.booknowapi.module.user.infrastructure.out.persistence.repository.UserJpaRepository;
 import lombok.RequiredArgsConstructor;
 
 import java.util.Optional;
+import java.util.UUID;
 
 @PersistenceAdapter
 @RequiredArgsConstructor
@@ -45,7 +42,7 @@ public class UserPersistenceAdapter implements CheckDniPort, CheckEmailPort, Sav
     }
 
     @Override
-    public Optional<User> loadById(Integer userId) {
+    public Optional<User> loadById(UUID userId) {
         final var user = repository.findById(userId);
         return user.map(mapper::toDomain);
     }

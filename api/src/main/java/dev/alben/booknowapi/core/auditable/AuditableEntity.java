@@ -13,6 +13,7 @@ import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.time.Instant;
+import java.util.UUID;
 
 /**
  * Abstract Entity Model to audit child entities.
@@ -28,7 +29,7 @@ public abstract class AuditableEntity {
      */
     @CreatedBy
     @Column(updatable = false)
-    private String createdBy;
+    private UUID createdBy;
 
     /**
      * Creation Date.
@@ -41,7 +42,7 @@ public abstract class AuditableEntity {
      * Updated By {@code ID}.
      */
     @LastModifiedBy
-    private String updatedBy;
+    private UUID updatedBy;
 
     /**
      * Last Update Date.

@@ -11,6 +11,7 @@ import org.springframework.stereotype.Component;
 
 import java.time.Instant;
 import java.util.Date;
+import java.util.UUID;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -35,8 +36,9 @@ public class JwtProvider {
         return validateToken(token).getSubject();
     }
 
-    public Integer extractId(String token) {
-        return validateToken(token).getClaim("id").asInt();
+    public UUID extractId(String token) {
+        final var id = validateToken(token).getClaim("id").asString();
+        return UUID.fromString(id);
     }
 
     private DecodedJWT validateToken(String token) {

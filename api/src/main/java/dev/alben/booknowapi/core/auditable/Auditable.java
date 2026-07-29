@@ -1,6 +1,7 @@
 package dev.alben.booknowapi.core.auditable;
 
 import java.time.Instant;
+import java.util.UUID;
 
 /**
  * Domain model to auditing.
@@ -12,9 +13,9 @@ import java.time.Instant;
  * @param deletedAt soft deletion date.
  */
 public record Auditable(
-        String createdBy,
+        UUID createdBy,
         Instant createdAt,
-        String updatedBy,
+        UUID updatedBy,
         Instant updatedAt,
         Instant deletedAt
 ) {

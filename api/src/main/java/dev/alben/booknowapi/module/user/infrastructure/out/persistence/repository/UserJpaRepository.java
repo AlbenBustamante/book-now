@@ -4,11 +4,12 @@ import dev.alben.booknowapi.module.user.infrastructure.out.persistence.entity.Us
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;
+import java.util.UUID;
 
 /**
  * Database Logic for Users.
  */
-public interface UserJpaRepository extends JpaRepository<UserEntity, Integer> {
+public interface UserJpaRepository extends JpaRepository<UserEntity, UUID> {
     /**
      * Verifies whether a user exists by an email.
      *
