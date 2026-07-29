@@ -18,7 +18,7 @@ import java.io.IOException;
 @RequiredArgsConstructor
 @RequestMapping(path = "/services")
 @RestController
-public class ServiceApiRest {
+public class ServiceRestApi {
     private final ServiceRestAdapter adapter;
 
     @PostMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
