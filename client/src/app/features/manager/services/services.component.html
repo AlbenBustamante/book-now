@@ -11,9 +11,9 @@
   </app-manager-header>
   <section>
     <ul class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-7">
-      @for (item of [1, 2, 3, 4, 5]; track $index) {
+      @for (service of store.services(); track $index) {
         <li>
-          <app-manager-service-card />
+          <app-manager-service-card [service]="service" />
         </li>
       }
     </ul>

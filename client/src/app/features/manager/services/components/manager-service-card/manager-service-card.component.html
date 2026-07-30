@@ -2,18 +2,17 @@
   <header class="relative">
     <p class="absolute top-0 right-0 text-xs uppercase">Live</p>
     <h3 class="font-extrabold text-lg sm:text-xl text-primary-700">
-      Service Title
+      {{ service().name }}
     </h3>
   </header>
   <p class="line-clamp-2 text-sm">
-    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Officiis quos ex
-    error doloribus maxime consectetur laborum placeat vel, incidunt totam atque
-    sint ipsam excepturi suscipit consequatur inventore eligendi iusto corrupti.
+    {{ service().description }}
   </p>
   <app-divisor />
   <footer class="flex items-center justify-between gap-x-1.5">
     <p class="font-semibold text-base sm:text-lg">
-      $70<span class="font-normal text-sm">/hr</span>
+      {{ service().price | currency }}
+      <span class="font-normal text-sm">/hr</span>
     </p>
     <div class="flex items-center gap-x-2.5">
       <app-button>👁️</app-button>
