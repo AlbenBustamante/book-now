@@ -1,5 +1,7 @@
 <button
-  class="px-5 py-3.5 border border-gray-300 hover:border-primary-600 hover:ring-1 ring-primary-600 rounded-xl text-lg font-medium cursor-pointer duration-300"
+  class="ring-primary-600 rounded-xl text-lg font-medium px-5 py-3.5 border-2 border-gray-400 enabled:hover:border-primary-600 enabled:hover:ring-1 enabled:cursor-pointer duration-300 enabled:active:border-primary-600 enabled:active:bg-primary-600 enabled:active:text-white disabled:border-gray-100"
+  [disabled]="disabled()"
+  (click)="click()"
 >
   <ng-content />
 </button>
