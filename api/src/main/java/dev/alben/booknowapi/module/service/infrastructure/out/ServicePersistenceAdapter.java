@@ -1,11 +1,16 @@
 package dev.alben.booknowapi.module.service.infrastructure.out;
 
 import dev.alben.booknowapi.core.common.PersistenceAdapter;
+import dev.alben.booknowapi.module.service.application.port.out.LoadServicesByProviderIdPort;
 import dev.alben.booknowapi.module.service.application.port.out.SaveServicePort;
 import dev.alben.booknowapi.module.service.domain.Service;
 import dev.alben.booknowapi.module.service.infrastructure.out.persistence.ServiceJpaMapper;
 import dev.alben.booknowapi.module.service.infrastructure.out.persistence.ServiceJpaRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+
+import java.util.UUID;
 
 /**
  * Persistence Adapter for services.
@@ -15,7 +20,7 @@ import lombok.RequiredArgsConstructor;
  */
 @PersistenceAdapter
 @RequiredArgsConstructor
-public class ServicePersistenceAdapter implements SaveServicePort {
+public class ServicePersistenceAdapter implements SaveServicePort, LoadServicesByProviderIdPort {
     private final ServiceJpaRepository repository;
     private final ServiceJpaMapper mapper;
 
@@ -25,5 +30,11 @@ public class ServicePersistenceAdapter implements SaveServicePort {
         entity = repository.save(entity);
 
         return mapper.toDomain(entity);
+    }
+
+    @Override
+    public Page<Service> loadServicesByProviderId(UUID providerId, Pageable pageable) {
+        final var results = repository.findAllByProviderId(providerId, pageable);
+        return results.map(mapper::toDomain);
     }
 }

@@ -1,15 +1,15 @@
-package dev.alben.booknowapi.module.service.infrastructure.out.persistence;
+package dev.alben.booknowapi.module.service.application.port.out;
 
+import dev.alben.booknowapi.module.service.domain.Service;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.UUID;
 
 /**
- * Database logic for services.
+ * Port to get all services created by a provider.
  */
-public interface ServiceJpaRepository extends JpaRepository<ServiceEntity, UUID> {
+public interface LoadServicesByProviderIdPort {
     /**
      * Get all services created by a provider.
      *
@@ -17,5 +17,5 @@ public interface ServiceJpaRepository extends JpaRepository<ServiceEntity, UUID>
      * @param pageable   the data to paginate the searching.
      * @return a pagination with the services found.
      */
-    Page<ServiceEntity> findAllByProviderId(UUID providerId, Pageable pageable);
+    Page<Service> loadServicesByProviderId(UUID providerId, Pageable pageable);
 }

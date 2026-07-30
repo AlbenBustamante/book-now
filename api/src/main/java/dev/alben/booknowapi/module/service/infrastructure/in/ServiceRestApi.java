@@ -4,13 +4,12 @@ import dev.alben.booknowapi.module.service.application.port.in.command.CreateSer
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestPart;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
@@ -27,5 +26,13 @@ public class ServiceRestApi {
             @NotNull @RequestPart("coverPhoto") MultipartFile coverPhoto
     ) throws IOException {
         return ResponseEntity.status(HttpStatus.CREATED).body(adapter.create(command, coverPhoto));
+    }
+
+    @GetMapping
+    public ResponseEntity<Page<ServiceDto>> getByAuthenticatedProvider(
+            @RequestParam(value = "pageNumber", defaultValue = "0") int pageNumber,
+            @RequestParam(value = "pageSize", defaultValue = "10") int pageSize
+    ) {
+        return ResponseEntity.ok(adapter.getProviderServices(PageRequest.of(pageNumber, pageSize)));
     }
 }
