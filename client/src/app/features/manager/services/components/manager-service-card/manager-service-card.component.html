@@ -1,13 +1,21 @@
 <app-card>
-  <header class="relative">
-    <p class="absolute top-0 right-0 text-xs uppercase">Live</p>
-    <h3 class="font-extrabold text-lg sm:text-xl text-primary-700">
-      {{ service().name }}
-    </h3>
+  <header class="flex gap-x-3.5 items-center">
+    <img
+      [src]="service().photoUrl"
+      alt="Cover photo of the service"
+      class="aspect-square object-cover max-h-20 md:max-h-24 rounded-xl"
+    />
+    <div class="flex flex-col gap-y-1">
+      <h3
+        class="font-extrabold text-lg sm:text-xl text-primary-700 leading-5.5 line-clamp-2"
+      >
+        {{ service().name }}
+      </h3>
+      <p class="line-clamp-2 text-xs sm:text-sm">
+        {{ service().description }}
+      </p>
+    </div>
   </header>
-  <p class="line-clamp-2 text-sm">
-    {{ service().description }}
-  </p>
   <app-divisor />
   <footer class="flex items-center justify-between gap-x-1.5">
     <p class="font-semibold text-base sm:text-lg">
