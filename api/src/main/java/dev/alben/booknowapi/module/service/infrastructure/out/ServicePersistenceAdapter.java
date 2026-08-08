@@ -2,6 +2,7 @@ package dev.alben.booknowapi.module.service.infrastructure.out;
 
 import dev.alben.booknowapi.core.common.PersistenceAdapter;
 import dev.alben.booknowapi.module.home.application.port.out.LoadTopServicesPort;
+import dev.alben.booknowapi.module.service.application.port.out.LoadServiceByIdPort;
 import dev.alben.booknowapi.module.service.application.port.out.LoadServicesByProviderIdPort;
 import dev.alben.booknowapi.module.service.application.port.out.SaveServicePort;
 import dev.alben.booknowapi.module.service.domain.Service;
@@ -12,6 +13,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 /**
@@ -22,7 +24,11 @@ import java.util.UUID;
  */
 @PersistenceAdapter
 @RequiredArgsConstructor
-public class ServicePersistenceAdapter implements SaveServicePort, LoadServicesByProviderIdPort, LoadTopServicesPort {
+public class ServicePersistenceAdapter implements
+        SaveServicePort,
+        LoadServicesByProviderIdPort,
+        LoadTopServicesPort,
+        LoadServiceByIdPort {
     private final ServiceJpaRepository repository;
     private final ServiceJpaMapper mapper;
 
@@ -44,5 +50,11 @@ public class ServicePersistenceAdapter implements SaveServicePort, LoadServicesB
     public List<Service> loadTopServices() {
         final var services = repository.findTop10By();
         return services.stream().map(mapper::toDomain).toList();
+    }
+
+    @Override
+    public Optional<Service> loadServiceById(UUID id) {
+        final var service = repository.findById(id);
+        return service.map(mapper::toDomain);
     }
 }

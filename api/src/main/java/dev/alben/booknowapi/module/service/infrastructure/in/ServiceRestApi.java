@@ -1,6 +1,7 @@
 package dev.alben.booknowapi.module.service.infrastructure.in;
 
 import dev.alben.booknowapi.module.service.application.port.in.command.CreateServiceCommand;
+import dev.alben.booknowapi.module.service.infrastructure.in.detail.ServiceDetailDto;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
 import lombok.RequiredArgsConstructor;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.util.UUID;
 
 @RequiredArgsConstructor
 @RequestMapping(path = "/services")
@@ -34,5 +36,10 @@ public class ServiceRestApi {
             @RequestParam(value = "pageSize", defaultValue = "10") int pageSize
     ) {
         return ResponseEntity.ok(adapter.getProviderServices(PageRequest.of(pageNumber, pageSize)));
+    }
+
+    @GetMapping(path = "/details/{id}")
+    public ResponseEntity<ServiceDetailDto> getDetailsById(@PathVariable("id") UUID id) {
+        return ResponseEntity.ok(adapter.getById(id));
     }
 }
