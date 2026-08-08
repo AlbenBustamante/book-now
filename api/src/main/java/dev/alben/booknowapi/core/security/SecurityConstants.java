@@ -7,6 +7,10 @@ public final class SecurityConstants {
             "/swagger-ui",
             "/swagger-ui/**",
             "/v3",
-            "/v3/**"
+            "/v3/**",
+    };
+
+    public static final String[] ONLY_READ = {
+            "/home"
     };
 }

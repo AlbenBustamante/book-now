@@ -13,7 +13,7 @@ import java.util.UUID;
 @RequiredArgsConstructor
 public class ServiceDto extends AuditableDto {
     private final UUID id;
-    private final UserDto user;
+    private final UserDto provider;
     private final AddressDto address;
     private final String name, description, photoUrl;
     private final Integer durationInMinutes;

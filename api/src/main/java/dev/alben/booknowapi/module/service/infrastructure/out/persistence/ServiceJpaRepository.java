@@ -4,6 +4,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 
+import java.util.List;
 import java.util.UUID;
 
 /**
@@ -18,4 +19,11 @@ public interface ServiceJpaRepository extends JpaRepository<ServiceEntity, UUID>
      * @return a pagination with the services found.
      */
     Page<ServiceEntity> findAllByProviderId(UUID providerId, Pageable pageable);
+
+    /**
+     * Get the first 10 services.
+     *
+     * @return a list with the services found.
+     */
+    List<ServiceEntity> findTop10By();
 }
