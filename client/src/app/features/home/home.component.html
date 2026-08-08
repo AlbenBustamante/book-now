@@ -1,17 +1,13 @@
 <app-header />
 <app-container>
   <app-section-container headline="Popular Services">
-    <app-services-carousel />
+    <app-services-carousel [services]="store.home()?.services ?? []" />
   </app-section-container>
   <app-section-container headline="Top-Rated Providers">
     <div class="flex items-start gap-x-7 overflow-x-auto pb-5">
-      <app-provider-card />
-      <app-provider-card />
-      <app-provider-card />
-      <app-provider-card />
-      <app-provider-card />
-      <app-provider-card />
-      <app-provider-card />
+      @for (item of store.home()?.providers; track $index) {
+        <app-provider-card [provider]="item" />
+      }
     </div>
   </app-section-container>
 </app-container>

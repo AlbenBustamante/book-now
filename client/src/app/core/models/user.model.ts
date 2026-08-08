@@ -5,7 +5,7 @@ export interface UserModel extends ResponseModel {
   id: string;
   name: string;
   lastName: string;
-  photoUrl: string;
+  photoUrl?: string;
   email: string;
   role: Role;
   accountVerifiedAt: Date;
