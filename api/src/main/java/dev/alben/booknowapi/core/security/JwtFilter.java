@@ -15,6 +15,7 @@ import org.springframework.web.filter.OncePerRequestFilter;
 import java.io.IOException;
 import java.util.Arrays;
 
+import static dev.alben.booknowapi.core.security.SecurityConstants.ONLY_READ;
 import static dev.alben.booknowapi.core.security.SecurityConstants.WHITE_LIST;
 
 @Component
@@ -25,8 +26,16 @@ public class JwtFilter extends OncePerRequestFilter {
 
     @Override
     protected boolean shouldNotFilter(HttpServletRequest request) throws ServletException {
-        return Arrays.stream(WHITE_LIST)
-                .anyMatch(path -> request.getRequestURI().contains(path));
+        final var uri = request.getRequestURI();
+        final var method = request.getMethod();
+
+        final var whiteList = Arrays.stream(WHITE_LIST)
+                .anyMatch(uri::contains);
+
+        final var onlyRead = method.equalsIgnoreCase("GET") &&
+                Arrays.stream(ONLY_READ).anyMatch(uri::contains);
+
+        return whiteList || onlyRead;
     }
 
     @Override
