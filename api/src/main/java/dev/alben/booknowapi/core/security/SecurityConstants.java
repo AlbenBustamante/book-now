@@ -13,6 +13,7 @@ public final class SecurityConstants {
     public static final String[] ONLY_READ = {
             "/home",
             "/home/**",
+            "/services/details",
             "/services/details/**"
     };
 }
