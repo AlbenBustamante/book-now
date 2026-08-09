@@ -1,14 +1,14 @@
 @if (route()) {
   <a
     [routerLink]="route()"
-    [ngClass]="styles"
-    class="w-full text-center rounded-3xl font-semibold outline-none duration-150 ease-in-out active:ring-4 focus:ring-4 text-nowrap"
+    [ngClass]="routeStyles"
+    class="w-full flex items-center justify-center gap-x-5 text-center rounded-3xl font-semibold outline-none duration-150 ease-in-out active:ring-4 focus:ring-4 text-nowrap"
   >
     {{ text() }}
   </a>
 } @else {
   <button
-    class="w-full enabled:cursor-pointer text-center rounded-3xl font-semibold outline-none duration-150 disabled:opacity-50 ease-in-out enabled:active:ring-4 enabled:focus:ring-4"
+    class="w-full flex items-center justify-center gap-x-5 enabled:cursor-pointer text-center rounded-3xl font-semibold outline-none duration-150 disabled:opacity-50 ease-in-out enabled:active:ring-4 enabled:focus:ring-4"
     [ngClass]="styles"
     [type]="type()"
     [disabled]="loading() || disabled()"
