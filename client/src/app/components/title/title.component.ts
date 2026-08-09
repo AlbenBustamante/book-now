@@ -8,6 +8,6 @@ import { Component, input } from '@angular/core';
   styleUrl: './title.component.css',
 })
 export class TitleComponent {
-  readonly headline = input.required<string>();
+  readonly headline = input.required<string | undefined>();
   readonly align = input<'left' | 'center' | 'center sm:left'>('left');
 }

@@ -3,8 +3,8 @@
   [ngClass]="{
     'text-left': align() === 'left',
     'text-center': align() === 'center',
-    'text-center sm:text-left': align() === 'center sm:left'
+    'text-center sm:text-left': align() === 'center sm:left',
   }"
 >
-  {{ headline() }}
+  {{ headline() ?? "" }}
 </h2>

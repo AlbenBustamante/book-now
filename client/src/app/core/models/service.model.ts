@@ -10,5 +10,5 @@ export interface ServiceModel extends ResponseModel {
   durationInMinutes: number;
   price: number;
   address: AddressModel;
-  user: UserModel;
+  provider: UserModel;
 }

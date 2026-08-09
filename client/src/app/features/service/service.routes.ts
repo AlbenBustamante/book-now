@@ -4,7 +4,7 @@ import ServiceComponent from './service.component';
 export default [
   {
     path: '',
-    component: ServiceComponent,
+    loadComponent: () => import('./service.component'),
   },
   {
     path: 'appointment',

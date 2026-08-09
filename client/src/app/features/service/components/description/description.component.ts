@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { SectionContainerComponent } from '@components/section-container/section-container.component';
+import { ServiceStore } from '@features/service/service.store';
 
 @Component({
   selector: 'app-description',
@@ -7,4 +8,6 @@ import { SectionContainerComponent } from '@components/section-container/section
   templateUrl: './description.component.html',
   styleUrl: './description.component.css',
 })
-export class DescriptionComponent {}
+export class DescriptionComponent {
+  readonly store = inject(ServiceStore);
+}

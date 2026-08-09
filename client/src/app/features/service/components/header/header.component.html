@@ -1,9 +1,45 @@
-<header class="flex flex-col gap-y-3.5">
-  <app-title
-    align="center"
-    headline="Large, Descriptive and Intuitive Title About the Service"
+<header class="flex max-md:flex-col md:items-center gap-y-3.5 gap-x-5">
+  <img
+    [src]="store.service()?.photoUrl ?? ''"
+    alt="Service's Photo Cover"
+    class="w-full h-auto max-md:mx-auto rounded-xl aspect-square object-cover"
   />
-  <div
-    class="w-full max-w-2xl mx-auto bg-primary-500 rounded-xl aspect-video"
-  ></div>
+  <div class="flex flex-col gap-y-5">
+    <section class="flex flex-col gap-y-5">
+      <app-title align="center" [headline]="store.service()?.name" />
+      <a
+        [routerLink]="['/provider', store.provider()?.id]"
+        class="flex items-center justify-between gap-x-1"
+        title="View Provider's Profile"
+      >
+        <div class="flex items-center gap-x-3.5">
+          <img
+            [src]="store.provider()?.photoUrl ?? ''"
+            alt="Provider's Photo"
+            class="size-10 sm:size-11 rounded-full object-cover"
+          />
+          <h3 class="text-sm sm:text-base text-primary-700">
+            <strong>
+              {{ store.provider()?.name }} {{ store.provider()?.lastName }}
+            </strong>
+          </h3>
+        </div>
+        <p class="text-sm sm:text-base font-extrabold text-gray-800">⭐ 4.9</p>
+      </a>
+    </section>
+    <app-divisor />
+    <section class="flex flex-col gap-y-3.5 items-center">
+      <p class="flex items-center gap-x-5">
+        <strong class="text-gray-700 text-xl sm:text-2xl md:text-3xl">{{
+          store.service()?.price | currency
+        }}</strong>
+        <small>p/hour</small>
+      </p>
+      <app-button
+        class="w-full"
+        route="./appointment"
+        text="Book Now an Appointment!"
+      />
+    </section>
+  </div>
 </header>
