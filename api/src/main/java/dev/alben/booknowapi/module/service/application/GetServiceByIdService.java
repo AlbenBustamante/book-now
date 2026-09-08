@@ -26,7 +26,7 @@ public class GetServiceByIdService implements GetServiceByIdUseCase {
         return new ServiceDetail(service, 4.53f, List.of(
                 new ServiceDetail.Review("Maria Juanes", 5, "Wow, awesome", ZonedDateTime.now()),
                 new ServiceDetail.Review("Pepe Delgado", 4, "Recommended", ZonedDateTime.now()),
-                new ServiceDetail.Review("Elizabeth Prado", 5, "Nice service.", ZonedDateTime.now())
+                new ServiceDetail.Review("Elizabeth Prado", 3, "Nice service.", ZonedDateTime.now())
         ));
     }
 }
