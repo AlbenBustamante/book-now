@@ -12,3 +12,16 @@ export interface ServiceModel extends ResponseModel {
   address: AddressModel;
   provider: UserModel;
 }
+
+export interface ReviewModel {
+  userName: string;
+  rate: number;
+  comment: string;
+  createdAt: Date;
+}
+
+export interface ServiceDetailModel {
+  service: ServiceModel;
+  avgRate: number;
+  reviews: ReviewModel[];
+}

@@ -5,9 +5,9 @@ import {
   withMethods,
   withState,
 } from '@ngrx/signals';
-import { ServiceDetailModel } from './service-detail.model';
 import { computed, inject } from '@angular/core';
 import { GetDetailsService } from './services/services/get-details.service';
+import { ServiceDetailModel } from '@core/models/service.model';
 
 interface State {
   loading: boolean;

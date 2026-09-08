@@ -4,8 +4,9 @@
     <app-header />
     <app-description />
     <app-divisor />
-    <app-about-provider />
-    <app-divisor />
-    <app-reviews />
+    <app-reviews
+      [reviews]="store.details()?.reviews"
+      [avgRate]="store.details()?.avgRate"
+    />
   }
 </app-container>

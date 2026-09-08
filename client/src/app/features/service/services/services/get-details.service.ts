@@ -1,8 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { skipJwtFn } from '@core/contexts/jwt.context';
+import { ServiceDetailModel } from '@core/models/service.model';
 import { environment } from '@environments/environment.development';
-import { ServiceDetailModel } from '@features/service/service-detail.model';
 
 @Injectable({
   providedIn: 'root',

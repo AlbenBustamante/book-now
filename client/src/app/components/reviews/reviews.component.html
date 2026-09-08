@@ -1,13 +1,23 @@
-<section class="flex flex-col gap-y-3.5">
-  <app-subtitle headline="Reviews" />
+<section class="flex flex-col gap-y-8">
+  <div class="flex items-center justify-between gap-x-1">
+    <app-subtitle headline="Reviews" />
+    <p class="text-lg">
+      ⭐
+      <strong class="text-sm sm:text-base">{{ avgRate() }}</strong>
+    </p>
+  </div>
   <div class="flex flex-col gap-y-12 md:flex-row gap-x-8">
-    <app-valoration class="md:w-3/12" />
-    <ul class="flex flex-col gap-y-16 md:w-9/12">
-      <li><app-comment /></li>
-      <li><app-comment /></li>
-      <li><app-comment /></li>
-      <li><app-comment /></li>
-      <li><app-comment /></li>
+    <ul class="flex flex-col gap-y-8 md:w-9/12">
+      @for (item of reviews(); track $index; let i = $index) {
+        <li>
+          <app-comment [review]="item" />
+        </li>
+        @if (i < (reviews() ?? []).length - 1) {
+          <li>
+            <app-divisor />
+          </li>
+        }
+      }
     </ul>
   </div>
 </section>
