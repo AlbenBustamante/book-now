@@ -68,6 +68,21 @@
         <span>Provider</span>
       </label>
     </div>
+    @if (form.controls.role.value === "PROVIDER") {
+      <app-input
+        label="Occupation"
+        type="text"
+        name="occupation"
+        placeholder="e.g: Software Engineer"
+        [control]="form.controls.occupation"
+      />
+      <app-text-area
+        label="Biography"
+        name="biography"
+        placeholder="Write a description about yourself."
+        [control]="form.controls.biography"
+      />
+    }
     <app-button type="submit" [loading]="loading">Create account</app-button>
     <app-redirect headline="Enter to account" route="../sign-in" />
   </form>

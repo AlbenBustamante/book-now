@@ -3,7 +3,11 @@ package dev.alben.booknowapi.module.user.application.port.in.command;
 import dev.alben.booknowapi.module.user.util.Role;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
+import org.hibernate.validator.constraints.Length;
 import org.springframework.web.multipart.MultipartFile;
+
+import static dev.alben.booknowapi.module.user.util.UserConstants.BIOGRAPHY_LENGTH;
+import static dev.alben.booknowapi.module.user.util.UserConstants.OCCUPATION_LENGTH;
 
 /**
  * Command for users creation.
@@ -32,6 +36,10 @@ public record CreateUserCommand(
         // @NotBlank(message = "The DNI is required")
         // String dni,
         MultipartFile photoFile,
-        Role role
+        Role role,
+        @Length(max = OCCUPATION_LENGTH)
+        String occupation,
+        @Length(max = BIOGRAPHY_LENGTH)
+        String biography
 ) {
 }

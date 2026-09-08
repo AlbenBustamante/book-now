@@ -7,4 +7,6 @@ export interface SignUp {
   password: string;
   repeatPassword: string;
   role?: Role;
+  occupation?: string;
+  biography?: string;
 }

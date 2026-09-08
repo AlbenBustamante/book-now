@@ -7,6 +7,7 @@ import { SignUpStore } from './sign-up.store';
 import { SignUp } from './models/sign-up.model';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Role } from '@core/enums/role.enum';
+import { TextAreaComponent } from '@components/text-area/text-area.component';
 
 @Component({
   selector: 'app-sign-up',
@@ -15,6 +16,7 @@ import { Role } from '@core/enums/role.enum';
     ButtonComponent,
     RedirectComponent,
     ReactiveFormsModule,
+    TextAreaComponent,
   ],
   templateUrl: './sign-up.component.html',
   styleUrl: './sign-up.component.css',
@@ -35,6 +37,8 @@ export default class SignUpComponent {
       password: ['', Validators.required],
       repeatPassword: ['', Validators.required],
       role: [Role.CUSTOMER, Validators.required],
+      occupation: ['', Validators.maxLength(80)],
+      biography: ['', Validators.maxLength(300)],
     });
 
     effect(() => {

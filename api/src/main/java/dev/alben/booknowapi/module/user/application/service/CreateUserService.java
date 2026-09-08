@@ -38,7 +38,7 @@ public class CreateUserService implements CreateUserUseCase {
             throw new UserAlreadyExistsByEmailException(command.email());
         }
 
-        var user = User.create(command.name(), command.lastName(), "", command.email(), command.password(), command.repeatPassword(), command.role());
+        var user = User.create(command.name(), command.lastName(), "", command.email(), command.password(), command.repeatPassword(), command.role(), command.occupation(), command.biography());
 
         if (!user.passwordsDoMatch()) {
             throw new PasswordsDoNotMatchException();

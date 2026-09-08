@@ -10,4 +10,6 @@ export interface UserModel extends ResponseModel {
   role: Role;
   accountVerifiedAt: Date;
   enabled: boolean;
+  occupation: string;
+  biography: string;
 }

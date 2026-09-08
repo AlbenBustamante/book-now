@@ -82,4 +82,10 @@ public class UserEntity extends AuditableEntity {
      */
     @Column(nullable = false)
     private Boolean enabled;
+
+    @Column(length = OCCUPATION_LENGTH)
+    private String occupation;
+
+    @Column(length = BIOGRAPHY_LENGTH)
+    private String biography;
 }

@@ -19,6 +19,9 @@ import java.util.UUID;
  * @param role              system role.
  * @param accountVerifiedAt account's email verification timestamp.
  * @param enabled           activate/deactivate account.
+ * @param biography         the provider's biography.
+ * @param occupation        the provider's occupation.
+ * @param repeatPassword    the password confirmation.
  * @param auditable         timestamps.
  * @see Auditable
  */
@@ -34,13 +37,15 @@ public record User(
         Role role,
         Instant accountVerifiedAt,
         Boolean enabled,
+        String occupation,
+        String biography,
         Auditable auditable
 ) {
     public boolean passwordsDoMatch() {
         return password.equals(repeatPassword);
     }
 
-    public static User create(String name, String lastName, String photoUrl, String email, String password, String repeatPassword, Role role) {
+    public static User create(String name, String lastName, String photoUrl, String email, String password, String repeatPassword, Role role, String occupation, String biography) {
         if (role == null) {
             role = Role.CUSTOMER;
         }
@@ -57,12 +62,14 @@ public record User(
                 role,
                 null,
                 true,
+                role == Role.CUSTOMER ? null : occupation,
+                role == Role.CUSTOMER ? null : biography,
                 null
         );
     }
 
     public User copyWithHashedPassword(String hashedPassword) {
-        return new User(id, name, lastName, photoUrl, email, hashedPassword, hashedPassword, role, accountVerifiedAt, enabled, auditable);
+        return new User(id, name, lastName, photoUrl, email, hashedPassword, hashedPassword, role, accountVerifiedAt, enabled, occupation, biography, auditable);
     }
 
     public User verifiedCopy() {
@@ -77,6 +84,8 @@ public record User(
                 role,
                 Instant.now(),
                 enabled,
+                occupation,
+                biography,
                 auditable
         );
     }

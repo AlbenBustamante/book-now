@@ -12,7 +12,7 @@ import java.util.UUID;
 @RequiredArgsConstructor
 public class UserDto extends AuditableDto {
     private final UUID id;
-    private final String name, lastName, photoUrl, email;
+    private final String name, lastName, photoUrl, email, occupation, biography;
     private final Role role;
     private final Instant accountVerifiedAt;
     private final Boolean enabled;
