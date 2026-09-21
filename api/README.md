@@ -1,40 +1,40 @@
 # 📅 BookNow API
 
-API REST para una plataforma de reservas de servicios, donde **proveedores** publican sus servicios profesionales y **clientes** pueden explorarlos, ver detalles y (próximamente) agendar citas.
+REST API for a service booking platform, where **providers** publish their professional services and **clients** can explore them, view details, and (coming soon) schedule appointments.
 
-## 📋 Tabla de Contenido
+## 📋 Table of Contents
 
-- [Descripción General](#-descripción-general)
-- [Arquitectura](#-arquitectura)
-- [Estructura del Proyecto](#-estructura-del-proyecto)
-- [Módulos](#-módulos)
-- [Tecnologías y Dependencias](#-tecnologías-y-dependencias)
-- [Servicios Reutilizables](#-servicios-reutilizables-core)
-- [Endpoints de la API](#-endpoints-de-la-api)
-- [Seguridad](#-seguridad)
-- [Configuración](#-configuración)
-- [Ejecución](#-ejecución)
-
----
-
-## 🎯 Descripción General
-
-**BookNow** es una plataforma que conecta proveedores de servicios con clientes. Los proveedores pueden registrarse, verificar su email, crear servicios con foto de portada y dirección, mientras que los clientes pueden explorar el catálogo de servicios y ver los perfiles de los proveedores.
-
-### Funcionalidades principales
-
-- **Registro de usuarios** (clientes y proveedores) con verificación de email
-- **Autenticación** basada en JWT (JSON Web Tokens)
-- **Gestión de servicios** — CRUD para proveedores con carga de fotos a Firebase Storage
-- **Home público** — Muestra los servicios y proveedores destacados (top 10)
-- **Detalle de servicio** — Vista detallada con reseñas y calificación promedio
-- **Perfil de proveedor** — Información pública del proveedor
+- [Overview](#-overview)
+- [Architecture](#-architecture)
+- [Project Structure](#-project-structure)
+- [Modules](#-modules)
+- [Technologies and Dependencies](#-technologies-and-dependencies)
+- [Reusable Services (Core)](#-reusable-services-core)
+- [API Endpoints](#-api-endpoints)
+- [Security](#-security)
+- [Configuration](#-configuration)
+- [Running](#-running)
 
 ---
 
-## 🏛 Arquitectura
+## 🎯 Overview
 
-El proyecto implementa **Arquitectura Hexagonal (Ports & Adapters)**, inspirada en los principios de "Get Your Hands Dirty on Clean Architecture" de Tom Hombergs.
+**BookNow** is a platform that connects service providers with clients. Providers can register, verify their email, create services with a cover photo and address, while clients can explore the service catalog and view provider profiles.
+
+### Key Features
+
+- **User registration** (clients and providers) with email verification
+- **Authentication** based on JWT (JSON Web Tokens)
+- **Service management** — CRUD for providers with photo uploads to Firebase Storage
+- **Public home** — Displays featured services and providers (top 10)
+- **Service detail** — Detailed view with reviews and average rating
+- **Provider profile** — Public provider information
+
+---
+
+## 🏛 Architecture
+
+The project implements **Hexagonal Architecture (Ports & Adapters)**, inspired by the principles from "Get Your Hands Dirty on Clean Architecture" by Tom Hombergs.
 
 ```
 ┌──────────────────────────────────────────────────────────┐
@@ -60,68 +60,68 @@ El proyecto implementa **Arquitectura Hexagonal (Ports & Adapters)**, inspirada 
 └──────────────────────────────────────────────────────────┘
 ```
 
-### Capas
+### Layers
 
-| Capa                     | Responsabilidad                                          | Anotación Personalizada |
-| ------------------------ | -------------------------------------------------------- | ----------------------- |
-| **Domain**               | Modelos de negocio puros (records) con lógica de dominio | —                       |
-| **Application**          | Casos de uso, puertos de entrada/salida, comandos        | `@UseCase`              |
-| **Infrastructure (in)**  | Adaptadores REST, DTOs, mappers DTO                      | `@RestAdapter`          |
-| **Infrastructure (out)** | Adaptadores de persistencia, entidades JPA, mappers JPA  | `@PersistenceAdapter`   |
+| Layer                    | Responsibility                                   | Custom Annotation     |
+| ------------------------ | ------------------------------------------------ | --------------------- |
+| **Domain**               | Pure business models (records) with domain logic | —                     |
+| **Application**          | Use cases, input/output ports, commands          | `@UseCase`            |
+| **Infrastructure (in)**  | REST adapters, DTOs, DTO mappers                 | `@RestAdapter`        |
+| **Infrastructure (out)** | Persistence adapters, JPA entities, JPA mappers  | `@PersistenceAdapter` |
 
 ---
 
-## 📁 Estructura del Proyecto
+## 📁 Project Structure
 
 ```
 src/main/java/dev/alben/booknowapi/
 ├── BookNowApiApplication.java
 │
-├── core/                              # Componentes compartidos (cross-cutting)
-│   ├── auditable/                     # Sistema de auditoría (createdAt, updatedBy, etc.)
-│   │   ├── Auditable.java            # Record de dominio
-│   │   ├── AuditableDto.java         # DTO base abstracto
-│   │   ├── AuditableDtoMapper.java   # Mapper abstracto Domain → DTO
-│   │   ├── AuditableEntity.java      # @MappedSuperclass con JPA Auditing
-│   │   └── AuditableJpaMapper.java   # Mapper abstracto Domain ↔ Entity
-│   ├── common/                        # Anotaciones personalizadas
-│   │   ├── PersistenceAdapter.java   # @Component alias para persistence
-│   │   ├── RestAdapter.java          # @Component alias para REST
-│   │   └── UseCase.java             # @Component alias para casos de uso
-│   ├── config/                        # Configuraciones Spring
+├── core/                              # Shared components (cross-cutting)
+│   ├── auditable/                     # Audit system (createdAt, updatedBy, etc.)
+│   │   ├── Auditable.java            # Domain record
+│   │   ├── AuditableDto.java         # Abstract base DTO
+│   │   ├── AuditableDtoMapper.java   # Abstract Domain → DTO mapper
+│   │   ├── AuditableEntity.java      # @MappedSuperclass with JPA Auditing
+│   │   └── AuditableJpaMapper.java   # Abstract Domain ↔ Entity mapper
+│   ├── common/                        # Custom annotations
+│   │   ├── PersistenceAdapter.java   # @Component alias for persistence
+│   │   ├── RestAdapter.java          # @Component alias for REST
+│   │   └── UseCase.java             # @Component alias for use cases
+│   ├── config/                        # Spring configurations
 │   │   ├── CorsConfig.java
 │   │   ├── FirebaseConfig.java
 │   │   ├── JpaConfig.java
 │   │   └── SecurityConfig.java
-│   ├── email/                         # Servicio de emails
+│   ├── email/                         # Email service
 │   │   ├── EmailService.java
 │   │   ├── EmailSenderException.java
 │   │   └── usecase/
 │   │       └── SendHtmlEmailUseCase.java
-│   ├── exception/                     # Jerarquía global de excepciones
-│   │   ├── AppException.java         # Excepción base abstracta
+│   ├── exception/                     # Global exception hierarchy
+│   │   ├── AppException.java         # Abstract base exception
 │   │   ├── AppExceptionHandler.java  # @RestControllerAdvice
 │   │   ├── AppExceptionHandlerFilter.java
-│   │   ├── ErrorResponse.java        # Record de respuesta de error
+│   │   ├── ErrorResponse.java        # Error response record
 │   │   ├── AlreadyExistsException.java  # → 409 CONFLICT
 │   │   ├── BadRequestException.java     # → 400 BAD REQUEST
 │   │   ├── ForbiddenException.java      # → 403 FORBIDDEN
 │   │   ├── NotFoundException.java       # → 404 NOT FOUND
 │   │   └── UnauthorizedException.java   # → 401 UNAUTHORIZED
-│   ├── security/                      # Autenticación y autorización JWT
+│   ├── security/                      # JWT authentication and authorization
 │   │   ├── CustomUserDetailsService.java
 │   │   ├── JwtFilter.java
 │   │   ├── JwtProvider.java
 │   │   ├── SecurityConstants.java
 │   │   └── UserPrincipal.java
-│   └── storage/                       # Servicio de almacenamiento (Firebase)
+│   └── storage/                       # Storage service (Firebase)
 │       ├── StorageService.java
 │       └── usecase/
 │           ├── DownloadFileUseCase.java
 │           └── UploadFileUseCase.java
 │
-└── module/                            # Módulos de negocio
-    ├── address/                       # Módulo: Direcciones
+└── module/                            # Business modules
+    ├── address/                       # Module: Addresses
     │   ├── application/port/in/command/
     │   │   └── CreateAddressCommand.java
     │   ├── domain/
@@ -135,7 +135,7 @@ src/main/java/dev/alben/booknowapi/
     │   └── util/
     │       └── AddressConstants.java
     │
-    ├── auth/                          # Módulo: Autenticación
+    ├── auth/                          # Module: Authentication
     │   ├── application/
     │   │   └── LogInService.java
     │   ├── application/port/in/
@@ -149,7 +149,7 @@ src/main/java/dev/alben/booknowapi/
     │       ├── AuthRestApi.java
     │       └── rest/AuthRestAdapter.java
     │
-    ├── home/                          # Módulo: Home (pantalla principal)
+    ├── home/                          # Module: Home (main screen)
     │   ├── application/
     │   │   └── GetHomeService.java
     │   ├── application/port/in/
@@ -165,7 +165,7 @@ src/main/java/dev/alben/booknowapi/
     │       ├── HomeRestAdapter.java
     │       └── HomeRestApi.java
     │
-    ├── service/                       # Módulo: Servicios profesionales
+    ├── service/                       # Module: Professional Services
     │   ├── application/
     │   │   ├── CreateServiceService.java
     │   │   ├── GetProviderServicesService.java
@@ -201,7 +201,7 @@ src/main/java/dev/alben/booknowapi/
     │   └── util/
     │       └── ServiceConstants.java
     │
-    └── user/                          # Módulo: Usuarios
+    └── user/                          # Module: Users
         ├── application/service/
         │   ├── CreateUserService.java
         │   ├── GetProviderByIdService.java
@@ -263,185 +263,185 @@ src/main/java/dev/alben/booknowapi/
 
 ---
 
-## 📦 Módulos
+## 📦 Modules
 
-### `auth` — Autenticación
+### `auth` — Authentication
 
-Maneja el registro, la verificación de email y el login de usuarios. Genera tokens JWT con claims de `id`, `role` y `email`.
+Handles registration, email verification, and user login. Generates JWT tokens with `id`, `role`, and `email` claims.
 
-### `user` — Usuarios
+### `user` — Users
 
-Gestiona la creación y consulta de usuarios (clientes y proveedores). Incluye verificación de email mediante tokens con expiración configurable.
+Manages the creation and retrieval of users (clients and providers). Includes email verification through tokens with configurable expiration.
 
-### `service` — Servicios Profesionales
+### `service` — Professional Services
 
-CRUD de los servicios que ofrecen los proveedores. Cada servicio tiene nombre, descripción, duración, precio, foto de portada y dirección.
+CRUD for the services offered by providers. Each service has a name, description, duration, price, cover photo, and address.
 
-### `address` — Direcciones
+### `address` — Addresses
 
-Modelo de dirección reutilizable (país, estado, ciudad, calle, código postal) asociado a los servicios.
+Reusable address model (country, state, city, street, postal code) associated with services.
 
-### `home` — Pantalla Principal
+### `home` — Home Screen
 
-Endpoint público que devuelve los top 10 servicios y top 10 proveedores para la pantalla de inicio.
-
----
-
-## 🛠 Tecnologías y Dependencias
-
-| Tecnología            | Versión | Propósito                               |
-| --------------------- | ------- | --------------------------------------- |
-| **Java**              | 17      | Lenguaje                                |
-| **Spring Boot**       | 3.5.3   | Framework principal                     |
-| **Spring Security**   | —       | Autenticación y autorización            |
-| **Spring Data JPA**   | —       | Capa de persistencia                    |
-| **Spring Mail**       | —       | Envío de emails HTML                    |
-| **Spring WebSocket**  | —       | Comunicación en tiempo real (preparado) |
-| **Spring Validation** | —       | Validación de DTOs y Commands           |
-| **PostgreSQL**        | —       | Base de datos relacional                |
-| **java-jwt (auth0)**  | 4.5.0   | Generación y verificación de JWT        |
-| **Firebase Admin**    | 9.10.0  | Almacenamiento de archivos (Storage)    |
-| **Lombok**            | —       | Reducción de boilerplate                |
-| **MapStruct**         | 1.6.3   | Mapeo tipado entre capas                |
-| **springdoc-openapi** | 2.8.9   | Documentación Swagger UI                |
-| **Gradle**            | 8.14.3  | Build tool                              |
-| **JUnit 5**           | —       | Testing                                 |
+Public endpoint that returns the top 10 services and top 10 providers for the home screen.
 
 ---
 
-## 🔧 Servicios Reutilizables (Core)
+## 🛠 Technologies and Dependencies
+
+| Technology            | Version | Purpose                            |
+| --------------------- | ------- | ---------------------------------- |
+| **Java**              | 17      | Language                           |
+| **Spring Boot**       | 3.5.3   | Main framework                     |
+| **Spring Security**   | —       | Authentication and authorization   |
+| **Spring Data JPA**   | —       | Persistence layer                  |
+| **Spring Mail**       | —       | HTML email sending                 |
+| **Spring WebSocket**  | —       | Real-time communication (prepared) |
+| **Spring Validation** | —       | DTO and Command validation         |
+| **PostgreSQL**        | —       | Relational database                |
+| **java-jwt (auth0)**  | 4.5.0   | JWT generation and verification    |
+| **Firebase Admin**    | 9.10.0  | File storage (Storage)             |
+| **Lombok**            | —       | Boilerplate reduction              |
+| **MapStruct**         | 1.6.3   | Typed mapping between layers       |
+| **springdoc-openapi** | 2.8.9   | Swagger UI documentation           |
+| **Gradle**            | 8.14.3  | Build tool                         |
+| **JUnit 5**           | —       | Testing                            |
+
+---
+
+## 🔧 Reusable Services (Core)
 
 ### `EmailService`
 
-Envía emails con plantilla HTML estilizada (colores, footer con copyright).
+Sends emails with a styled HTML template (colors, footer with copyright).
 
-- Interfaz: `SendHtmlEmailUseCase`
-- Parámetros: `to`, `subject`, `title`, `body` (HTML)
+- Interface: `SendHtmlEmailUseCase`
+- Parameters: `to`, `subject`, `title`, `body` (HTML)
 
 ### `StorageService`
 
-Sube y descarga archivos a/desde Firebase Storage con nombres únicos (timestamp + UUID).
+Uploads and downloads files to/from Firebase Storage with unique names (timestamp + UUID).
 
 - Interfaces: `UploadFileUseCase`, `DownloadFileUseCase`
-- Genera URLs públicas de Firebase
+- Generates public Firebase URLs
 
-### Sistema de Auditoría (`core/auditable`)
+### Audit System (`core/auditable`)
 
-- `AuditableEntity` — Superclase JPA con `@CreatedBy`, `@CreatedDate`, `@LastModifiedBy`, `@LastModifiedDate`, soft-delete (`deletedAt`)
-- `Auditable` — Record de dominio
-- `AuditableDto` — DTO base abstracto
-- Mappers abstractos para JPA ↔ Domain y Domain → DTO
+- `AuditableEntity` — JPA superclass with `@CreatedBy`, `@CreatedDate`, `@LastModifiedBy`, `@LastModifiedDate`, soft-delete (`deletedAt`)
+- `Auditable` — Domain record
+- `AuditableDto` — Abstract base DTO
+- Abstract mappers for JPA ↔ Domain and Domain → DTO
 
-### Jerarquía de Excepciones (`core/exception`)
+### Exception Hierarchy (`core/exception`)
 
 - `AppException` (base) → `AlreadyExistsException` (409), `BadRequestException` (400), `ForbiddenException` (403), `NotFoundException` (404), `UnauthorizedException` (401)
-- `AppExceptionHandler` — `@RestControllerAdvice` centralizado con respuesta estandarizada `ErrorResponse`
-- `AppExceptionHandlerFilter` — Captura excepciones en los filtros de seguridad
+- `AppExceptionHandler` — Centralized `@RestControllerAdvice` with standardized `ErrorResponse`
+- `AppExceptionHandlerFilter` — Catches exceptions in security filters
 
-### Seguridad JWT (`core/security`)
+### JWT Security (`core/security`)
 
-- `JwtProvider` — Genera tokens con HMAC384, expiración de 7 días
-- `JwtFilter` — Valida Bearer tokens en cada request protegido
-- `CustomUserDetailsService` — Carga usuarios desde DB via puertos
-- `UserPrincipal` — Record que envuelve `UserDetails` + `userId`
-- `SecurityConstants` — Whitelist y rutas de solo lectura
+- `JwtProvider` — Generates tokens with HMAC384, 7-day expiration
+- `JwtFilter` — Validates Bearer tokens on each protected request
+- `CustomUserDetailsService` — Loads users from DB via ports
+- `UserPrincipal` — Record wrapping `UserDetails` + `userId`
+- `SecurityConstants` — Whitelist and read-only routes
 
 ---
 
-## 🌐 Endpoints de la API
+## 🌐 API Endpoints
 
 ### Auth (`/auth`)
 
-| Método | Ruta                        | Descripción             | Acceso     |
-| ------ | --------------------------- | ----------------------- | ---------- |
-| `POST` | `/auth/register`            | Registrar nuevo usuario | 🔓 Público |
-| `GET`  | `/auth/verify-email?token=` | Verificar email         | 🔓 Público |
-| `POST` | `/auth/log-in`              | Iniciar sesión          | 🔓 Público |
+| Method | Route                       | Description         | Access    |
+| ------ | --------------------------- | ------------------- | --------- |
+| `POST` | `/auth/register`            | Register a new user | 🔓 Public |
+| `GET`  | `/auth/verify-email?token=` | Verify email        | 🔓 Public |
+| `POST` | `/auth/log-in`              | Log in              | 🔓 Public |
 
 ### Home (`/home`)
 
-| Método | Ruta    | Descripción                                | Acceso           |
-| ------ | ------- | ------------------------------------------ | ---------------- |
-| `GET`  | `/home` | Obtener home (top servicios y proveedores) | 🔓 Público (GET) |
+| Method | Route   | Description                           | Access          |
+| ------ | ------- | ------------------------------------- | --------------- |
+| `GET`  | `/home` | Get home (top services and providers) | 🔓 Public (GET) |
 
 ### Services (`/services`)
 
-| Método | Ruta                     | Descripción                                | Acceso                    |
-| ------ | ------------------------ | ------------------------------------------ | ------------------------- |
-| `POST` | `/services`              | Crear servicio (multipart)                 | 🔒 Autenticado (PROVIDER) |
-| `GET`  | `/services`              | Listar servicios del proveedor autenticado | 🔒 Autenticado            |
-| `GET`  | `/services/details/{id}` | Ver detalle de un servicio                 | 🔓 Público (GET)          |
+| Method | Route                    | Description                            | Access                      |
+| ------ | ------------------------ | -------------------------------------- | --------------------------- |
+| `POST` | `/services`              | Create service (multipart)             | 🔒 Authenticated (PROVIDER) |
+| `GET`  | `/services`              | List authenticated provider's services | 🔒 Authenticated            |
+| `GET`  | `/services/details/{id}` | View service detail                    | 🔓 Public (GET)             |
 
 ### Users (`/users`)
 
-| Método | Ruta                   | Descripción                | Acceso         |
-| ------ | ---------------------- | -------------------------- | -------------- |
-| `GET`  | `/users/provider/{id}` | Ver perfil de un proveedor | 🔒 Autenticado |
+| Method | Route                  | Description           | Access           |
+| ------ | ---------------------- | --------------------- | ---------------- |
+| `GET`  | `/users/provider/{id}` | View provider profile | 🔒 Authenticated |
 
-### Documentación
+### Documentation
 
-| Ruta             | Descripción  |
+| Route            | Description  |
 | ---------------- | ------------ |
 | `/swagger-ui/**` | Swagger UI   |
 | `/v3/**`         | OpenAPI spec |
 
 ---
 
-## 🔐 Seguridad
+## 🔐 Security
 
-- **Autenticación stateless** con JWT (Bearer Token)
-- **Hashing de contraseñas** con BCrypt
-- **Filtro JWT** personalizado con whitelist configurable
-- **Roles**: `CUSTOMER` (C) y `PROVIDER` (P), almacenados como `CHAR(1)` en la BD
-- **Soft delete** global con `@SQLRestriction("deleted_date IS NULL")`
-- **Verificación de email** con tokens criptográficos (SecureRandom) y expiración configurable
-- **CORS** configurado para permitir todos los orígenes (desarrollo)
-
----
-
-## ⚙ Configuración
-
-La aplicación usa variables de entorno para toda la configuración sensible:
-
-| Variable                                  | Descripción                                    |
-| ----------------------------------------- | ---------------------------------------------- |
-| `CONTEXT_PATH`                            | Path base de la API (ej: `/api/v1`)            |
-| `DATABASE`                                | Nombre de la base de datos                     |
-| `DB_URL`                                  | URL de conexión a PostgreSQL                   |
-| `DB_USERNAME`                             | Usuario de la BD                               |
-| `DB_PASSWORD`                             | Contraseña de la BD                            |
-| `SHOW_SQL`                                | Mostrar queries SQL (`true`/`false`)           |
-| `JWT_SECRET_KEY`                          | Clave secreta para firmar JWT                  |
-| `MAIL_USERNAME`                           | Email de Gmail para envíos                     |
-| `MAIL_PASSWORD`                           | App password de Gmail                          |
-| `VERIFICATION_EXPIRATION_TIME_IN_MINUTES` | Tiempo de expiración del token de verificación |
-| `FIREBASE_BUCKET_NAME`                    | Nombre del bucket de Firebase Storage          |
-| `FIREBASE_CONFIG_PATH`                    | Ruta al `serviceAccountKey.json` en classpath  |
+- **Stateless authentication** with JWT (Bearer Token)
+- **Password hashing** with BCrypt
+- **Custom JWT filter** with configurable whitelist
+- **Roles**: `CUSTOMER` (C) and `PROVIDER` (P), stored as `CHAR(1)` in the DB
+- **Global soft delete** with `@SQLRestriction("deleted_date IS NULL")`
+- **Email verification** with cryptographic tokens (SecureRandom) and configurable expiration
+- **CORS** configured to allow all origins (development)
 
 ---
 
-## 🚀 Ejecución
+## ⚙ Configuration
 
-### Prerrequisitos
+The application uses environment variables for all sensitive configuration:
+
+| Variable                                  | Description                                   |
+| ----------------------------------------- | --------------------------------------------- |
+| `CONTEXT_PATH`                            | API base path (e.g.: `/api/v1`)               |
+| `DATABASE`                                | Database name                                 |
+| `DB_URL`                                  | PostgreSQL connection URL                     |
+| `DB_USERNAME`                             | Database username                             |
+| `DB_PASSWORD`                             | Database password                             |
+| `SHOW_SQL`                                | Show SQL queries (`true`/`false`)             |
+| `JWT_SECRET_KEY`                          | Secret key for signing JWT                    |
+| `MAIL_USERNAME`                           | Gmail email for sending                       |
+| `MAIL_PASSWORD`                           | Gmail app password                            |
+| `VERIFICATION_EXPIRATION_TIME_IN_MINUTES` | Verification token expiration time            |
+| `FIREBASE_BUCKET_NAME`                    | Firebase Storage bucket name                  |
+| `FIREBASE_CONFIG_PATH`                    | Path to `serviceAccountKey.json` in classpath |
+
+---
+
+## 🚀 Running
+
+### Prerequisites
 
 - Java 17+
 - PostgreSQL
-- Cuenta de Firebase con Storage habilitado
-- Cuenta de Gmail con App Password
+- Firebase account with Storage enabled
+- Gmail account with App Password
 
-### Ejecutar
+### Run
 
 ```bash
-# Clonar el repositorio
+# Clone the repository
 git clone https://github.com/AlbenBustamante/book-now.git
 cd book-now/api
 
-# Configurar variables de entorno (o crear un .env)
+# Set up environment variables (or create a .env file)
 
-# Ejecutar con Gradle
+# Run with Gradle
 ./gradlew bootRun
 ```
 
-La API estará disponible en `http://localhost:8080{CONTEXT_PATH}`.
+The API will be available at `http://localhost:8080{CONTEXT_PATH}`.
 
-La documentación Swagger estará en `http://localhost:8080{CONTEXT_PATH}/swagger-ui/index.html`.
+The Swagger documentation will be at `http://localhost:8080{CONTEXT_PATH}/swagger-ui/index.html`.
