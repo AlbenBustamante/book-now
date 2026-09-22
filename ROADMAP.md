@@ -82,9 +82,10 @@ Testing ──────▶ UX Polish ───▶ Production
 ### 1.3 — Database Migrations
 
 - [ ] Add Flyway as a dependency
-- [ ] Create initial migration (`V1__init.sql`) with the current schema
+- [ ] Create initial migration (`V1__init.sql`) based on the current schema (see [DATABASE.md](DATABASE.md))
 - [ ] Change `ddl-auto=update` to `ddl-auto=validate`
 - [ ] Document the migration process
+- [x] Document the database schema ([DATABASE.md](DATABASE.md))
 
 ---
 
